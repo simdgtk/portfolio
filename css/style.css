@@ -201,6 +201,9 @@ h3 {
 h4 {
   font-size: var(--h4);
 }
+nav {
+  padding: 2rem;
+}
 nav ul {
   margin: 0 auto;
   max-width: 144rem;
@@ -226,22 +229,31 @@ nav ul {
   text-decoration: underline var(--indigo-text);
   text-decoration-thickness: 3px;
 }
-.button {
+.button:link, .button:visited {
   text-decoration: none;
   color: var(--white);
   font-weight: 500;
-  padding: 1.3rem 2rem;
+  padding: 1.1rem 1.8rem;
+  border: 5px solid transparent;
   border-radius: 0.625rem;
   background: var(--bleu-boutons-solid-bgs, #3358d4);
   box-shadow: var(--shadow-bien);
 }
-strong {
+.button:hover, .button:active {
+  background-color: transparent;
+  color: var(--indigo-text);
+  border: 5px solid var(--indigo-text);
+}
+.strong-name {
   font-weight: 600;
   size: fit-content;
   position: relative;
   display: inline-block;
+  &:hover::after {
+    height: 8.2rem;
+  }
 }
-strong::after {
+.strong-name::after {
   content: "";
   z-index: -1;
   position: absolute;
@@ -251,6 +263,7 @@ strong::after {
   width: 100.8%;
   height: 1.4rem; /* Ajustez l'épaisseur du soulignement selon vos préférences */
   background-color: #edf2fe; /* Couleur du soulignement */
+  transition: height 0.4s;
 }
 .text-big {
   font-size: var(--text-big);
@@ -268,7 +281,7 @@ strong::after {
   display: inline-block;
   color: var(--grey);
   &:hover::after {
-    background-color: var(--indigo-text);
+    background-color: var(--blue-buttons);
   }
 }
 .underline-projects:hover,
@@ -284,10 +297,23 @@ strong::after {
   width: 102%;
   height: 4px;
   border-radius: 1px;
-  background-color: var(--blue-buttons);
+  background-color: var(--grey);
 }
 footer {
   font-family: "Inter", sans-serif;
+}
+.presentation {
+  display: flex;
+  justify-content: space-between;
+}
+.presentation-image {
+  height: 40rem;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .presenting-me {
@@ -319,21 +345,37 @@ section {
   display: flex;
   margin: 12rem 0;
 }
-.underline {
+.underline-projects-h {
+  z-index: 2;
   margin-bottom: 2.5rem;
   position: relative;
+  display: inline-block;
+  &:hover::after {
+    height: 4.6rem;
+  }
 }
-.underline::after {
-  position: absolute;
+.underline-projects-h::after {
+  z-index: -3;
   content: "";
-  width: 43.2rem;
-  height: 1rem;
-  left: -0.2rem;
-  bottom: -0.7rem;
-  background-color: #edf2fe;
-  z-index: -1;
+  position: absolute;
+  bottom: -4px;
+  border-radius: 1px;
+  left: -0.4%;
+  width: 100.8%;
+  height: 0.8rem; /* Ajustez l'épaisseur du soulignement selon vos préférences */
+  background-color: #edf2fe; /* Couleur du soulignement */
+  transition: height 0.4s;
 }
-.some-projects p {
+.bg-section{
+  background-color: var(--blue-buttons);
+}
+#some-projects {
+  padding-bottom: 10rem;
+  padding-top: 7rem;
+  background-color: var(--bg-light);
+  background-size: contain;
+}
+.p-projects {
   font-size: 1.6rem;
   color: #616161;
   margin-bottom: 6rem;
@@ -342,7 +384,7 @@ section {
   margin: 0 auto;
   gap: 1fr;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .img-container {
   position: relative;
@@ -415,9 +457,80 @@ section {
   text-decoration: none;
   color: inherit;
 }
+.arrow{
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
 .project {
   transition: transform 0.2s ease;
 }
 .project:hover {
   transform: scale(1.02);
+}
+.about-flex{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rem;
+}
+.about-flex p {
+  margin-bottom: 5rem;
+  max-width: 60rem;
+  font-size: var(--text-big);
+  font-weight: 400;
+  line-height: 140%;
+}
+.underline-title {
+  z-index: 2;
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: inline-block;
+  &:hover::after {
+    height: 4.6rem;
+  }
+}
+.underline-title::after {
+  z-index: -3;
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  border-radius: 1px;
+  left: -0.4%;
+  width: 100.8%;
+  height: 0.8rem; /* Ajustez l'épaisseur du soulignement selon vos préférences */
+  background-color: #edf2fe; /* Couleur du soulignement */
+  transition: height 0.4s;
+}
+.strong-stage{
+  font-weight: 500;
+}
+.strong-stage{
+
+}
+.strong-stage::after{
+  width: 100%;
+  height: 2px;
+  background-color: #3358d4;
+}
+.underline-about-me {
+  font-weight: 400;
+  position: relative;
+  display: inline-block;
+  color: var(--indigo-text);
+  &:hover::after {
+    background-color: var(--blue-buttons);
+  }
+}
+.underline-about-me:hover,
+.underline-about-me:active {
+  font-weight: 500;
+  color: var(--blue-buttons);
+}
+.underline-about-me::after {
+  content: "";
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 102%;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--indigo-text);
 }
