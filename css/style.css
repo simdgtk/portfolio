@@ -564,8 +564,30 @@ section {
   content: "";
   transform: rotate(-10.5deg);
   z-index: 2;
-  top: 75px;
-  left: 0;
   width: 100px;
   height: 100px;
+}
+.javascript {
+  top: 75px;
+  left: 0;
+}
+.figma {
+  transform: rotate(11.5deg);
+  top: 60px;
+  right: 0;
+}
+.github {
+  transform: rotate(11.5deg);
+  top: 275px;
+  right: 310px;
+  width: 85px;
+  height: 85px;
+}
+
+.wordpress {
+  transform: rotate(-8.5deg);
+  top: 300px;
+  right: 14px;
+  width: 85px;
+  height: 85px;
 }
