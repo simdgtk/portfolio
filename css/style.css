@@ -284,7 +284,7 @@ strong::after {
   width: 102%;
   height: 4px;
   border-radius: 1px;
-  background-color: var(--grey);
+  background-color: var(--blue-buttons);
 }
 footer {
   font-family: "Inter", sans-serif;
