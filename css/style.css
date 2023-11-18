@@ -229,7 +229,8 @@ nav ul {
   text-decoration: underline var(--indigo-text);
   text-decoration-thickness: 3px;
 }
-.button:link, .button:visited {
+.button:link,
+.button:visited {
   text-decoration: none;
   color: var(--white);
   font-weight: 500;
@@ -239,7 +240,8 @@ nav ul {
   background: var(--bleu-boutons-solid-bgs, #3358d4);
   box-shadow: var(--shadow-bien);
 }
-.button:hover, .button:active {
+.button:hover,
+.button:active {
   background-color: transparent;
   color: var(--indigo-text);
   border: 5px solid var(--indigo-text);
@@ -366,7 +368,7 @@ section {
   background-color: #edf2fe; /* Couleur du soulignement */
   transition: height 0.4s;
 }
-.bg-section{
+.bg-section {
   background-color: var(--blue-buttons);
 }
 #some-projects {
@@ -457,8 +459,9 @@ section {
   text-decoration: none;
   color: inherit;
 }
-.arrow{
-  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+.arrow {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
+    contrast(103%);
 }
 .project {
   transition: transform 0.2s ease;
@@ -466,7 +469,7 @@ section {
 .project:hover {
   transform: scale(1.02);
 }
-.about-flex{
+.about-flex {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10rem;
@@ -499,13 +502,12 @@ section {
   background-color: #edf2fe; /* Couleur du soulignement */
   transition: height 0.4s;
 }
-.strong-stage{
+.strong-stage {
   font-weight: 500;
 }
-.strong-stage{
-
+.strong-stage {
 }
-.strong-stage::after{
+.strong-stage::after {
   width: 100%;
   height: 2px;
   background-color: #3358d4;
