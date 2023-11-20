@@ -582,13 +582,6 @@ section {
   width: 100px;
   height: 100px;
 }
-.figma {
-  transform: rotate(11.5deg);
-  top: 60px;
-  right: 0;
-  width: 100px;
-  height: 100px;
-}
 .github {
   transform: rotate(11.5deg);
   top: 275px;
@@ -605,6 +598,52 @@ button {
   background-size: cover;
   cursor: pointer;
   pointer-events: all;
+}
+#button-figma{
+  position: absolute;
+  z-index: 9;
+  width: 90px;
+  height: 90px;
+  border: none;
+  background-image: url(../images/icons/figma.svg);
+  background-color: transparent;
+  border: none;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: rotate(11.5deg);
+  top: 60px;
+  right: 15px;
+}
+#button-github{
+  position: absolute;
+  z-index: 9;
+  width: 75px;
+  height: 75px;
+  border: none;
+  background-image: url(../images/icons/github.svg);
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: rotate(10deg);
+  bottom: 100px;
+  left: 21px;
+}
+#button-wordpress{
+  position: absolute;
+  z-index: 9;
+  width: 80px;
+  height: 80px;
+  transform: rotate(-6.75deg);
+  border: none;
+  background-image: url(../images/icons/wordpress.svg);
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  bottom: 100px;
+  right: 21px;
 }
 
 .wordpress {
