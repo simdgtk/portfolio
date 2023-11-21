@@ -128,27 +128,13 @@ body, html {
   padding: 0;
   height: 100%;
 }
-.section{
-  height: 100vh;
+section{
+  height: 1000px;
+  background-image: url(images/screen.png);
 }
-.wrapper {
-  height: 200vh; /* Définissez la hauteur totale de la page */
-}
-
-.blocked-section {
-  height: 500px; /* Hauteur de la section bloquée, ajustez selon vos besoins */
-  background-color: #f0f0f0;
-  overflow-y: auto;
-}
-
-.blocked-content {
-  position: fixed;
-  width: 100%;
-}
-
-.content {
-  height: 100vh; /* Hauteur de la section suivante, ajustez selon vos besoins */
-  background-color: #e0e0e0;
-  padding: 20px;
-  box-sizing: border-box;
+.aside{
+  height: 500px;
+  background-image: url(images/aside/3D_creations.webp);
+  background-attachment: fixed;
+  background-size: cover;
 }

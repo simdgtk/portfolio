@@ -508,7 +508,7 @@ section {
   background-color: #edf2fe; /* Couleur du soulignement */
   transition: height 0.4s;
 }
-#about-me{
+#about-me {
   margin-top: 10rem;
   margin-bottom: 10rem;
 }
@@ -590,10 +590,10 @@ button {
   cursor: pointer;
   pointer-events: all;
 }
-button:hover{
+button:hover {
   opacity: 0.8;
 }
-#button-figma{
+#button-figma {
   position: absolute;
   z-index: 9;
   width: 90px;
@@ -609,7 +609,7 @@ button:hover{
   top: 60px;
   right: 15px;
 }
-#button-github{
+#button-github {
   position: absolute;
   z-index: 9;
   width: 75px;
@@ -624,7 +624,7 @@ button:hover{
   bottom: 100px;
   left: 21px;
 }
-#button-wordpress{
+#button-wordpress {
   position: absolute;
   z-index: 9;
   width: 80px;
@@ -762,18 +762,28 @@ button:hover{
 .tag-text {
   font-weight: 500 !important;
 }
-.javascript, .figma, .github, .wordpress {
+.javascript,
+.figma,
+.github,
+.wordpress {
   display: none;
 }
-aside{
-}
-.bg-aside{
+aside {
+  height: 500px;
   background-image: url(../images/aside/3D_creations.webp);
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 50rem;
+  background-attachment: fixed;
+  background-size: cover;
 }
-footer{
+.bg-aside {
+  background-image: url(../images/aside/3D_creations.jpg);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  height: 50rem; /* Ajustez la hauteur en conséquence pour afficher l'image complète */
+}
+.discuss{
+  height: 100vh;
+}
+footer {
   padding: 2rem;
   color: var(--indigo-text);
   font-size: 1.6rem;
