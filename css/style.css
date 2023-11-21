@@ -768,17 +768,38 @@ button:hover {
 .wordpress {
   display: none;
 }
-aside {
-  height: 500px;
+.bg-aside {
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  color: var(--white);
+  font-size: var(--text-regular);
+  text-align: center;
+  height: 50rem;
   background-image: url(../images/aside/3D_creations.webp);
   background-attachment: fixed;
-  background-size: cover;
-}
-.bg-aside {
-  background-image: url(../images/aside/3D_creations.jpg);
   background-position: center bottom;
   background-repeat: no-repeat;
-  height: 50rem; /* Ajustez la hauteur en conséquence pour afficher l'image complète */
+  background-size: cover;
+}
+aside{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+.bg-aside p {
+  margin: 3rem 0;
+}
+.bg-aside h2{
+  font-weight: 700;
+}
+.aside-link{
+  color: var(--white);
+  padding: 1rem 2rem;
+  margin-top: 3rem;
+  border-radius: 10px;
+  font-size: 2rem;
+  border: 2px solid var(--white);
 }
 .discuss{
   height: 100vh;
