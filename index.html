@@ -73,7 +73,7 @@
             <article class="project">
               <a class="project-link" href="#">
                 <div class="img-container">
-                  <img src="images/screen.png" alt="" />
+                  <img src="images/screen.png" alt="lien vers mon projet de refonte du site du musée d'Aquitaine" loading="lazy"/>
                 </div>
                 <div class="text-container">
                   <h4>Refonte de site d’un musée</h4>
@@ -94,7 +94,7 @@
             <article class="project">
               <a class="project-link" href="#">
                 <div class="img-container">
-                  <img src="images/screen.png" alt="" />
+                  <img src="images/screen.png" alt="" loading="lazy"/>
                 </div>
                 <div class="text-container">
                   <h4>Refonte de site d’un musée</h4>
@@ -115,7 +115,7 @@
             <article class="project">
               <a class="project-link" href="#">
                 <div class="img-container">
-                  <img class="arrow" src="images/screen.png" alt="" />
+                  <img class="arrow" src="images/screen.png" alt="" loading="lazy"/>
                 </div>
                 <div class="text-container">
                   <h4>Refonte de site d’un musée</h4>
@@ -141,7 +141,7 @@
         <div class="about-flex">
           <div class="about-text">
             <p>
-              <img src="images/icons/hand.png" alt="emoji d'une main" />
+              <img src="images/icons/hand.png" alt="emoji d'une main" loading="lazy"/>
               Je m’appelle Simon Daguet-Kargl et je suis étudiant en BUT MMI,
               <a
                 class="about-external-link"
@@ -155,13 +155,13 @@
               >, une formation pluridisciplinaire qui me forme autant à la
               partie créative qu’aux aspects techniques du métier de
               <strong>développeur front-end.</strong
-              ><img src="images/icons/computer.png" alt="emoji d'une main" />
+              ><img src="images/icons/computer.png" alt="emoji d'un ordinateur, développemetn front-end" loading="lazy"/>
             </p>
             <p>
               J’aime résoudre des problèmes et répondre à des problématiques
               concrètes en développant et concevant des
               <strong>interfaces modernes et inclusives.</strong
-              ><img src="images/icons/phone.png" alt="emoji d'une main" />
+              ><img src="images/icons/phone.png" alt="emoji inclusivité" loading="lazy"/>
             </p>
             <p>
               Je me forme continuellement et j’envisage d’en apprendre encore
@@ -175,42 +175,41 @@
           </div>
           <div class="container-test">
             <div class="div-test">
-              <button id="button"></button>
+              <button id="button" onclick="toggle(this)">javascript</button>
             </div>
             <div class="div-figma">
-              <button id="button-figma"></button>
+              <button id="button-figma" onclick="toggle(this)">figma</button>
             </div>
             <div class="div-github">
-              <button id="button-github"></button>
+              <button id="button-github" onclick="toggle(this)">github</button>
             </div>
             <div class="div-wordpress">
-              <button id="button-wordpress"></button>
+              <button id="button-wordpress" onclick="toggle(this)">wordpress</button>
             </div>
-            <div class="about-image">
-              <div class="name-js invisible" id="tag">
+              <div class="javascript invisible" id="tag">
                 <p class="tag-text">javascript</p>
               </div>
-          </div>
-          <img src="images/hero_img.webp" alt="Simon Daguet-Kargl" />
+              <div class="figma" id="tag">
+                <p class="tag-text">figma</p>
+              </div>
+              <div class="github" id="tag">
+                <p class="tag-text">github</p>
+              </div>
+              <div class="wordpress" id="tag">
+                <p class="tag-text">wordpress</p>
+              </div>
+          <img src="images/hero_img.webp" alt="Simon Daguet-Kargl" loading="lazy"/>
       </div>
       </section>
     </main>
-<aside>
+    <div class="bg-aside">
+      <aside>
 
-  
-  <div class="name">
-    <p class="tag-text">figma</p>
-  </div>
-  <div class="name">
-    <p class="tag-text">github</p>
-  </div>
-  <div class="name">
-    <p class="tag-text">wordpress</p>
-  </div>
-</aside>
+      </aside>
+    </div>
     <footer>
       <p>© Simon Daguet-Kargl - 2023</p>
-      <script src="js/main.js"></script>
     </footer>
+    <script src="js/main.js"></script>
   </body>
 </html>

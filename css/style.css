@@ -508,6 +508,10 @@ section {
   background-color: #edf2fe; /* Couleur du soulignement */
   transition: height 0.4s;
 }
+#about-me{
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+}
 .about-text p img {
   width: 20px;
   margin-left: 5px;
@@ -575,20 +579,7 @@ section {
   transform: rotate(-10.5deg);
   z-index: 2;
 }
-.javascript {
-  opacity: 0.5;
-  top: 75px;
-  left: 0;
-  width: 100px;
-  height: 100px;
-}
-.github {
-  transform: rotate(11.5deg);
-  top: 275px;
-  right: 310px;
-  width: 85px;
-  height: 85px;
-}
+
 button {
   z-index: 9;
   width: 100px;
@@ -598,6 +589,9 @@ button {
   background-size: cover;
   cursor: pointer;
   pointer-events: all;
+}
+button:hover{
+  opacity: 0.8;
 }
 #button-figma{
   position: absolute;
@@ -646,13 +640,6 @@ button {
   right: 21px;
 }
 
-.wordpress {
-  transform: rotate(-8.5deg);
-  top: 300px;
-  right: 14px;
-  width: 85px;
-  height: 85px;
-}
 .button-tag {
   display: absolute;
   width: 100px;
@@ -660,7 +647,7 @@ button {
   border: none;
   background: transparent;
 }
-.name-js {
+.javascript {
   background-color: #edf2fe;
   color: #1f2d5c;
   color: #1f2d5c;
@@ -674,7 +661,7 @@ button {
   padding: 0.35rem 1rem;
   height: 3rem;
 }
-.name-js::after {
+.javascript::after {
   z-index: -6;
   content: "";
   display: block;
@@ -688,6 +675,106 @@ button {
   left: 50%;
   transform: translate(-50%, 80%);
 }
+.figma {
+  background-color: #edf2fe;
+  color: #1f2d5c;
+  color: #1f2d5c;
+  z-index: -5;
+  top: 1.7rem;
+  right: 0.9rem;
+  transform: rotate(11.5deg);
+  position: absolute;
+  border-radius: 0.625rem;
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  height: 3rem;
+}
+.figma::after {
+  z-index: -6;
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 0.625rem solid #edf2fe;
+  border-left: 0.625rem solid transparent;
+  border-right: 0.625rem solid transparent;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 80%);
+}
+.github {
+  background-color: #edf2fe;
+  color: #1f2d5c;
+  color: #1f2d5c;
+  z-index: -5;
+  bottom: 5.9rem;
+  left: 0.7rem;
+  transform: rotate(10deg);
+  position: absolute;
+  border-radius: 0.625rem;
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  height: 3rem;
+}
+.github::after {
+  z-index: -6;
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 0.625rem solid #edf2fe;
+  border-left: 0.625rem solid transparent;
+  border-right: 0.625rem solid transparent;
+  position: absolute;
+  top: -5px;
+  left: 43%;
+  transform: rotate(180deg);
+}
+.wordpress {
+  background-color: #edf2fe;
+  color: #1f2d5c;
+  color: #1f2d5c;
+  z-index: -5;
+  bottom: 5.6rem;
+  right: -1rem;
+  transform: rotate(-6.75deg);
+  position: absolute;
+  border-radius: 0.625rem;
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  height: 3rem;
+}
+.wordpress::after {
+  z-index: -6;
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 0.625rem solid #edf2fe;
+  border-left: 0.625rem solid transparent;
+  border-right: 0.625rem solid transparent;
+  position: absolute;
+  top: -5px;
+  left: 43%;
+  transform: rotate(180deg);
+}
 .tag-text {
   font-weight: 500 !important;
+}
+.javascript, .figma, .github, .wordpress {
+  display: none;
+}
+aside{
+}
+.bg-aside{
+  background-image: url(../images/aside/3D_creations.webp);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 50rem;
+}
+footer{
+  padding: 2rem;
+  color: var(--indigo-text);
+  font-size: 1.6rem;
 }

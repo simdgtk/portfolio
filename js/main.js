@@ -1,12 +1,15 @@
-const button = document.querySelector("button");
-const tag = document.getElementsByClassName("name-js")[0];
-tag.style.display = "none";
-
-button.addEventListener("click", () => {
-  if (tag.style.display === "none") {
-    tag.style.display = "block";
+//making the text invisible
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => { 
+  button.style.color = "transparent";
+  button.style.userSelect = "none";
+ });
+function toggle (btnText) {
+  let tagCurrent = document.getElementsByClassName(btnText.innerText)[0];
+  if (tagCurrent.style.display === "block") {
+    tagCurrent.style.display = "none";
   } else {
-    tag.style.display = "none";
+    tagCurrent.style.display = "block";
   }
-});
-console.log(tag.textContent, button);
+}
+
