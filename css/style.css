@@ -304,6 +304,7 @@ nav ul {
 footer {
   font-family: "Inter", sans-serif;
 }
+section{font-family: "Inter", sans-serif;}
 .presentation {
   display: flex;
   justify-content: space-between;
@@ -774,7 +775,7 @@ button:hover {
   color: var(--white);
   font-size: var(--text-regular);
   text-align: center;
-  height: 50rem;
+  height: 40rem;
   background-image: url(../images/aside/3D_creations.webp);
   background-attachment: fixed;
   background-position: center bottom;
@@ -802,8 +803,23 @@ aside{
   border: 2px solid var(--white);
 }
 .discuss{
+  margin-top: 10rem;
+  margin-bottom: 10rem;
   height: 100vh;
 }
+.discuss h2{
+  margin-bottom: 7rem;
+}
+.center{
+  display: flex;
+  justify-content: center;
+}
+
+.aside-card {
+  background-color: var(--bg-light);
+  font-size: var(--text-big);
+}
+
 footer {
   padding: 2rem;
   color: var(--indigo-text);
