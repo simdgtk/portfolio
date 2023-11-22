@@ -14,6 +14,12 @@ function toggle (btnText) {
 }
 
 const toggleMode = document.querySelector(".toggle-mode");
+const img = document.querySelector(".dark");
 toggleMode.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');  
+  document.body.classList.toggle('dark-mode');
+  if (img.getAttribute("src") === "images/icons/light.svg"){
+    img.setAttribute("src", "images/icons/dark.svg")
+  } else {
+    img.setAttribute("src", "images/icons/light.svg")
+  }
 });
