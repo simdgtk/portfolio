@@ -1,0 +1,188 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+:root {
+  --blue-buttons: #3358d4;
+  --white: #ffffff;
+  --grey: #616161;
+  --indigo-text: #1f2d5c;
+  --second-text: #3a5bc7;
+  --indigo-light: rgb(231, 238, 252); 
+  --bg-light: #f7f9ff;
+  --shadow-bien: 0px 10px 15px -3px rgba(0, 0, 0, 0.08);
+  --border-radius: 10px;
+  --border-radius-big: 20px;
+  /* Spacing system */
+  --space-xxs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-xxl: 4rem;
+  /* Font sizes */
+  --h1: 6.1rem;
+  --h2: 3.9rem;
+  --h3: 3.1rem;
+  --h4: 2.3rem;
+  --text-big: 2rem;
+  --text-regular: 1.6rem;
+}
+
+.grey {
+  color: var(--grey);
+}
+.blue-buttons {
+  color: var(--blue-buttons);
+}
+.white {
+  color: var(--white);
+}
+.indigo-text {
+  color: var(--indigo-text);
+}
+.second-text {
+  color: var(--second-text);
+}
+.bg-light {
+  background-color: var(--bg-light);
+}
+.shadox-bien {
+  box-shadow: var(--shadow-bien);
+}
+.border-radius {
+  border-radius: var(--border-radius);
+}
+.border-radius-big {
+  border-radius: var(--border-radius-big);
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  color: var(--indigo-text);
+}
+a {
+  text-decoration: none;
+}

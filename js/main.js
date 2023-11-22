@@ -13,3 +13,7 @@ function toggle (btnText) {
   }
 }
 
+const toggleMode = document.querySelector(".toggle-mode");
+toggleMode.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');  
+});
