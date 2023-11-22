@@ -1,12 +1,11 @@
 .dark-mode {
-  --blue-buttons: #3B9EFF;
-  --white: #1F2D5C;
-  --grey: #B4B4B4;
-  --indigo-text: #D6E1FF;
-  --second-text: #5472E4;
-  --indigo-light: #11131F;
-  --bg-light: #11131F;
-  
+  --blue-buttons: #3b9eff;
+  --white: #1f2d5c;
+  --grey: #b4b4b4;
+  --indigo-text: #d6e1ff;
+  --second-text: #5472e4;
+  --indigo-light: #11131f;
+  --bg-light: #11131f;
 }
 
 .grey {
@@ -27,7 +26,7 @@
 .bg-light {
   background-color: var(--bg-light);
 }
-body{
+body {
   background-color: var(--white);
 }
 h1 {
@@ -56,11 +55,15 @@ nav ul {
   font-size: 2.3rem;
   font-weight: 400;
 }
-nav ul li{
+nav ul li {
   margin-right: 6.5rem;
 }
-nav ul li:nth-child(3), nav ul li:last-child{
+nav ul li:nth-child(3),
+nav ul li:last-child {
   margin-right: 0rem;
+}
+.dark {
+  max-width: 3.5rem;
 }
 .link:link,
 .link:visited {
@@ -91,7 +94,7 @@ nav ul li:nth-child(3), nav ul li:last-child{
   color: var(--indigo-text);
   border: 5px solid var(--indigo-text);
 }
-.toggle-mode{
+.toggle-mode {
   border: none;
   background: none;
   display: flex;
@@ -101,9 +104,8 @@ nav ul li:nth-child(3), nav ul li:last-child{
   justify-content: center;
   font-weight: 500;
 }
-.nav ul:last-child{
+.nav ul:last-child {
   margin-right: 0rem;
-
 }
 
 .strong-name {
@@ -111,20 +113,27 @@ nav ul li:nth-child(3), nav ul li:last-child{
   size: fit-content;
   position: relative;
   display: inline-block;
-  &:hover::after {
-    height: 8.2rem;
-  }
 }
-.strong-name::after {
+
+.strong-name div {
+  position: relative;
+  display: inline-block;
+}
+
+.strong-name:hover div::after {
+  height: 7.5rem;
+}
+
+.strong-name div::after {
   content: "";
   z-index: -1;
   position: absolute;
-  bottom: -4px;
+  bottom: 0px;
   border-radius: 1px;
   left: -0.4%;
-  width: 100.8%;
-  height: 1.4rem; /* Ajustez l'épaisseur du soulignement selon vos préférences */
-  background-color: var(--indigo-light); /* Couleur du soulignement */
+  width: 108%;
+  height: 1.4rem;
+  background-color: var(--indigo-light);
   transition: height 0.4s;
 }
 .text-big {
@@ -164,7 +173,9 @@ nav ul li:nth-child(3), nav ul li:last-child{
 footer {
   font-family: "Inter", sans-serif;
 }
-section{font-family: "Inter", sans-serif;}
+section {
+  font-family: "Inter", sans-serif;
+}
 .presentation {
   display: flex;
   justify-content: space-between;
@@ -174,6 +185,7 @@ section{font-family: "Inter", sans-serif;}
 }
 
 .hero-img {
+  max-width: 40rem;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -196,6 +208,7 @@ section{font-family: "Inter", sans-serif;}
   height: 5.5rem;
 }
 .social-links li a img {
+  max-width: 5.5rem;
   width: 100%;
   height: 100%;
 }
@@ -254,7 +267,7 @@ section {
 }
 .img-container {
   position: relative;
-  height: 30rem;
+  max-height: 30rem;
   background-color: #ffffff;
   border-radius: 20px 20px 0 0;
   overflow: hidden;
@@ -430,8 +443,7 @@ section {
 .div-test {
   transform: rotate(-10.5deg);
   position: absolute;
-  width: 100px;
-  height: 100px;
+  max-width: 100px;
   top: 7.5rem;
   left: 0.2rem;
 }
@@ -457,8 +469,7 @@ button:hover {
 #button-figma {
   position: absolute;
   z-index: 9;
-  width: 90px;
-  height: 90px;
+  max-height: 90px;
   border: none;
   background-image: url(../images/icons/figma.svg);
   background-color: transparent;
@@ -473,8 +484,7 @@ button:hover {
 #button-github {
   position: absolute;
   z-index: 9;
-  width: 75px;
-  height: 75px;
+  max-width: 75px;
   border: none;
   background-image: url(../images/icons/github.svg);
   background-color: transparent;
@@ -488,8 +498,7 @@ button:hover {
 #button-wordpress {
   position: absolute;
   z-index: 9;
-  width: 80px;
-  height: 80px;
+  max-width: 80px;
   transform: rotate(-6.75deg);
   border: none;
   background-image: url(../images/icons/wordpress.svg);
@@ -642,7 +651,7 @@ button:hover {
   background-repeat: no-repeat;
   background-size: cover;
 }
-aside{
+aside {
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -652,10 +661,10 @@ aside{
 .bg-aside p {
   margin: 3rem 0;
 }
-.bg-aside h2{
+.bg-aside h2 {
   font-weight: 700;
 }
-.aside-link{
+.aside-link {
   color: #edf2fe;
   padding: 1rem 2rem;
   margin-top: 3rem;
@@ -663,26 +672,64 @@ aside{
   font-size: 2rem;
   border: 2px solid #edf2fe;
 }
-.discuss{
+.discuss {
   padding-top: 10rem;
   margin-bottom: 10rem;
-  height: 100vh;
 }
-.discuss h2{
+.discuss h2 {
   margin-bottom: 7rem;
 }
-.center{
+.center {
   display: flex;
   justify-content: center;
 }
-
-.aside-card {
-  background-color: var(--bg-light);
-  font-size: var(--text-big);
+.cards {
+  line-height: 1.4;
+  font-size: 2rem;
+  display: flex;
+  gap: 7rem;
+  justify-content: space-between;
 }
-
+.cards a {
+  color: var(--blue-buttons);
+  text-decoration: underline;
+}
+.socials,
+.cv {
+  background-color: var(--bg-light);
+  padding: 5rem;
+  border-radius: 20px;
+}
+.socials-links {
+  margin-top: 3.5rem;
+}
+.cards h3 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 4.5rem;
+}
+.cards img {
+  max-width: 5.5rem;
+}
+.socials-flex {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+.socials-flex:last-child {
+  margin-bottom: 0;
+}
+.cv {
+  height: fit-content;
+}
 footer {
   padding: 2rem;
   color: var(--indigo-text);
   font-size: 1.6rem;
+}
+.legal-notices:link,
+.legal-notices:visited {
+  margin-left: 1rem;
+  color: var(--blue-buttons);
 }

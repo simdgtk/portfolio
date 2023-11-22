@@ -12,6 +12,7 @@
     <meta property="og:image" content="" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/queries.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -38,8 +39,12 @@
           <div class="presentation-texte">
             <h1>
               Enchanté ! Moi c’est<strong class="strong-name"
-                >Simon Daguet-Kargl</strong
-              >, développeur front-end.
+                >
+                <div>Simon </div>
+                <div>Daguet- </div>
+                <div>Kargl,</div>
+                </strong
+              > développeur front-end.
             </h1>
             <p class="presenting-me">
               Je développe des sites internet modernes et attractifs en veillant
@@ -218,22 +223,33 @@
       <div class="center">
         <h2 class="underline-title">Discutons ensemble !</h2>
       </div>
-      <div class="aside-grid">
-        <div class="form aside-card">
-          <h4>Par formulaire de contact</h4>
-          <p class="aside-description">Un accusé de réception vous sera envoyé par mail</p>
-          <p>Votre nom</p>
-          <input class="input" type="text" name="name" placeholder="">
-          <p>Votre adresse mail <span>*</span></p>
-          <p>Votre message <span>*</span></p>
-
+      <div class="cards">
+        <div class="socials">
+          <h3>Par mes réseaux</h3>
+          <p>Par mail, à l’adresse <a href="mailto:simondaguetkargl@gmail.com">simondaguetkargl@gmail.com</a></p>
+          <div class="socials-links">
+            <div class="socials-flex">
+              <img src="images/icons/linkedin.svg" alt="icône Linkedin">
+              <p>Sur Linkedin, <a href="https://www.linkedin.com/in/simon-daguet-kargl-381992294/">Simon Daguet-Kargl</a></p>
+            </div>
+            <div class="socials-flex">
+              <img src="images/icons/behance.svg" alt="icône Behance">
+              <p>Sur Behance, <a href="https://www.behance.net/simdgtk">Simon Daguet-Kargl</a></p>
+            </div>
+            <div class="socials-flex">
+              <img src="images/icons/github.svg" alt="icône Github">
+              <p>Découvrez comment j’ai codé ce site, sur github <a href="https://github.com/simdgtk">simdgtk</a></p>
+            </div>
         </div>
-        <div class="direct-links aside-card"></div>
-        <div class="cv"></div>
+        </div>
+        <div class="cv">
+          <h3>Retrouvez également mon CV</h3>
+          <a class="button" href="simon_daguet_kargl_cv.pdf" target="_blank">Voir mon CV</a>
+        </div>
       </div>
     </section>
     <footer>
-      <p>© Simon Daguet-Kargl - 2023</p>
+      <p>© Simon Daguet-Kargl - <span class="date">2023</span><a class="legal-notices" href="#">Mentions Légales</a></p>
     </footer>
     <script src="js/main.js"></script>
   </body>
