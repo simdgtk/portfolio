@@ -1,4 +1,33 @@
-@media only screen and (max-width: 1080px) {
-  .strong-name::after {
+@media only screen and (max-width: 1010px) {
+  html{
+    font-size: 50%;
+  }
+  .presentation{
+    flex-direction: column;
+  }
+  .presenting-me{
+    max-width: fit-content;
+  }
+  .presentation-image{
+    text-align: center;
+  }
+  .projects{
+    align-items: center;
+    gap: 0;
+    display: grid;
+    row-gap: 4rem;
+    grid-template-columns: 1fr 1fr;
+  }
+  .projects article:nth-child(2){
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width: 840px){
+  .projects{
+    grid-template-columns: 1fr;
+  }
+  .project{
+    margin: 0;
+    max-width: 100%;
   }
 }

@@ -1,10 +1,10 @@
 .dark-mode {
-  --blue-buttons: #3b9eff;
+  --blue-buttons: #9EB1FF;
   --white: #1f2d5c;
-  --grey: #b4b4b4;
+  --grey: #EEEEEE;
   --indigo-text: #d6e1ff;
   --second-text: #5472e4;
-  --indigo-light: #11131f;
+  --indigo-light: #304384;
   --bg-light: #11131f;
 }
 
@@ -44,7 +44,12 @@ h3 {
 h4 {
   font-size: var(--h4);
 }
-
+body{
+  position: relative;
+}
+header{
+  position: sticky;
+}
 nav ul {
   margin: 0 auto;
   max-width: 144rem;
@@ -52,7 +57,7 @@ nav ul {
   align-items: center;
   justify-content: end;
   font-family: "Inter", sans-serif;
-  font-size: 2.3rem;
+  font-size: 1.8rem;
   font-weight: 400;
 }
 nav ul li {
@@ -110,9 +115,8 @@ nav ul li:last-child {
 
 .strong-name {
   font-weight: 600;
-  size: fit-content;
   position: relative;
-  display: inline-block;
+
 }
 
 .strong-name div {
@@ -147,18 +151,15 @@ nav ul li:last-child {
   font-weight: 500; /* Medium */
 }
 .underline-projects {
+  color: var(--blue-buttons);
   font-weight: 400;
   position: relative;
   display: inline-block;
-  color: var(--grey);
-  &:hover::after {
-    background-color: var(--blue-buttons);
-  }
 }
 .underline-projects:hover,
 .underline-projects:active {
   font-weight: 500;
-  color: var(--blue-buttons);
+
 }
 .underline-projects::after {
   content: "";
@@ -168,7 +169,7 @@ nav ul li:last-child {
   width: 102%;
   height: 4px;
   border-radius: 1px;
-  background-color: var(--grey);
+  background-color: var(--blue-buttons);
 }
 footer {
   font-family: "Inter", sans-serif;
@@ -413,7 +414,7 @@ section {
   font-weight: 400;
   position: relative;
   display: inline-block;
-  color: var(--indigo-text);
+  color: var(--blue-buttons);
   &:hover::after {
     background-color: var(--blue-buttons);
   }
@@ -421,7 +422,6 @@ section {
 .underline-about-me:hover,
 .underline-about-me:active {
   font-weight: 500;
-  color: var(--blue-buttons);
 }
 .underline-about-me::after {
   content: "";
@@ -431,7 +431,7 @@ section {
   width: 102%;
   height: 2px;
   border-radius: 1px;
-  background-color: var(--indigo-text);
+  background-color: var(--blue-buttons);
 }
 .about-image {
   position: relative;
@@ -632,6 +632,7 @@ button:hover {
 .tag-text {
   font-weight: 500 !important;
 }
+
 .javascript,
 .figma,
 .github,
@@ -670,7 +671,7 @@ aside {
   margin-top: 3rem;
   border-radius: 10px;
   font-size: 2rem;
-  border: 2px solid #edf2fe;
+  border: 5px solid #edf2fe;
 }
 .discuss {
   padding-top: 10rem;
@@ -700,6 +701,10 @@ aside {
   padding: 5rem;
   border-radius: 20px;
 }
+
+.socials p {
+  margin-bottom: 1rem;
+}
 .socials-links {
   margin-top: 3.5rem;
 }
@@ -710,6 +715,9 @@ aside {
 }
 .cards img {
   max-width: 5.5rem;
+}
+.socials-flex p{
+  margin: 0;
 }
 .socials-flex {
   display: flex;
@@ -733,3 +741,57 @@ footer {
   margin-left: 1rem;
   color: var(--blue-buttons);
 }
+.strong-name-about {
+  font-weight: 400;
+  position: relative;
+  color: var(--indigo-text);
+
+}
+
+.strong-name-about div {
+  position: relative;
+  display: inline-block;
+  size: fit-content;
+}
+
+.strong-name-about:hover div::after {
+  height: 4rem;
+}
+
+.strong-name-about div::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  bottom: 0px;
+  border-radius: 1px;
+  left: 0%;
+  width: 135%;
+  height: 0.8rem;
+  background-color: var(--indigo-light);
+  transition: height 0.4s;
+}
+/*
+.underline-about-me {
+  font-weight: 400;
+  position: relative;
+  display: inline-block;
+
+  &:hover::after {
+    background-color: var(--blue-buttons);
+  }
+}
+.underline-about-me:hover,
+.underline-about-me:active {
+  font-weight: 500;
+}
+.underline-about-me::after {
+  content: "";
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 102%;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--blue-buttons);
+}
+*/
