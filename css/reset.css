@@ -128,7 +128,7 @@ table {
   --grey: #616161;
   --indigo-text: #1f2d5c;
   --second-text: #3a5bc7;
-  --indigo-light: rgb(231, 238, 252); 
+  --indigo-light: rgb(231, 238, 252);
   --bg-light: #f7f9ff;
   --shadow-bien: 0px 10px 15px -3px rgba(0, 0, 0, 0.08);
   --border-radius: 10px;
@@ -179,6 +179,7 @@ table {
 }
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 body {
   color: var(--indigo-text);

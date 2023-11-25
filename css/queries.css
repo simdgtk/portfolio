@@ -1,33 +1,45 @@
 @media only screen and (max-width: 1010px) {
-  html{
+  html {
     font-size: 50%;
   }
-  .presentation{
+  .presentation {
     flex-direction: column;
   }
-  .presenting-me{
+  .presenting-me {
     max-width: fit-content;
   }
-  .presentation-image{
+  .presentation-image {
     text-align: center;
   }
-  .projects{
+  .projects {
     align-items: center;
     gap: 0;
     display: grid;
     row-gap: 4rem;
     grid-template-columns: 1fr 1fr;
   }
-  .projects article:nth-child(2){
+  .projects article:nth-child(2) {
     margin-right: 0;
   }
 }
-@media only screen and (max-width: 840px){
-  .projects{
+@media only screen and (max-width: 840px) {
+  html {
+    font-size: 40%;
+  }
+  .projects {
     grid-template-columns: 1fr;
   }
-  .project{
+  .project {
     margin: 0;
     max-width: 100%;
+  }
+  .about-flex {
+    flex-direction: column;
+  }
+  .container-test {
+    align-self: center;
+  }
+  .cards {
+    flex-direction: column;
   }
 }
