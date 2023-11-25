@@ -1,7 +1,7 @@
 .dark-mode {
-  --blue-buttons: #9EB1FF;
+  --blue-buttons: #9eb1ff;
   --white: #1f2d5c;
-  --grey: #EEEEEE;
+  --grey: #eeeeee;
   --indigo-text: #d6e1ff;
   --second-text: #5472e4;
   --indigo-light: #304384;
@@ -44,10 +44,10 @@ h3 {
 h4 {
   font-size: var(--h4);
 }
-body{
+body {
   position: relative;
 }
-header{
+header {
   position: sticky;
 }
 nav ul {
@@ -116,7 +116,6 @@ nav ul li:last-child {
 .strong-name {
   font-weight: 600;
   position: relative;
-
 }
 
 .strong-name div {
@@ -159,7 +158,6 @@ nav ul li:last-child {
 .underline-projects:hover,
 .underline-projects:active {
   font-weight: 500;
-
 }
 .underline-projects::after {
   content: "";
@@ -716,7 +714,7 @@ aside {
 .cards img {
   max-width: 5.5rem;
 }
-.socials-flex p{
+.socials-flex p {
   margin: 0;
 }
 .socials-flex {
@@ -745,7 +743,6 @@ footer {
   font-weight: 400;
   position: relative;
   color: var(--indigo-text);
-
 }
 
 .strong-name-about div {
@@ -764,11 +761,18 @@ footer {
   position: absolute;
   bottom: 0px;
   border-radius: 1px;
-  left: 0%;
-  width: 135%;
+  width: 125%;
+  left: 0;
   height: 0.8rem;
   background-color: var(--indigo-light);
   transition: height 0.4s;
+}
+.strong-name-about div:first-child::after {
+  width: 150%;
+  left: -5%;
+}
+.strong-name-about div:last-child::after {
+  width: 105%;
 }
 /*
 .underline-about-me {
