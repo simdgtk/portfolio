@@ -11,7 +11,8 @@
     <link rel="icon" href="images/favicon.ico" />
     <meta property="og:image" content="" />
     <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/project1.css" />
+    <link rel="stylesheet" href="css/queries-project1.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,197 +23,89 @@
   <body>
     <header>
       <nav>
-        <ul>
-          <li><a class="link" href="#some-projects">Mes projets</a></li>
-          <li><a class="link" href="#about">À propos</a></li>
-          <li><a class="button" href="#contact">Me contacter</a></li>
-        </ul>
+        <a href="index.html" class="return"
+          >Simon Daguet-Kargl - retour à l’accueil</a
+        >
+        <button class="toggle-mode">
+          <img class="dark" src="images/icons/dark.svg" alt="dark mode" />
+        </button>
       </nav>
     </header>
     <main>
-      <section id="accueil">
-        <div class="presentation">
-          <div class="presentation-texte">
-            <h1>
-              Enchanté ! Moi c’est<strong class="strong-name"
-                >Simon Daguet-Kargl</strong
-              >, développeur front-end.
-            </h1>
-            <p class="presenting-me">
-              Je développe des sites internet modernes et attractifs en veillant
-              à les rendre accessible au plus grand nombre.
-              <a class="underline-projects" href="#"> Mes projets ↓ </a>
-            </p>
-            <ul class="social-links">
-              <li>
-                <a href="#" class="">
-                  <img src="images/icons/linkedin.svg" alt="linkedin" />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="images/icons/behance.svg" alt="behance"
-                /></a>
-              </li>
-            </ul>
+      <section class="accueil">
+        <div class="accueil-flex">
+          <div class="container">
+            <div class="div">
+              <h1 class="strong-name">
+                <div>Projet</div>
+              </h1>
+              <h2>La refonte du site du musée d’Aquitaine</h2>
+              <p>
+                C’est un projet réalisé dans le cadre de ma formation en MMI
+                pour lequel nous étions 4. Nous avons designé et développé ce
+                site en 2 semaines.
+                <a href="#" class="discover">Découvrez-en plus ↓</a>
+              </p>
+            </div>
+            <div class="div arrow">
+              <a href="#" class="discover" target="_blank"
+                >Et si vous souhaitez le voir en ligne</a
+              >
+              <img src="images/icons/arrow_up.svg" />
+            </div>
           </div>
-          <div class="presentation-image">
-            <img
-              class="hero-img"
-              src="images/hero_img.webp"
-              alt="Simon Daguet-Kargl, développeur front-end"
-            />
+          <div class="img-container">
+            <div class="image image-one">
+              <img src="images/projet_musee/logo.png" alt="image du projet 1" />
+            </div>
+            <div class="image image-two">
+              <img src="images/projet_musee/logo.png" alt="image du projet 2" />
+            </div>
+            <div class="image image-three">
+              <img src="images/projet_musee/logo.png" alt="image du projet 3" />
+            </div>
           </div>
         </div>
       </section>
-      <div class="bg-section">
-        <section id="some-projects">
-          <h2 class="underline-title">Quelques projets phares</h2>
-          <p class="p-projects">Cliquez sur un projet pour en savoir plus</p>
-          <div class="projects">
-            <article class="project">
-              <a class="project-link" href="#">
-                <div class="img-container">
-                  <img src="images/screen.png" alt="lien vers mon projet de refonte du site du musée d'Aquitaine" loading="lazy"/>
-                </div>
-                <div class="text-container">
-                  <h4>Refonte de site d’un musée</h4>
-                  <p>
-                    Le site s’adapte à toute taille d’écran et à été pensé pour
-                    être accessible.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">html & css</span>
-                    <span class="tag">accessibilité</span>
-                  </div>
-                  <a class="project-button" href="#">
-                    <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
-                  </a>
-                </div>
-              </a>
-            </article>
-            <article class="project">
-              <a class="project-link" href="#">
-                <div class="img-container">
-                  <img src="images/screen.png" alt="" loading="lazy"/>
-                </div>
-                <div class="text-container">
-                  <h4>Refonte de site d’un musée</h4>
-                  <p>
-                    Le site s’adapte à toute taille d’écran et à été pensé pour
-                    être accessible.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">html & css</span>
-                    <span class="tag">accessibilité</span>
-                  </div>
-                  <a class="project-button" href="#">
-                    <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
-                  </a>
-                </div>
-              </a>
-            </article>
-            <article class="project">
-              <a class="project-link" href="#">
-                <div class="img-container">
-                  <img class="arrow" src="images/screen.png" alt="" loading="lazy"/>
-                </div>
-                <div class="text-container">
-                  <h4>Refonte de site d’un musée</h4>
-                  <p>
-                    Le site s’adapte à toute taille d’écran et à été pensé pour
-                    être accessible.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">html & css</span>
-                    <span class="tag">accessibilité</span>
-                  </div>
-                  <a class="project-button" href="#">
-                    <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
-                  </a>
-                </div>
-              </a>
-            </article>
-          </div>
-        </section>
-      </div>
-      <section id="about-me">
-        <h2 class="underline-title">À propos de moi</h2>
-        <div class="about-flex">
-          <div class="about-text">
+      <section>
+        <h2 class="project">
+          <div>Le</div>
+          <div>déroulement</div>
+          <div>du</div>
+          <div>projet</div>
+        </h2>
+        <div class="accueil-flex">
+          <div class="project-texts">
             <p>
-              <img src="images/icons/hand.png" alt="emoji d'une main" loading="lazy"/>
-              Je m’appelle Simon Daguet-Kargl et je suis étudiant en BUT MMI,
-              <a
-                class="about-external-link"
-                href="https://www.mmibordeaux.com/"
-                target="_blank"
+              La 1ère semaine était consacrée au webdesign. Nous avons eu à
+              choisir quels éléments et quels dispositions reprendre ou ajouter.
+              Nous avons utilisé l’outil de travail collaboratif figma
+              notamment.
+            </p>
+            <p>
+              Nous avons codé le site la 2ème semaine et nous travaillions
+              ensemble grâce à github. Il nous a fallu veiller à l’accessibilité
+              du site↓.
+            </p>
+            <div class="arrow">
+              <a href="#" target="_blank" class="discover"
+                >Pour voir le site en ligne</a
               >
-                métiers du multimédia et de l’internet
-                <img
-                  src="images/icons/arrow_up_blue.svg"
-                  alt="lien vers ma formation" /></a
-              >, une formation pluridisciplinaire qui me forme autant à la
-              partie créative qu’aux aspects techniques du métier de
-              <strong>développeur front-end.</strong
-              ><img src="images/icons/computer.png" alt="emoji d'un ordinateur, développemetn front-end" loading="lazy"/>
-            </p>
-            <p>
-              J’aime résoudre des problèmes et répondre à des problématiques
-              concrètes en développant et concevant des
-              <strong>interfaces modernes et inclusives.</strong
-              ><img src="images/icons/phone.png" alt="emoji inclusivité" loading="lazy"/>
-            </p>
-            <p>
-              Je me forme continuellement et j’envisage d’en apprendre encore
-              beaucoup plus dans ce domaine. Je suis basé sur Bordeaux et sur
-              Nantes et
-              <strong class="strong-stage"
-                >je cherche un stage à partir du 20 mai 2024.</strong
-              >
-              <a class="underline-about-me" href="#">Pour me contacter ↓</a>
-            </p>
+              <img src="images/icons/arrow_up.svg" />
+            </div>
           </div>
-          <div class="container-test">
-            <div class="div-test">
-              <button id="button" onclick="toggle(this)">javascript</button>
-            </div>
-            <div class="div-figma">
-              <button id="button-figma" onclick="toggle(this)">figma</button>
-            </div>
-            <div class="div-github">
-              <button id="button-github" onclick="toggle(this)">github</button>
-            </div>
-            <div class="div-wordpress">
-              <button id="button-wordpress" onclick="toggle(this)">wordpress</button>
-            </div>
-              <div class="javascript invisible" id="tag">
-                <p class="tag-text">javascript</p>
-              </div>
-              <div class="figma" id="tag">
-                <p class="tag-text">figma</p>
-              </div>
-              <div class="github" id="tag">
-                <p class="tag-text">github</p>
-              </div>
-              <div class="wordpress" id="tag">
-                <p class="tag-text">wordpress</p>
-              </div>
-          <img src="images/hero_img.webp" alt="Simon Daguet-Kargl" loading="lazy"/>
-      </div>
+          <div class="project-img-container">
+            <img src="images/projet_musee/logo.png" alt="image du projet 1" />
+          </div>
+        </div>
       </section>
     </main>
-    <div class="bg-aside">
-      <aside>
-        <div class="div">
-          <h2>Découvrez en plus</h2>
-          <p>En ayant fait pendant plusieurs années de la 3D, j’envisage d’en apprendre plus sur ce domaine pour le web et ses usages</p>
-          <a class="aside-link" href="#" target="_blank">Mes créations 3D</a>
-        </div>
-      </aside>
-    </div>
     <footer>
-      <p>© Simon Daguet-Kargl - 2023</p>
+      <p>
+        © Simon Daguet-Kargl - <span class="date">2023</span
+        ><a class="legal-notices" href="#">Mentions Légales</a>
+      </p>
     </footer>
+    <script src="js/main.js"></script>
   </body>
 </html>

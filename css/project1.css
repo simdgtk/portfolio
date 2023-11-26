@@ -1,6 +1,141 @@
+* {
+  font-family: "Inter", sans-serif;
+}
+nav {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 section {
-    margin: 0 auto;
-    max-width: 144rem;
-    padding: 0 5rem;
-  }
-  
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+}
+.return:link,
+.return:visited {
+  font-size: 1.8rem;
+  font-family: "Inter", sans-serif;
+  color: var(--blue-buttons);
+  font-weight: 400;
+  position: relative;
+  display: inline-block;
+}
+.return:hover,
+.return:active {
+  font-weight: 500;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+h1 {
+  margin-bottom: 9rem;
+}
+h2 {
+  margin-bottom: 5rem;
+}
+p {
+  line-height: 140%;
+}
+.accueil h2 {
+  max-width: 40rem;
+  line-height: 124%;
+}
+.accueil p {
+  max-width: 58rem;
+  color: var(--grey);
+  line-height: 140%;
+}
+.discover:link,
+.discover:visited {
+  color: var(--blue-buttons);
+  text-decoration: underline;
+  font-weight: 400;
+}
+.discover:hover,
+.discover:active {
+  font-weight: 500;
+}
+.arrow {
+  display: flex;
+}
+.arrow img {
+  filter: invert(27%) sepia(62%) saturate(2855%) hue-rotate(220deg)
+    brightness(88%) contrast(87%);
+}
+.accueil-flex {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+}
+.img-container {
+  display: grid;
+  width: 57rem;
+  height: 61rem;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: repeat(12, 1fr);
+  grid-gap: 2rem;
+}
+.image {
+  width: 100%;
+  height: 100%;
+}
+.image {
+  background-color: blue;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.image-one {
+  grid-row: 1 / span 7;
+}
+.image-two {
+  grid-row: 1 / -1;
+}
+.image-three {
+  grid-row: 8 / -1;
+}
+.image img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.project {
+  z-index: 22;
+  font-weight: 400;
+  position: relative;
+  color: var(--indigo-text);
+  margin-bottom: 7rem;
+}
+
+.project div {
+  z-index: 22;
+  position: relative;
+  display: inline-block;
+  size: fit-content;
+}
+
+.project:hover div::after {
+  height: 4rem;
+}
+
+.project div::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  bottom: 0px;
+  border-radius: 1px;
+  width: 110%;
+  left: 0;
+  height: 0.8rem;
+  background-color: var(--indigo-light);
+  transition: height 0.4s;
+}
+
+.project div:first-child::after,
+.project div:nth-child(3)::after {
+  width: 150%;
+}
