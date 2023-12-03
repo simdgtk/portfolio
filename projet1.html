@@ -35,12 +35,14 @@
   <body>
     <header>
       <nav>
-        <a href="index.html" class="return"
-          >Simon Daguet-Kargl - retour à l’accueil</a
-        >
-        <button class="toggle-mode">
-          <img class="dark" src="images/icons/dark.svg" alt="dark mode" />
-        </button>
+        <ul class="project-nav">
+          <li><a class="link" href="#some-projects">Revenir à l'accueil</a></li>
+          <li class="button-project"><a class="button button-project" href="#discuss">Me contacter</a></li>
+          <li><button class="toggle-mode">
+            <img class="dark" src="images/icons/dark.svg" alt="dark mode" />
+          </button>
+        </li>
+        </ul>
       </nav>
     </header>
     <main>
@@ -80,7 +82,7 @@
         </div>
       </section>
       <section>
-        <h2 class="project">
+        <h2 class="project-main">
           <div>Le</div>
           <div>déroulement</div>
           <div>du</div>
@@ -114,7 +116,7 @@
         </div>
       </section>
       <section class="design">
-        <h2 class="project">
+        <h2 class="project-main">
           <div>Nos</div>
           <div>choix</div>
           <div>pour</div>
@@ -161,6 +163,59 @@
           </div>
           <div class="accessibility-image"></div>
         </div>
+        </div>
+      </section>
+      <aside>
+          <section class="aside">
+            <h3>Vous avez aimé ce projet ? Travaillons ensemble !</h3>
+            <a class="button" href="index.html#discuss">Contactez-moi</a>
+          </section>
+      </aside>
+      <section id="some-projects">
+        <h2>Découvrez d’autres de mes projets</h2>
+        <div class="projects">
+          <article class="other-project">
+            <a class="project-link" href="#">
+              <div class="other-img-container">
+                <img src="images/screen.png" alt="lien vers mon projet de refonte du site du musée d'Aquitaine" loading="lazy"/>
+              </div>
+              <div class="text-container">
+                <h4>Refonte de site d’un musée</h4>
+                <p>
+                  Le site s’adapte à toute taille d’écran et à été pensé pour
+                  être accessible.
+                </p>
+                <div class="tags">
+                  <span class="tag">html & css</span>
+                  <span class="tag">accessibilité</span>
+                </div>
+                <a class="project-button" href="#">
+                  <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
+                </a>
+              </div>
+            </a>
+          </article>
+          <article class="other-project">
+            <a class="project-link" href="#">
+              <div class="other-img-container">
+                <img src="images/screen.png" alt="" loading="lazy"/>
+              </div>
+              <div class="text-container">
+                <h4>Refonte de site d’un musée</h4>
+                <p>
+                  Le site s’adapte à toute taille d’écran et à été pensé pour
+                  être accessible.
+                </p>
+                <div class="tags">
+                  <span class="tag">html & css</span>
+                  <span class="tag">accessibilité</span>
+                </div>
+                <a class="project-button" href="#">
+                  <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
+                </a>
+              </div>
+            </a>
+          </article>
         </div>
       </section>
     </main>

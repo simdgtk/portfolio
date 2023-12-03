@@ -305,18 +305,7 @@
   transform: rotate(-10.5deg);
   z-index: 2;
 }
-button {
-  z-index: 9;
-  width: 100px;
-  height: 100px;
-  border: none;
-  background-size: cover;
-  cursor: pointer;
-  pointer-events: all;
-}
-button:hover {
-  opacity: 0.8;
-}
+
 
 #button-javascript,
 #button-javascript:hover {
