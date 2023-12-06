@@ -1,0 +1,43 @@
+@media only screen and (max-width: 1080px) {
+    html {
+      font-size: 50%;
+    } 
+}
+@media only screen and (max-width: 950px) {
+    .accueil-flex {
+        flex-direction: column;
+    }
+    .accessibility{
+        flex-direction: column;
+        max-width: 50rem;
+    }
+    .accessibility-image{
+        max-width: 100%;
+    }
+    .img-container{
+        grid-template-columns: 1fr;
+        align-self: center;
+        width: auto;
+        height: auto;
+        max-width: 57rem;
+        max-height: auto;
+
+    }
+}
+@media only screen and (max-width: 700px) {
+    .projects{
+        flex-direction: column;
+    }
+    .other-project{
+        max-width: 100%!important;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .img-container{
+        grid-template-columns: 1fr;
+        align-self: auto;
+    }
+    .aside {
+        flex-direction: column;
+    }
+}
