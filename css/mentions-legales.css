@@ -14,10 +14,6 @@ li {
 a:link,
 a:visited {
   color: var(--blue-buttons);
-  text-decoration: none;
+  text-decoration: underline;
   font-weight: 400;
-}
-a:hover,
-a:active {
-  font-weight: 500;
 }
