@@ -22,8 +22,19 @@
   </head>
   <body>
     <header>
+      .bg-aside
       <nav>
-        <ul>
+        <div class="burger-icon" onclick="toggleMenu()">
+          <button class="toggle-mode">
+            <img class="dark" src="images/icons/dark.svg" alt="dark mode" />
+          </button>
+          <ul class="small-nav-buttons">
+            <li><a class="button" href="#discuss">Me contacter</a></li>
+            <li class="burger-li"><img src="images/icons/burger_open.svg" class="burger">
+            </li>
+          </ul>
+        </div>
+        <ul class="main-nav">
           <li><a class="link" href="#some-projects">Mes projets</a></li>
           <li><a class="link" href="#about-me">À propos</a></li>
           <li><a class="button" href="#discuss">Me contacter</a></li>
@@ -207,8 +218,8 @@
                 <p class="tag-text">github</p>
               </div>
             </div>
-            <div class="div-wordpress">
-              <button id="button-wordpress" onclick="toggle(this)">wordpress</button>
+            <div class="div-wordpress" id="button-wordpress" onclick="toggle(this)">
+              <button>wordpress</button>
               <div class="wordpress tag">
                 <p class="tag-text">wordpress</p>
               </div>

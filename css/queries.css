@@ -42,6 +42,10 @@
   .cards {
     flex-direction: column;
   }
+  .dark{
+    height: 3.5rem;
+    width: 3.5rem;
+  }
 }
 @media only screen and (max-width: 550px) {
   .container-test{
@@ -50,4 +54,17 @@
   .about-flex img {
     height: 100%;
 }
+}
+@media only screen and (max-width: 840px){
+  .main-nav{
+    display: none;
+  }
+  .burger-icon{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+  .small-nav-buttons{
+    width: 100%;
+  }
 }

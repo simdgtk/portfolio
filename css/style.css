@@ -491,6 +491,8 @@ aside {
 }
 .bg-aside p {
   margin: 3rem 0;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 .bg-aside h2 {
   font-weight: 700;
@@ -671,4 +673,16 @@ aside {
 }
 .strong-name-discuss div:last-child::after {
   width: 105%;
+}
+/*Burger menu*/
+.burger-icon{
+  display: none;
+  
+}
+.burger{
+  height: 4rem;
+  width: 4rem;
+}
+.burger-li{
+  padding: 0.5rem;
 }
