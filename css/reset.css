@@ -302,7 +302,8 @@ button:hover {
   color: var(--indigo-text);
   border: 5px solid var(--indigo-text);
 }
-.toggle-mode {
+.toggle-mode,
+.toggle-mode2 {
   border: none;
   background: none;
   display: flex;
@@ -377,4 +378,74 @@ footer {
   margin-left: 1rem;
   font-weight: 600;
   color: var(--blue-buttons);
+}
+/*Burger menu*/
+.burger-menu-div {
+  display: none;
+  z-index: 4;
+  background-color: var(--indigo-light);
+  color: var(--indigo-text);
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  font-size: 2rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+}
+.ul-flex {
+  display: flex;
+  flex-direction: column;
+}
+.burger-div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.burger-burger {
+  position: absolute;
+  padding: 4rem;
+}
+.burger-div li {
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+.burger-div ul li a:link,
+.burger-div ul li a:visited {
+  color: var(--indigo-text);
+  text-decoration: none;
+}
+.burger-div ul li:last-child {
+  margin-top: 5rem;
+  color: var(--white);
+}
+.burger-mentions:link,
+.burger-mentions:visited {
+  color: var(--white) !important;
+}
+.burger-mentions:hover,
+.burger-mentions:active {
+  color: var(--indigo-text) !important;
+}
+.burger-icon {
+  display: none;
+}
+.toggle-mode,
+.toggle-mode2 {
+  user-select: all !important;
+}
+.burger {
+  position: relative;
+  height: 4rem;
+  width: 4rem;
+}
+.burger-li {
+  position: relative;
+  padding: 0.5rem;
+}
+.burger-menu {
+  position: relative;
+  color: #1f2d5c;
 }

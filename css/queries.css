@@ -42,29 +42,56 @@
   .cards {
     flex-direction: column;
   }
-  .dark{
+  .dark {
     height: 3.5rem;
     width: 3.5rem;
   }
 }
 @media only screen and (max-width: 550px) {
-  .container-test{
+  .container-test {
     max-height: 300px;
   }
   .about-flex img {
     height: 100%;
+  }
 }
-}
-@media only screen and (max-width: 840px){
-  .main-nav{
+@media only screen and (max-width: 840px) {
+  .main-nav {
     display: none;
   }
-  .burger-icon{
+  .burger-icon {
     display: flex;
     justify-content: space-between;
     padding: 2rem;
   }
-  .small-nav-buttons{
+  .small-nav-buttons {
     width: 100%;
+  }
+  .about-flex img {
+    max-height: 260px;
+  }
+  #button-javascript,
+  #button-figma,
+  #button-github,
+  #button-wordpress {
+    max-width: 60px;
+  }
+  #button-figma {
+    bottom: 147px;
+    right: -21px;
+  }
+  .javascript {
+    left: -14rem;
+    bottom: 2rem;
+  }
+  .figma {
+    bottom: -5rem;
+  }
+  .github,
+  .wordpress {
+    bottom: -2rem;
+  }
+  .future-svg {
+    bottom: -21px;
   }
 }

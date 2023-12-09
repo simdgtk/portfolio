@@ -21,8 +21,19 @@
     />
   </head>
   <body>
+    <div class="burger-menu-div">
+      <img src="images/icons/burger_close.svg" class="burger burger-burger" onclick="hide()">
+      <div class="burger-div">
+        <ul>
+          <li><a href="#some-projects">Mes projets</a></li>
+          <li><a href="#about-me">À propos</a></li>
+          <li><a  href="mentions-legales.html">Mentions légales</a></li>
+          <li><a  href="projet1.html">Projet musée d'Aquitaine</a></li>
+          <li><a class="button burger-mentions" href="#discuss">Me contacter</a></li>
+        </ul>
+      </div>
+    </div>
     <header>
-      .bg-aside
       <nav>
         <div class="burger-icon" onclick="toggleMenu()">
           <button class="toggle-mode">
@@ -30,7 +41,7 @@
           </button>
           <ul class="small-nav-buttons">
             <li><a class="button" href="#discuss">Me contacter</a></li>
-            <li class="burger-li"><img src="images/icons/burger_open.svg" class="burger">
+            <li class="burger-li"><img src="images/icons/burger_open.svg" class="burger burger-white" onclick="show()">
             </li>
           </ul>
         </div>
@@ -38,14 +49,15 @@
           <li><a class="link" href="#some-projects">Mes projets</a></li>
           <li><a class="link" href="#about-me">À propos</a></li>
           <li><a class="button" href="#discuss">Me contacter</a></li>
-          <li><button class="toggle-mode">
-            <img class="dark" src="images/icons/dark.svg" alt="dark mode" />
+          <li><button class="toggle-mode2" onclick="toggleMode2()">
+            <img class="dark2" src="images/icons/dark.svg" alt="dark2 mode" />
           </button>
         </li>
         </ul>
       </nav>
     </header>
     <main>
+
       <section id="accueil">
         <div class="presentation">
           <div class="presentation-texte">
@@ -56,7 +68,9 @@
                 <div>Daguet-</div>
                 <div>Kargl,</div>
                 </strong
-              > développeur front-end.
+              > <div class="future">développeur
+                <img class="future-svg" src="images/futur.svg" alt="futur écriture"/>
+              </div> front-end.
               
             </h1>
             <p class="presenting-me">
@@ -92,7 +106,7 @@
           <p class="p-projects">Cliquez sur un projet pour en savoir plus</p>
           <div class="projects">
             <article class="project">
-              <a class="project-link" href="#">
+              <a class="project-link" href="projet1.html">
                 <div class="img-container">
                   <img src="images/screen.png" alt="lien vers mon projet de refonte du site du musée d'Aquitaine" loading="lazy"/>
                 </div>
@@ -118,14 +132,13 @@
                   <img src="images/screen.png" alt="" loading="lazy"/>
                 </div>
                 <div class="text-container">
-                  <h4>Refonte de site d’un musée</h4>
+                  <h4>Site immersif</h4>
                   <p>
-                    Le site s’adapte à toute taille d’écran et à été pensé pour
-                    être accessible.
+                    Pour un hackathon, réalisation d'un site sur le thème du numérique responsable.
                   </p>
                   <div class="tags">
-                    <span class="tag">html & css</span>
-                    <span class="tag">accessibilité</span>
+                    <span class="tag">audio</span>
+                    <span class="tag">immersion</span>
                   </div>
                   <a class="project-button" href="#">
                     <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
@@ -139,14 +152,13 @@
                   <img src="images/screen.png" alt="lien vers mon projet de refonte du site du musée d'Aquitaine" loading="lazy"/>
                 </div>
                 <div class="text-container">
-                  <h4>Refonte de site d’un musée</h4>
+                  <h4>Boisson énergisante fictive</h4>
                   <p>
-                    Le site s’adapte à toute taille d’écran et à été pensé pour
-                    être accessible.
+                    Des designs en 3D jusqu'au site fini, je me suis imaginé une DA de boisson énergisante.
                   </p>
                   <div class="tags">
-                    <span class="tag">html & css</span>
-                    <span class="tag">accessibilité</span>
+                    <span class="tag">3D & logo</span>
+                    <span class="tag">webdesign</span>
                   </div>
                   <a class="project-button" href="#">
                     <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
@@ -206,20 +218,20 @@
                 <p class="tag-text">javascript</p>
               </div>
             </div>
-            <div class="div-figma">
-              <button id="button-figma" onclick="toggle(this)">figma</button>
+            <div class="div-figma" id="button-figma" onclick="toggle(this)">
+              <button class="box-figma">figma</button>
               <div class="figma tag">
                 <p class="tag-text">figma</p>
               </div>
             </div>
-            <div class="div-github">
-              <button id="button-github" onclick="toggle(this)">github</button>
+            <div class="div-github" id="button-github" onclick="toggle(this)">
+              <button class="box-github">github</button>
               <div class="github tag">
                 <p class="tag-text">github</p>
               </div>
             </div>
             <div class="div-wordpress" id="button-wordpress" onclick="toggle(this)">
-              <button>wordpress</button>
+              <button class="box-wordpress">wordpress</button>
               <div class="wordpress tag">
                 <p class="tag-text">wordpress</p>
               </div>
@@ -233,7 +245,7 @@
         <div class="div">
           <h2>Découvrez en plus</h2>
           <p>En ayant fait pendant plusieurs années de la 3D, j’envisage d’en apprendre plus sur ce domaine pour le web et ses usages</p>
-          <a class="aside-link" href="#" target="_blank">Mes créations 3D</a>
+          <a class="aside-link" href="https://www.behance.net/simdgtk" target="_blank">Mes créations 3D</a>
         </div>
       </aside>
     </div>
@@ -253,7 +265,7 @@
             </div>
             <div class="socials-flex">
               <img src="images/icons/behance.svg" alt="icône Behance">
-              <p>Sur Behance, <a href="https://www.behance.net/simdgtk">Simon Daguet-Kargl</a></p>
+              <p>Sur Behance, <a href="https://www.behance.net/simdgtk" target="_blank">Simon Daguet-Kargl</a></p>
             </div>
             <div class="socials-flex">
               <img src="images/icons/github.svg" alt="icône Github">

@@ -1,3 +1,11 @@
+body {
+  position: relative; /* Assurez-vous que le body a un position:relative; */
+  z-index: 1; /* Ajoutez ceci */
+}
+nav,
+header {
+  z-index: 1;
+}
 .underline-projects {
   color: var(--blue-buttons);
   font-weight: 400;
@@ -283,15 +291,8 @@
   transform: rotate(-10.5deg);
   position: absolute;
   max-width: 100px;
-  top: 7.5rem;
-  left: 0.2rem;
-}
-.div-github {
-  transform: rotate(-10.5deg);
-  position: absolute;
-  max-width: 100px;
-  bottom: 4.5rem;
-  left: 0.2rem;
+  top: 18.5rem;
+  left: 14.2rem;
 }
 .div-figma {
   transform: rotate(15deg);
@@ -307,26 +308,14 @@
   z-index: 2;
 }
 
-
-#button-javascript,
-#button-javascript:hover {
-  background-image: url(../images/icons/javascript.svg);
+.button-tag {
+  display: absolute;
+  width: 100px;
+  height: 100px;
+  border: none;
+  background: transparent;
 }
-#button-github,
-#button-github:hover {
-  background-image: url(../images/icons/github.svg);
-  background-size: cover;
-  background-color: transparent;
-}
-#button-figma,
-#button-figma:hover {
-  background-image: url(../images/icons/figma.svg);
-  background-size: contain;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
+/*WORDPRESS BUTTON*/
 #button-wordpress {
   position: absolute;
   z-index: 9;
@@ -338,107 +327,18 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  bottom: 100px;
+  bottom: 19px;
   right: 21px;
 }
-
-.button-tag {
-  display: absolute;
-  width: 100px;
-  height: 100px;
-  border: none;
-  background: transparent;
-}
-.javascript {
-  position: absolute;
-  background-color: #edf2fe;
-  color: #1f2d5c;
-  color: #1f2d5c;
-  z-index: -5;
-  top: -5rem;
-  left: -0.6rem;
-  border-radius: 0.625rem;
-  display: inline-block;
-  padding: 0.35rem 1rem;
-  height: 3rem;
-}
-.javascript::after {
-  z-index: -6;
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 0.625rem solid #edf2fe;
-  border-left: 0.625rem solid transparent;
-  border-right: 0.625rem solid transparent;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 80%);
-}
-.figma {
-  position: absolute;
-  background-color: #edf2fe;
-  color: #1f2d5c;
-  color: #1f2d5c;
-  z-index: -5;
-  top: -5rem;
-  left: 1.4rem;
-  border-radius: 0.625rem;
-  display: inline-block;
-  padding: 0.35rem 1rem;
-  height: 3rem;
-}
-.figma::after {
-  z-index: -6;
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 0.625rem solid #edf2fe;
-  border-left: 0.625rem solid transparent;
-  border-right: 0.625rem solid transparent;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 80%);
-}
-.github {
-  background-color: #edf2fe;
-  color: #1f2d5c;
-  color: #1f2d5c;
-  z-index: -5;
-  bottom: -5rem;
-  right: 1rem;
-  transform: rotate(-6.75deg);
-  position: absolute;
-  border-radius: 0.625rem;
-  display: inline-block;
-  padding: 0.35rem 1rem;
-  height: 3rem;
-}
-.github::after {
-  z-index: -6;
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  border-top: 0.625rem solid #edf2fe;
-  border-left: 0.625rem solid transparent;
-  border-right: 0.625rem solid transparent;
-  position: absolute;
-  top: -5px;
-  left: 43%;
-  transform: rotate(180deg);
+.box-wordpress {
+  background-color: transparent;
 }
 .wordpress {
-  background-color: #edf2fe;
-  color: #1f2d5c;
-  color: #1f2d5c;
+  background-color: var(--indigo-light);
+  color: var(--text-regular);
   z-index: -5;
-  bottom: 5.6rem;
-  right: -1rem;
-  transform: rotate(-6.75deg);
+  bottom: -4rem;
+  right: -2rem;
   position: absolute;
   border-radius: 0.625rem;
   display: inline-block;
@@ -451,7 +351,7 @@
   display: block;
   width: 0;
   height: 0;
-  border-top: 0.625rem solid #edf2fe;
+  border-top: 0.625rem solid var(--indigo-light);
   border-left: 0.625rem solid transparent;
   border-right: 0.625rem solid transparent;
   position: absolute;
@@ -459,6 +359,147 @@
   left: 43%;
   transform: rotate(180deg);
 }
+/*GITHUB BUTTON*/
+.div-github {
+  position: absolute;
+  max-width: 100px;
+  bottom: 4.5rem;
+  left: 0.2rem;
+}
+#button-github {
+  position: absolute;
+  z-index: 9;
+  max-width: 80px;
+  transform: rotate(5deg);
+  border: none;
+  background-image: url(../images/icons/github.svg);
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  bottom: 33px;
+  right: 21px;
+}
+.box-github {
+  background-color: transparent;
+}
+.github {
+  background-color: var(--indigo-light);
+  color: var(--text-regular);
+  z-index: -5;
+  bottom: -4rem;
+  position: absolute;
+  border-radius: 0.625rem;
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  height: 3rem;
+}
+.github::after {
+  z-index: -6;
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 0.625rem solid var(--indigo-light);
+  border-left: 0.625rem solid transparent;
+  border-right: 0.625rem solid transparent;
+  position: absolute;
+  top: -5px;
+  left: 43%;
+  transform: rotate(180deg);
+}
+
+/*JAVASCRIPT BUTTON*/
+#button-javascript {
+  position: absolute;
+  z-index: 9;
+  max-width: 80px;
+  transform: rotate(5deg);
+  border: none;
+  background-image: url(../images/icons/javascript.svg);
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  bottom: 33px;
+  right: 21px;
+}
+.box-javascript {
+  background-color: transparent;
+}
+.javascript {
+  background-color: var(--indigo-light);
+  color: var(--text-regular);
+  z-index: -5;
+  transform: rotate(5.25deg);
+  left: -13rem;
+  bottom: -1rem;
+  position: absolute;
+  border-radius: 0.625rem;
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  height: 3rem;
+}
+.javascript::after {
+  z-index: -6;
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 0.625rem solid var(--indigo-light);
+  border-left: 0.625rem solid transparent;
+  border-right: 0.625rem solid transparent;
+  position: absolute;
+  top: -5px;
+  left: 43%;
+  transform: rotate(180deg);
+}
+
+/*FIGMA BUTTON*/
+#button-figma {
+  position: absolute;
+  z-index: 9;
+  max-width: 60px;
+  transform: rotate(5deg);
+  border: none;
+  background-image: url(../images/icons/figma.svg);
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  bottom: 198px;
+  right: 15px;
+}
+.box-figma {
+  background-color: transparent;
+}
+.figma {
+  background-color: var(--indigo-light);
+  color: var(--text-regular);
+  z-index: -5;
+  bottom: -3rem;
+  left: -1rem;
+  position: absolute;
+  border-radius: 0.625rem;
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  height: 3rem;
+}
+.figma::after {
+  z-index: -6;
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 0.625rem solid var(--indigo-light);
+  border-left: 0.625rem solid transparent;
+  border-right: 0.625rem solid transparent;
+  position: absolute;
+  top: -5px;
+  left: 43%;
+  transform: rotate(180deg);
+}
+
 .tag-text {
   font-weight: 500 !important;
 }
@@ -674,15 +715,14 @@ aside {
 .strong-name-discuss div:last-child::after {
   width: 105%;
 }
-/*Burger menu*/
-.burger-icon{
-  display: none;
-  
+/*FUTUR développeur*/
+.future {
+  position: relative;
+  display: inline-block;
 }
-.burger{
-  height: 4rem;
-  width: 4rem;
-}
-.burger-li{
-  padding: 0.5rem;
+.future-svg {
+  position: absolute;
+  width: 12rem;
+  bottom: -30px;
+  left: -10px;
 }

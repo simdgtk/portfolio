@@ -17,3 +17,6 @@ a:visited {
   text-decoration: underline;
   font-weight: 400;
 }
+.mentions-nav {
+  padding: 5rem;
+}
