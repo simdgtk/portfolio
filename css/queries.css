@@ -95,3 +95,6 @@
     bottom: -21px;
   }
 }
+article h3 {
+  font-size: var(--h4);
+}

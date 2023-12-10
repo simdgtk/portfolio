@@ -22,10 +22,12 @@ toggleMode.addEventListener("click", () => {
     img.setAttribute("src", "images/icons/light.svg");
     img2.setAttribute("src", "images/icons/light.svg");
     burgerIcon.setAttribute("src", "images/icons/burger_open_white.svg");
+    futureIcon.setAttribute("src", "images/futur_dark.svg");
   } else {
     img.setAttribute("src", "images/icons/dark.svg");
     img2.setAttribute("src", "images/icons/dark.svg");
     burgerIcon.setAttribute("src", "images/icons/burger_open.svg");
+    futureIcon.setAttribute("src", "images/futur.svg");
   }
   document.body.classList.toggle("dark-mode");
 
@@ -51,13 +53,17 @@ toggleMode.addEventListener("click", () => {
 
 const toggleMode2 = document.querySelector(".toggle-mode2");
 const img2 = document.querySelector(".dark2");
+const futureIcon = document.querySelector(".future-svg");
+futureIcon.setAttribute("src", "images/futur_dark.svg");
 toggleMode2.addEventListener("click", () => {
   if (document.body.classList.contains("dark-mode")) {
     img.setAttribute("src", "images/icons/light.svg");
     img2.setAttribute("src", "images/icons/light.svg");
+    futureIcon.setAttribute("src", "images/futur_dark.svg");
   } else {
     img.setAttribute("src", "images/icons/dark.svg");
     img2.setAttribute("src", "images/icons/dark.svg");
+    futureIcon.setAttribute("src", "images/futur.svg");
   }
   console.log("clicked2");
   document.body.classList.toggle("dark-mode");
