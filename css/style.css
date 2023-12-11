@@ -726,9 +726,3 @@ aside {
   bottom: -30px;
   left: -10px;
 }
-
-footer {
-  display: flex;
-  gap: 2rem;
-  justify-content: space-between;
-}
