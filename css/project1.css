@@ -191,7 +191,12 @@ h3 {
 }
 .design-image {
   background-color: #817c7c;
+  max-height: 34rem;
+}
+.design-image img{
+  object-fit: cover;
   height: 100%;
+  width: 100%;
 }
 .flex-fonts {
   display: flex;

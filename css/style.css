@@ -111,7 +111,7 @@ header {
 }
 .img-container {
   position: relative;
-  max-height: 30rem;
+  height: 30rem;
   background-color: #ffffff;
   border-radius: 20px 20px 0 0;
   overflow: hidden;
