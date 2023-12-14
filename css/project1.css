@@ -70,7 +70,7 @@ p {
 .accueil-flex {
   width: 100%;
   display: flex;
-  gap: 2rem;
+  gap: 7rem;
   justify-content: space-between;
 }
 .img-container {
@@ -86,7 +86,7 @@ p {
   height: 100%;
 }
 .image {
-  background-color: blue;
+  background-color: var(--white);
   width: 100%;
   height: 100%;
   position: relative;
@@ -335,4 +335,8 @@ aside h3 {
 }
 article h3 {
   font-size: 2.3rem;
+}
+.image-reboot{
+  max-width: 65rem;
+  
 }
