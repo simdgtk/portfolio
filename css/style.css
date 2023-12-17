@@ -726,6 +726,9 @@ aside {
   bottom: -30px;
   left: -10px;
 }
-.cleaner_text{
+.cleaner_text {
   color: var(--indigo-text);
+}
+.carbon-text {
+  color: var(--indigo-text) !important;
 }
