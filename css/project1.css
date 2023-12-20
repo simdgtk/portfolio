@@ -157,7 +157,7 @@ p {
 }
 .project-img-container img,
 .accessibility-image img {
-  object-fit: cover;
+  object-fit: contain;
   height: 100%;
   width: 100%;
 }
@@ -339,4 +339,7 @@ article h3 {
 .image-reboot{
   max-width: 65rem;
   
+}
+.div-arrow{
+  margin-top: 1.5rem;
 }
