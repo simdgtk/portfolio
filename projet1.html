@@ -36,10 +36,6 @@
         <ul class="project-nav">
           <li><a class="link" href="index.html">Revenir à l'accueil</a></li>
           <li class="button-project"><a class="button button-project" href="index.html#discuss">Me contacter</a></li>
-          <li><button class="toggle-mode">
-            <img class="dark" src="images/icons/dark.svg" alt="dark mode" />
-          </button>
-        </li>
         </ul>
       </nav>
     </header>
@@ -194,7 +190,7 @@
             </a>
           </article>
           <article class="other-project">
-            <a class="project-link" href="#">
+            <a class="project-link" href="projet3.html">
               <div class="other-img-container">
                 <img src="images/projet_boisson/boisson_fictive.webp" alt="" loading="lazy"/>
               </div>
@@ -208,7 +204,7 @@
                   <span class="tag">3D & logo</span>
                   <span class="tag">webdesign</span>
                 </div>
-                <a class="project-button" href="projet1.html">
+                <a class="project-button" href="projet3.html">
                   <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
                 </a>
               </div>
@@ -223,6 +219,8 @@
         ><a class="legal-notices" href="mentions-legales.html">Mentions Légales</a>
       </p>
     </footer>
-    <script src="js/main.js"></script>
+    <script>
+      document.querySelector(".date").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

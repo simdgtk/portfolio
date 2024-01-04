@@ -168,6 +168,8 @@
     <footer>
       <p>© Simon Daguet-Kargl - <span class="date">2023</span></p>
     </footer>
-    <script src="js/main.js"></script>
+    <script>
+      document.querySelector(".date").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

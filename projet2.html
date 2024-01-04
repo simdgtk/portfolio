@@ -36,10 +36,6 @@
         <ul class="project-nav">
           <li><a class="link" href="index.html">Revenir à l'accueil</a></li>
           <li class="button-project"><a class="button button-project" href="index.html#discuss">Me contacter</a></li>
-          <li><button class="toggle-mode">
-            <img class="dark" src="images/icons/dark.svg" alt="dark mode" />
-          </button>
-        </li>
         </ul>
       </nav>
     </header>
@@ -157,11 +153,10 @@
       </section>
     </main>
     <footer>
-      <p>
-        © Simon Daguet-Kargl - <span class="date">2023</span
-        ><a class="legal-notices" href="mentions-legales.html">Mentions Légales</a>
-      </p>
+      <p>© Simon Daguet-Kargl - <span class="date">2023</span><a class="legal-notices" href="mentions-legales.html">Mentions Légales</a></p>
     </footer>
-    <script src="js/main.js"></script>
+    <script>
+      document.querySelector(".date").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

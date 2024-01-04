@@ -1,10 +1,18 @@
 * {
   font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+
+}
+iframe {
+  transform: scale(0.4);
 }
 .project-nav {
   display: flex;
   align-items: center;
   justify-content: right;
+  height: 6rem;
+  padding: 0 2rem;
+  margin: 2rem 0;
 }
 .button-project {
   margin-right: 0;
