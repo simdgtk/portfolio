@@ -1,11 +1,12 @@
 * {
   font-family: "Inter", sans-serif;
   box-sizing: border-box;
-
 }
+
 iframe {
   transform: scale(0.4);
 }
+
 .project-nav {
   display: flex;
   align-items: center;
@@ -14,13 +15,16 @@ iframe {
   padding: 0 2rem;
   margin: 2rem 0;
 }
+
 .button-project {
   margin-right: 0;
 }
+
 section {
   margin-top: 8rem;
-  margin-bottom: 8rem;
+  margin-bottom: 23rem;
 }
+
 .return:link,
 .return:visited {
   font-size: 1.8rem;
@@ -30,57 +34,78 @@ section {
   position: relative;
   display: inline-block;
 }
+
 .return:hover,
 .return:active {
   font-weight: 500;
 }
+
 .container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+
 h1 {
   margin-bottom: 9rem;
 }
+
 h2 {
   margin-bottom: 5rem;
 }
+
 p {
   line-height: 140%;
   font-weight: 400;
 }
+
 .accueil h2 {
   max-width: 40rem;
   line-height: 124%;
 }
+
 .accueil p {
   max-width: 58rem;
   color: var(--grey);
   line-height: 140%;
 }
+
 .discover:link,
 .discover:visited {
   color: var(--blue-buttons);
   text-decoration: underline;
   font-weight: 400;
 }
+
 .discover:hover,
 .discover:active {
   font-weight: 500;
 }
+
 .arrow {
   display: flex;
 }
+
 .arrow img {
-  filter: invert(27%) sepia(62%) saturate(2855%) hue-rotate(220deg)
-    brightness(88%) contrast(87%);
+  filter: invert(27%) sepia(62%) saturate(2855%) hue-rotate(220deg) brightness(88%) contrast(87%);
 }
+
 .accueil-flex {
   width: 100%;
+  align-items: center;
   display: flex;
   gap: 7rem;
   justify-content: space-between;
 }
+
+.accueil-center {
+  align-items: center !important;
+}
+
+.accueil-flex:first-child {
+  align-items: end;
+}
+
 .img-container {
   display: grid;
   width: 57rem;
@@ -89,32 +114,44 @@ p {
   grid-template-rows: repeat(12, 1fr);
   grid-gap: 2rem;
 }
+
 .image {
   width: 100%;
   height: 100%;
 }
+
 .image {
   background-color: var(--white);
+  max-width: 720px;
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
   border-radius: 15px;
 }
+
 .image-one {
   grid-row: 1 / span 7;
 }
+
 .image-two {
   grid-row: 1 / -1;
 }
+
 .image-three {
   grid-row: 8 / -1;
 }
+
 .image img {
   object-fit: cover;
   height: 100%;
   width: 100%;
 }
+
+.project-text {
+  margin-bottom: 10rem;
+}
+
 .project-main {
   z-index: 22;
   font-weight: 400;
@@ -151,92 +188,114 @@ p {
 .project div:nth-child(3)::after {
   width: 150%;
 }
+
 .project-texts {
   max-width: 60rem;
 }
+
 .project-texts p {
   margin-bottom: 5rem;
 }
+
 .project-img-container,
 .accessibility-image {
   height: 40rem;
   border-radius: 15px;
   overflow: hidden;
 }
+
 .project-img-container img,
 .accessibility-image img {
-  object-fit: contain;
   height: 100%;
   width: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+  height: auto;
 }
 
 h3 {
   margin-bottom: 3rem;
 }
+
 .design-grid {
   display: grid;
   height: fit-content;
   grid-template-columns: 1fr 3fr;
   gap: 2rem;
 }
+
 .design-flex {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
+
 .design-flex div {
   height: 10rem;
   width: 10rem;
 }
+
 .div-bordeaux {
   background-color: #b21e1e;
 }
+
 .div-grey {
   background-color: #d9d9d9;
 }
+
 .div-dark-grey {
   background-color: #817c7c;
 }
+
 .design-image {
   background-color: #817c7c;
   max-height: 34rem;
 }
-.design-image img{
+
+.design-image img {
   object-fit: cover;
   height: 100%;
   width: 100%;
 }
+
 .flex-fonts {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
+
 .design .titles-font {
   font-family: "Noto Serif KR", serif;
   font-size: 3rem;
 }
+
 .design .text-font {
   font-family: "Lato", sans-serif;
   color: var(--grey);
 }
+
 .accessibility {
   margin-top: 13rem;
   display: flex;
   justify-content: space-between;
   gap: 3rem;
 }
+
 .accessibility-image {
   background-color: #817c7c;
   width: 50rem;
   border-radius: 15px;
 }
+
 aside {
   background-color: var(--indigo-light);
 }
+
 aside h3 {
   margin-bottom: 0;
   font-size: 2rem;
 }
+
 .aside {
   padding: 5rem;
   gap: 2rem;
@@ -244,21 +303,25 @@ aside h3 {
   align-items: center;
   justify-content: space-between;
 }
+
 #some-projects {
   padding-bottom: 10rem;
-  padding-top: 10rem;
   background-size: contain;
+  margin-bottom: 0;
 }
+
 #some-projects .p-projects {
   font-size: 1.6rem;
   color: var(--grey);
   margin-bottom: 6rem;
 }
+
 #some-projects .projects {
   margin: 0 auto;
   gap: 5rem;
   display: flex;
 }
+
 #some-projects .other-img-container {
   position: relative;
   max-height: 30rem;
@@ -266,6 +329,7 @@ aside h3 {
   border-radius: 20px 20px 0 0;
   overflow: hidden;
 }
+
 #some-projects .other-img-container img {
   width: 100%;
   height: 100%;
@@ -283,13 +347,16 @@ aside h3 {
   min-width: 25rem;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.08);
 }
+
 #some-projects .project:last-child {
   margin-right: 0;
 }
+
 #some-projects .text-container {
   position: relative;
   padding: 2.5rem 2rem;
 }
+
 #some-projects .text-container p {
   font-size: 1.6rem;
   color: var(--grey);
@@ -298,12 +365,14 @@ aside h3 {
   margin-bottom: 0;
   padding-top: 1.5rem;
 }
+
 #some-projects .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
   max-width: 100%;
 }
+
 #some-projects .tag {
   background-color: var(--indigo-light);
   color: var(--indigo-text);
@@ -313,6 +382,7 @@ aside h3 {
   border-radius: 10px;
   padding: 0.9rem 1.6rem;
 }
+
 #some-projects .project-button:link,
 #some-projects .project-button:visited {
   position: absolute;
@@ -326,28 +396,33 @@ aside h3 {
   width: 4.5rem;
   height: 4.5rem;
 }
+
 #some-projects .project-link:link,
 #some-projects .project-link:visited {
   text-decoration: none;
   color: inherit;
 }
+
 #some-projects .arrow {
-  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
-    contrast(103%);
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
+
 #some-projects .other-project {
   transition: transform 0.2s ease;
 }
+
 #some-projects .other-project:hover {
   transform: scale(1.02);
 }
+
 article h3 {
   font-size: 2.3rem;
 }
-.image-reboot{
+
+.image-reboot {
   max-width: 65rem;
-  
 }
-.div-arrow{
+
+.div-arrow {
   margin-top: 1.5rem;
 }

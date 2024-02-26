@@ -1,142 +1,174 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simon Daguet-Kargl | Développeur Front-end</title>
-    <meta
-      name="description"
-      content="Enchanté, moi c'est Simon Daguet-Kargl je suis un développeur front-end basé sur Bordeaux et sur Nantes. Découvrez mon portfolio !"
-    />
-    <link rel="icon" href="images/favicon.ico" />    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/project1.css" />
-    <link rel="stylesheet" href="css/queries-project1.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header>
-      <nav>
-        <ul class="project-nav">
-          <li><a class="link" href="index.html">Revenir à l'accueil</a></li>
-          <li class="button-project"><a class="button button-project" href="index.html#discuss">Me contacter</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section class="accueil">
-        <div class="accueil-flex">
-          <div class="container">
-            <div class="div">
-              <h1 class="strong-name">
-                <div>Projet</div>
-              </h1>
-              <h2>Boisson énergisante</h2>
-              <p>
-                Pour ce projet, j’ai voulu créer l’identité graphique d’une boisson énergisante en mêlant de la 3D à de la 2D pour finalement aboutir à la création d’un site internet
-                <a href="#deroulement" class="discover discover-more">Découvrez-en plus ↓</a>
-              </p>
-            </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simon Daguet-Kargl | Développeur Front-end</title>
+  <meta name="description"
+    content="Enchanté, moi c'est Simon Daguet-Kargl je suis un développeur front-end basé sur Bordeaux et sur Nantes. Découvrez mon portfolio !" />
+  <link rel="icon" href="images/favicon.ico" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/project1.css" />
+  <link rel="stylesheet" href="css/queries-project1.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul class="project-nav">
+        <li><a class="link" href="index.html">Revenir à l'accueil</a></li>
+        <li class="button-project"><a class="button button-project" href="index.html#discuss">Me contacter</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="accueil">
+      <div class="accueil-flex">
+        <div class="container">
+          <div>
+            <h1 class="strong-name">
+              <div>Projet</div>
+            </h1>
+            <h2>Application web avec Ruby on Rails
+            </h2>
+            <p class="project-text">
+              Ce projet d'une semaine m'a fait découvrir le framework backend Ruby on Rails. Nous étions à deux et la
+              contrainte était de créer un site utilisant des images générées par l'intelligence artificielle
+              Midjourney.
+              <a href="#deroulement" class="discover discover-more">Découvrez-en plus ↓</a>
+            </p>
+            <a href="https://befake.osc-fr1.scalingo.io/" class="discover" target="_blank">Et si vous
+              souhaitez le voir en ligne</a>
           </div>
-            <div class="image image-drink">
-              <img src="images/projet_boisson/boisson_fictive2.webp" alt="première image du projet" />
-            </div>
         </div>
-      </section>
-      <section id="deroulement">
-        <h2 class="project-main">
-          <div>Le</div>
-          <div>déroulement</div>
-          <div>du</div>
-          <div>projet</div>
-        </h2>
-        <div class="accueil-flex">
+        <div class="image image-drink">
+          <img src="images/projet_befake/befake_homepage.webp" alt="page d'accueil mettant en avant les posts befake" />
+        </div>
+      </div>
+    </section>
+    <section id="deroulement">
+      <h2 class="project-main">
+        La conception de l'application
+      </h2>
+      <div class="accueil-flex">
+        <div class="project-texts">
+          <p>
+            Nous avons décidé de parodier le réseau social BeReal qui se veut être une "dose quotidienne de vie réelle",
+            avec l'utilisation de l'intelligence artificielle pour mettre en scène de fausses images improbables.
+          </p>
+          <p>
+            L'application n'existant que sur mobile, nous avons donc repris des éléments du design comme la typographie
+            et plus globalement le style pour créer une version responsive et pour ordinateur également. Nous avons
+            utilisé en grande partie Bootstrap pour le design.
+          </p>
+        </div>
+        <div class="project-img-container">
+          <img src="images/projet_befake/befake_post.webp" alt="page post" />
+        </div>
+      </div>
+    </section>
+    <section id="benefits">
+      <div class="accueil-flex accueil-center">
+        <div class="container">
           <div class="project-texts">
+            <h2 class="project-main">
+              Consolidation de mon apprentissage du backend
+            </h2>
             <p>
-              J’ai pu expérimenter avec des effets de glassmorphism et des animations en css.
+              À travers Ruby on Rails, en plus de la gestion de base de données en ligne, j'ai aussi été initié à la
+              programmation orientée objet et nous avons dû
+              réfléchir à notre application en conséquence. Notre objet premier était un post, pour lequel étaient
+              définis une photo avant, une photo arrière, une description, une localisation, un auteur et une date
+              récupérée automatiquement. Finalement, nous avons eu à utiliser de l'hébergement Platform as a Service
+              (PaaS) avec Scalingo.
             </p>
             <p>
+              Ce projet fait suite à un autre pour lequel nous avons eu à créer, en partant de presque zéro, un blog
+              avec des articles, des commentaires, des likes, des cookies, des sessions et avec la possibilité de
+              s'inscrire et de se connecter, tout en php : <a href="https://mmig4.gwendaljudic.com/" class="discover"
+                target="_blank">Le blog de la Strix</a>
             </p>
-          </div>
-          <div class="project-img-container">
-            <img src="images/projet_boisson/boisson_fictive3.webp" alt="image du projet 1" />
+            <a href="https://befake.osc-fr1.scalingo.io/" class="discover" target="_blank">Pour voir
+              l'application en ligne</a>
           </div>
         </div>
-      </section>
-      <aside>
-          <section class="aside">
-            <h3>Vous avez aimé ce projet ? Travaillons ensemble !</h3>
-            <a class="button" href="index.html#discuss">Contactez-moi</a>
-          </section>
-      </aside>
-      <section id="some-projects">
-        <h2>Découvrez d’autres de mes projets</h2>
-        <div class="projects">
-          <article class="other-project">
-            <a class="project-link" href="projet1.html">
-              <div class="other-img-container">
-                <img src="images/projet_musee/presentation_musee_aquitaine_refonte.webp" alt="lien vers mon projet de refonte du site du musée d'Aquitaine" loading="lazy"/>
-              </div>
-              <div class="text-container">
-                <h3>Refonte de site d’un musée</h3>
-                <p>
-                  Le site s’adapte à toute taille d’écran et à été pensé pour
-                  être accessible.
-                </p>
-                <div class="tags">
-                  <span class="tag">html & css</span>
-                  <span class="tag">accessibilité</span>
-                </div>
-                <a class="project-button" href="projet1.html">
-                  <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
-                </a>
-              </div>
-            </a>
-          </article>
-          <article class="other-project">
-            <a class="project-link" href="projet2.html">
-              <div class="other-img-container">
-                <img src="images/projet_reboot/site_immersif_reboot.webp" alt="lien vers la présentation de mon site de boisson fictive" loading="lazy"/>
-              </div>
-              <div class="text-container">
-                <h3>Site immersif</h3>
-                <p>
-                  Pour un hackathon, réalisation d'un site sur le thème du numérique responsable.
-                </p>
-                <div class="tags">
-                  <span class="tag">audio</span>
-                  <span class="tag">immersion</span>
-                </div>
-                <a class="project-button" href="projet2.html">
-                  <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
-                </a>
-              </div>
-            </a>
-          </article>
+        <div class="image image-drink">
+          <img src="images/projet_befake/befake_new_post.webp" alt="page création d'un post" />
         </div>
+      </div>
+    </section>
+    <aside>
+      <section class="aside">
+        <h3>Vous avez aimé ce projet ? Travaillons ensemble !</h3>
+        <a class="button" href="index.html#discuss">Contactez-moi</a>
       </section>
-    </main>
-    <footer>
-      <p>© Simon Daguet-Kargl - <span class="date">2023</span><a class="legal-notices" href="mentions-legales.html">Mentions Légales</a></p>
-    </footer>
-    <script>
-      document.querySelector(".date").textContent = new Date().getFullYear();
-    </script>
-  </body>
+    </aside>
+    <section id="some-projects">
+      <h2>Découvrez d’autres de mes projets</h2>
+      <div class="projects">
+        <article class="other-project">
+          <a class="project-link" href="projet1.html">
+            <div class="other-img-container">
+              <img src="images/projet_musee/presentation_musee_aquitaine_refonte.webp"
+                alt="lien vers mon projet de refonte du site du musée d'Aquitaine" loading="lazy" />
+            </div>
+            <div class="text-container">
+              <h3>Refonte de site d’un musée</h3>
+              <p>
+                Le site s’adapte à toute taille d’écran et à été pensé pour
+                être accessible.
+              </p>
+              <div class="tags">
+                <span class="tag">html & css</span>
+                <span class="tag">accessibilité</span>
+              </div>
+              <a class="project-button" href="projet1.html">
+                <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
+              </a>
+            </div>
+          </a>
+        </article>
+        <article class="other-project">
+          <a class="project-link" href="projet2.html">
+            <div class="other-img-container">
+              <img src="images/projet_reboot/site_immersif_reboot.webp"
+                alt="lien vers la présentation de mon site de boisson fictive" loading="lazy" />
+            </div>
+            <div class="text-container">
+              <h3>Site immersif</h3>
+              <p>
+                Pour un hackathon, réalisation d'un site sur le thème du numérique responsable.
+              </p>
+              <div class="tags">
+                <span class="tag">audio</span>
+                <span class="tag">immersion</span>
+              </div>
+              <a class="project-button" href="projet2.html">
+                <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
+              </a>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>© Simon Daguet-Kargl - <span class="date">2023</span><a class="legal-notices"
+        href="mentions-legales.html">Mentions Légales</a></p>
+  </footer>
+  <script>
+    document.querySelector(".date").textContent = new Date().getFullYear();
+  </script>
+</body>
+
 </html>

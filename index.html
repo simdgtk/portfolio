@@ -1,290 +1,282 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simon Daguet-Kargl | Développeur Front-end</title>
-    <meta
-      name="description"
-      content="Enchanté, moi c'est Simon Daguet-Kargl je suis un développeur front-end basé sur Bordeaux et sur Nantes. Découvrez mon portfolio !"
-    />
-    <meta name="google-site-verification" content="BsnqRs81DhxsX9BWKdvDp5oveYbebub9zm-Jr8oyAJo" />
-    <link rel="icon" href="images/favicon.ico" />
-    <meta property="og:image" content="" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/queries.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="burger-menu-div">
-      <img src="images/icons/burger_close.svg" class="burger burger-burger" onclick="hide()">
-      <div class="burger-div">
-        <ul>
-          <li><a href="#some-projects">Mes projets</a></li>
-          <li><a href="#about-me">À propos</a></li>
-          <li><a  href="mentions-legales.html">Mentions légales</a></li>
-          <li><a  href="projet1.html">Projet musée d'Aquitaine</a></li>
-          <li><a class="button burger-mentions" href="#discuss">Me contacter</a></li>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simon Daguet-Kargl | Développeur Front-end</title>
+  <meta name="description"
+    content="Enchanté, moi c'est Simon Daguet-Kargl je suis un développeur front-end basé sur Bordeaux et sur Nantes. Découvrez mon portfolio !" />
+  <meta name="google-site-verification" content="BsnqRs81DhxsX9BWKdvDp5oveYbebub9zm-Jr8oyAJo" />
+  <link rel="icon" href="images/favicon.ico" />
+  <meta property="og:image" content="" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/queries.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="burger-menu-div">
+    <img src="images/icons/burger_close.svg" class="burger burger-burger" onclick="hide()">
+    <div class="burger-div">
+      <ul>
+        <li><a href="#some-projects">Mes projets</a></li>
+        <li><a href="#about-me">À propos</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="projet1.html">Projet musée d'Aquitaine</a></li>
+        <li><a class="button burger-mentions" href="#discuss">Me contacter</a></li>
+      </ul>
+    </div>
+  </div>
+  <header>
+    <nav>
+      <div class="burger-icon" onclick="toggleMenu()">
+        <button class="toggle-mode">
+          <img class="dark" src="images/icons/dark.svg" alt="dark mode" />
+        </button>
+        <ul class="small-nav-buttons">
+          <li><a class="button" href="#discuss">Me contacter</a></li>
+          <li class="burger-li"><img src="images/icons/burger_open.svg" class="burger burger-white" onclick="show()"
+              alt="burger menu icon">
+          </li>
         </ul>
       </div>
-    </div>
-    <header>
-      <nav>
-        <div class="burger-icon" onclick="toggleMenu()">
-          <button class="toggle-mode">
-            <img class="dark" src="images/icons/dark.svg" alt="dark mode" />
-          </button>
-          <ul class="small-nav-buttons">
-            <li><a class="button" href="#discuss">Me contacter</a></li>
-            <li class="burger-li"><img src="images/icons/burger_open.svg" class="burger burger-white" onclick="show()" alt="burger menu icon">
-            </li>
-          </ul>
-        </div>
-        <ul class="main-nav">
-          <li><a class="link" href="#some-projects">Mes projets</a></li>
-          <li><a class="link" href="#about-me">À propos</a></li>
-          <li><a class="button" href="#discuss">Me contacter</a></li>
-          <li><button class="toggle-mode2" onclick="toggleMode2()">
+      <ul class="main-nav">
+        <li><a class="link" href="#some-projects">Mes projets</a></li>
+        <li><a class="link" href="#about-me">À propos</a></li>
+        <li><a class="button" href="#discuss">Me contacter</a></li>
+        <li><button class="toggle-mode2" onclick="toggleMode2()">
             <img class="dark2" src="images/icons/dark.svg" alt="dark2 mode" />
           </button>
         </li>
-        </ul>
-      </nav>
-    </header>
-    <main>
+      </ul>
+    </nav>
+  </header>
+  <main>
 
-      <section id="accueil">
-        <div class="presentation">
-          <div class="presentation-texte">
-            <h1>
-              Enchanté ! Moi c’est<strong class="strong-name"
-                >
-                <div>Simon </div>
-                <div>Daguet-Kargl,</div>
-                </strong
-              > <div class="future">développeur
-                <img class="future-svg" src="images/futur.svg" alt="futur écriture"/>
-              </div> front-end.
-              
-            </h1>
-            <p class="presenting-me">
-              Je développe des sites internet modernes et attractifs en veillant
-              à les rendre accessible au plus grand nombre.
-              <a class="underline-projects" href="#some-projects"> Mes projets ↓ </a>
-            </p>
-            <ul class="social-links">
-              <li>
-                <a href="https://www.linkedin.com/in/simon-daguet-kargl-381992294/" class="">
-                  <img src="images/icons/linkedin.svg" alt="linkedin" />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.behance.net/simdgtk">
-                  <img src="images/icons/behance.svg" alt="behance"
-                /></a>
-              </li>
-            </ul>
-          </div>
-          <div class="presentation-image">
-            <img
-              class="hero-img"
-              src="images/hero_img.webp"
-              alt="Simon Daguet-Kargl, développeur front-end"
-            />
-          </div>
-        </div>
-      </section>
-      <div class="bg-section">
-        <section id="some-projects">
-          <h2 class="underline-title">Quelques projets phares</h2>
-          <p class="p-projects">Cliquez sur un projet pour en savoir plus</p>
-          <div class="projects">
-            <article class="project">
-              <a class="project-link" href="projet1.html">
-                <div class="img-container">
-                  <img src="images/projet_musee/presentation_musee_aquitaine_refonte.webp" alt="lien vers mon projet de refonte du site du musée d'Aquitaine" loading="lazy"/>
-                </div>
-                <div class="text-container">
-                  <h3>Refonte de site d’un musée</h3>
-                  <p>
-                    Le site s’adapte à toute taille d’écran et à été pensé pour
-                    être accessible.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">html & css</span>
-                    <span class="tag">accessibilité</span>
-                  </div>
-                  <a class="project-button" href="projet1.html">
-                    <img class="arrow" src="images/icons/arrow_up.svg" alt="flèche vers lien externe" />
-                  </a>
-                </div>
+    <section id="accueil">
+      <div class="presentation">
+        <div class="presentation-texte">
+          <h1>
+            Enchanté ! Moi c’est<strong class="strong-name">
+              <div>Simon </div>
+              <div>Daguet-Kargl,</div>
+            </strong>
+            <div class="future">développeur
+              <img class="future-svg" src="images/futur.svg" alt="futur écriture" />
+            </div> front-end.
+
+          </h1>
+          <p class="presenting-me">
+            Je développe des sites internet modernes et attractifs en veillant
+            à les rendre accessible au plus grand nombre.
+            <a class="underline-projects" href="#some-projects"> Mes projets ↓ </a>
+          </p>
+          <ul class="social-links">
+            <li>
+              <a href="https://www.linkedin.com/in/simon-daguet-kargl-381992294/" class="">
+                <img src="images/icons/linkedin.svg" alt="linkedin" />
               </a>
-            </article>
-            <article class="project">
-              <a class="project-link" href="projet2.html">
-                <div class="img-container">
-                  <img src="images/projet_reboot/site_immersif_reboot.webp" alt="présentation du site immersif pour reboot" loading="lazy"/>
-                </div>
-                <div class="text-container">
-                  <h3>Site immersif</h3>
-                  <p>
-                    Pour un hackathon, réalisation d'un site sur le thème du numérique responsable.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">audio</span>
-                    <span class="tag">immersion</span>
-                  </div>
-                  <a class="project-button" href="projet2.html">
-                    <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
-                  </a>
-                </div>
-              </a>
-            </article>
-            <article class="project">
-              <a class="project-link" href="projet3.html">
-                <div class="img-container">
-                  <img src="images/projet_boisson/boisson_fictive4.webp" alt="lien vers mon projet de refonte du site du musée d'Aquitaine" loading="lazy"/>
-                </div>
-                <div class="text-container">
-                  <h3>Boisson énergisante fictive</h3>
-                  <p>
-                    Des designs en 3D jusqu'au site fini, je me suis imaginé une DA de boisson énergisante.
-                  </p>
-                  <div class="tags">
-                    <span class="tag">3D & logo</span>
-                    <span class="tag">webdesign</span>
-                  </div>
-                  <a class="project-button" href="projet3.html">
-                    <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
-                  </a>
-                </div>
-              </a>
-            </article>
-          </div>
-        </section>
-      </div>
-      <section id="about-me">
-        <h2 class="strong-name-about">
-          <div class="">À</div>
-          <div class="">propos</div>
-          <div class="">de</div>
-          <div class="">moi</div>
-        </h2>
-        <div class="about-flex">
-          <div class="about-text">
-            <p>
-              <img src="images/icons/hand.png" alt="emoji d'une main" loading="lazy"/>
-              Je m’appelle Simon Daguet-Kargl et je suis étudiant en BUT MMI,
-              <a
-                class="about-external-link"
-                href="https://www.mmibordeaux.com/"
-                target="_blank"
-              >
-                métiers du multimédia et de l’internet
-                <img
-                  src="images/icons/arrow_up_blue.svg"
-                  alt="lien vers ma formation" /></a
-              >, une formation pluridisciplinaire qui me forme autant à la
-              partie créative qu’aux aspects techniques du métier de
-              <strong>développeur front-end.</strong
-              >
-            </p>
-            <p>
-              J’aime résoudre des problèmes et répondre à des problématiques
-              concrètes en développant et concevant des
-              <strong>interfaces modernes et inclusives.</strong
-              ><img src="images/icons/computer.png" alt="emoji accessibilité" loading="lazy"/>
-            </p>
-            <p>
-              Je me forme continuellement et j’envisage d’en apprendre encore
-              beaucoup plus dans ce domaine. Je suis basé sur Bordeaux et sur
-              Nantes et
-              <strong class="strong-stage"
-                >je cherche un stage à partir du 20 mai 2024.</strong
-              >
-              <a class="underline-about-me" href="#discuss">Pour me contacter ↓</a>
-            </p>
-          </div>
-          <div class="container-test">
-            <div class="div-javascript">
-              <button id="button-javascript" onclick="toggle(this)">javascript</button>
-              <div class="javascript tag">
-                <p class="tag-text">javascript</p>
-              </div>
-            </div>
-            <div class="div-figma" id="button-figma" onclick="toggle(this)">
-              <button class="box-figma">figma</button>
-              <div class="figma tag">
-                <p class="tag-text">figma</p>
-              </div>
-            </div>
-            <div class="div-github" id="button-github" onclick="toggle(this)">
-              <button class="box-github">github</button>
-              <div class="github tag">
-                <p class="tag-text">github</p>
-              </div>
-            </div>
-            <div class="div-wordpress" id="button-wordpress" onclick="toggle(this)">
-              <button class="box-wordpress">wordpress</button>
-              <div class="wordpress tag">
-                <p class="tag-text">wordpress</p>
-              </div>
-            </div>
-            <img class="second-image" src="images/hero_img.webp" alt="Simon Daguet-Kargl je maîtrise figma, javascript, github et wordpress" loading="lazy"/>
-          </div>
-      </section>
-    </main>
-    <div class="bg-aside">
-      <aside>
-        <div class="div">
-          <h2>Découvrez en plus</h2>
-          <p>En ayant fait pendant plusieurs années de la 3D, j’envisage d’en apprendre plus sur ce domaine pour le web et ses usages</p>
-          <a class="aside-link" href="https://www.behance.net/simdgtk" target="_blank">Mes créations 3D</a>
+            </li>
+            <li>
+              <a href="https://www.behance.net/simdgtk">
+                <img src="images/icons/behance.svg" alt="behance" /></a>
+            </li>
+          </ul>
         </div>
-      </aside>
-    </div>
-    <section class="discuss" id="discuss">
-      <div class="center">
-        <h2 class="underline-title">Discutons ensemble !</h2>
-      </div>
-      <div class="cards">
-        <div class="socials">
-          <h3>Par mes réseaux</h3>
-          <p>Par mail, à l’adresse <a href="mailto:simondaguetkargl@gmail.com">simondaguetkargl@gmail.com</a></p>
-          <p>Par téléphone, au <a href="tel:+33768442459">07 68 44 24 59</a></p>
-          <div class="socials-links">
-            <div class="socials-flex">
-              <img src="images/icons/linkedin.svg" alt="icône Linkedin">
-              <p>Sur Linkedin, <a href="https://www.linkedin.com/in/simon-daguet-kargl-381992294/">Simon Daguet-Kargl</a></p>
-            </div>
-            <div class="socials-flex">
-              <img src="images/icons/behance.svg" alt="icône Behance">
-              <p>Sur Behance, <a href="https://www.behance.net/simdgtk" target="_blank">Simon Daguet-Kargl</a></p>
-            </div>
-            <div class="socials-flex">
-              <img src="images/icons/github.svg" alt="icône Github">
-              <p>Découvrez comment j’ai codé ce site, sur github, <a href="https://github.com/simdgtk">simdgtk</a></p>
-            </div>
-        </div>
-        </div>
-        <div class="cv">
-          <h3>Retrouvez également mon CV</h3>
-          <a class="button" href="simon_daguet_kargl_cv.pdf" target="_blank">Voir mon CV</a>
+        <div class="presentation-image">
+          <img class="hero-img" src="images/hero_img.webp" alt="Simon Daguet-Kargl, développeur front-end" />
         </div>
       </div>
     </section>
-    <footer>
-      <div id="wcb" class="carbonbadge cleaner_text"></div>
-<script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
-      <p>© Simon Daguet-Kargl - <span class="date">2023</span><a class="legal-notices" href="mentions-legales.html">Mentions Légales</a></p>
+    <div class="bg-section">
+      <section id="some-projects">
+        <h2 class="underline-title">Quelques projets phares</h2>
+        <p class="p-projects">Cliquez sur un projet pour en savoir plus</p>
+        <div class="projects">
+          <article class="project">
+            <a class="project-link" href="projet1.html">
+              <div class="img-container">
+                <img src="images/projet_musee/presentation_musee_aquitaine_refonte.webp"
+                  alt="lien vers mon projet de refonte du site du musée d'Aquitaine" loading="lazy" />
+              </div>
+              <div class="text-container">
+                <h3>Refonte de site d’un musée</h3>
+                <p>
+                  Le site s’adapte à toute taille d’écran et à été pensé pour
+                  être accessible.
+                </p>
+                <div class="tags">
+                  <span class="tag">html & css</span>
+                  <span class="tag">accessibilité</span>
+                </div>
+                <a class="project-button" href="projet1.html">
+                  <img class="arrow" src="images/icons/arrow_up.svg" alt="flèche vers lien externe" height="20px" />
+                </a>
+              </div>
+            </a>
+          </article>
+          <article class="project">
+            <a class="project-link" href="projet2.html">
+              <div class="img-container">
+                <img src="images/projet_reboot/site_immersif_reboot.webp"
+                  alt="présentation du site immersif pour reboot" loading="lazy" />
+              </div>
+              <div class="text-container">
+                <h3>Site immersif</h3>
+                <p>
+                  Pour un hackathon, réalisation d'un site sur le thème du numérique responsable.
+                </p>
+                <div class="tags">
+                  <span class="tag">audio</span>
+                  <span class="tag">immersion</span>
+                </div>
+                <a class="project-button" href="projet2.html">
+                  <img class="arrow" src="images/icons/arrow_up.svg" alt="arrow icon" height="20px" />
+                </a>
+              </div>
+            </a>
+          </article>
+          <article class="project">
+            <a class="project-link" href="projet3.html">
+              <div class="img-container">
+                <img src="images/projet_befake/befake_homepage.webp" alt="présentation application befake, backend"
+                  loading="lazy" />
+              </div>
+              <div class="text-container">
+                <h3>Application web avec Ruby on Rails</h3>
+                <p>
+                  Projet backend avec le framework Ruby on Rails, parodie du réseau social BeReal avec Midjourney.
+                </p>
+                <div class="tags">
+                  <span class="tag">backend</span>
+                  <span class="tag">Bootstrap</span>
+                </div>
+                <a class="project-button" href="projet3.html">
+                  <img class="arrow" src="images/icons/arrow_up.svg" alt="arrow icon" height="20px" />
+                </a>
+              </div>
+            </a>
+          </article>
 
-    </footer>
-    <script src="js/main.js"></script>
-  </body>
+        </div>
+      </section>
+    </div>
+    <section id="about-me">
+      <h2 class="strong-name-about">
+        <div class="">À</div>
+        <div class="">propos</div>
+        <div class="">de</div>
+        <div class="">moi</div>
+      </h2>
+      <div class="about-flex">
+        <div class="about-text">
+          <p>
+            <img src="images/icons/hand.png" alt="emoji d'une main" loading="lazy" />
+            Je m’appelle Simon Daguet-Kargl et je suis étudiant en BUT MMI,
+            <a class="about-external-link" href="https://www.mmibordeaux.com/" target="_blank">
+              métiers du multimédia et de l’internet
+              <img src="images/icons/arrow_up_blue.svg" alt="lien vers ma formation" /></a>, une formation
+            pluridisciplinaire qui me forme autant à la
+            partie créative qu’aux aspects techniques du métier de
+            <strong>développeur front-end.</strong>
+          </p>
+          <p>
+            J’aime résoudre des problèmes et répondre à des problématiques
+            concrètes en développant et concevant des
+            <strong>interfaces modernes et inclusives.</strong><img src="images/icons/computer.png"
+              alt="emoji accessibilité" loading="lazy" />
+          </p>
+          <p>
+            Je me forme continuellement et j’envisage d’en apprendre encore
+            beaucoup plus dans ce domaine. Je suis basé sur Bordeaux et sur
+            Nantes et
+            <strong class="strong-stage">je cherche un stage à partir du 20 mai 2024.</strong>
+            <a class="underline-about-me" href="#discuss">Pour me contacter ↓</a>
+          </p>
+        </div>
+        <div class="container-test">
+          <div class="div-javascript">
+            <button id="button-javascript" onclick="toggle(this)">javascript</button>
+            <div class="javascript tag">
+              <p class="tag-text">javascript</p>
+            </div>
+          </div>
+          <div class="div-figma" id="button-figma" onclick="toggle(this)">
+            <button class="box-figma">figma</button>
+            <div class="figma tag">
+              <p class="tag-text">figma</p>
+            </div>
+          </div>
+          <div class="div-github" id="button-github" onclick="toggle(this)">
+            <button class="box-github">github</button>
+            <div class="github tag">
+              <p class="tag-text">github</p>
+            </div>
+          </div>
+          <div class="div-wordpress" id="button-wordpress" onclick="toggle(this)">
+            <button class="box-wordpress">wordpress</button>
+            <div class="wordpress tag">
+              <p class="tag-text">wordpress</p>
+            </div>
+          </div>
+          <img class="second-image" src="images/hero_img.webp"
+            alt="Simon Daguet-Kargl je maîtrise figma, javascript, github et wordpress" loading="lazy" />
+        </div>
+    </section>
+  </main>
+  <div class="bg-aside">
+    <aside>
+      <div class="div">
+        <h2>Découvrez en plus</h2>
+        <p>En ayant fait pendant plusieurs années de la 3D, j’envisage d’en apprendre plus sur ce domaine pour le web et
+          ses usages</p>
+        <a class="aside-link" href="https://www.behance.net/simdgtk" target="_blank">Mes créations 3D</a>
+      </div>
+    </aside>
+  </div>
+  <section class="discuss" id="discuss">
+    <div class="center">
+      <h2 class="underline-title">Discutons ensemble !</h2>
+    </div>
+    <div class="cards">
+      <div class="socials">
+        <h3>Par mes réseaux</h3>
+        <p>Par mail, à l’adresse <a href="mailto:simondaguetkargl@gmail.com">simondaguetkargl@gmail.com</a></p>
+        <p>Par téléphone, au <a href="tel:+33768442459">07 68 44 24 59</a></p>
+        <div class="socials-links">
+          <div class="socials-flex">
+            <img src="images/icons/linkedin.svg" alt="icône Linkedin">
+            <p>Sur Linkedin, <a href="https://www.linkedin.com/in/simon-daguet-kargl-381992294/">Simon Daguet-Kargl</a>
+            </p>
+          </div>
+          <div class="socials-flex">
+            <img src="images/icons/behance.svg" alt="icône Behance">
+            <p>Sur Behance, <a href="https://www.behance.net/simdgtk" target="_blank">Simon Daguet-Kargl</a></p>
+          </div>
+          <div class="socials-flex">
+            <img src="images/icons/github.svg" alt="icône Github">
+            <p>Découvrez comment j’ai codé ce site, sur github, <a href="https://github.com/simdgtk">simdgtk</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="cv">
+        <h3>Retrouvez également mon CV</h3>
+        <a class="button" href="simon_daguet_kargl_cv.pdf" target="_blank">Voir mon CV</a>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div id="wcb" class="carbonbadge cleaner_text"></div>
+    <script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
+    <p>© Simon Daguet-Kargl - <span class="date">2023</span><a class="legal-notices"
+        href="mentions-legales.html">Mentions Légales</a></p>
+
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+
 </html>
