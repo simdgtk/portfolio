@@ -2,15 +2,19 @@
   html {
     font-size: 50%;
   }
+
   .presentation {
     flex-direction: column;
   }
+
   .presenting-me {
     max-width: fit-content;
   }
+
   .presentation-image {
     text-align: center;
   }
+
   .projects {
     align-items: center;
     gap: 0;
@@ -18,84 +22,112 @@
     row-gap: 4rem;
     grid-template-columns: 1fr 1fr;
   }
+
   .projects article:nth-child(2) {
     margin-right: 0;
   }
 }
+
 @media only screen and (max-width: 840px) {
   html {
     font-size: 40%;
   }
+
   .projects {
     grid-template-columns: 1fr;
   }
+
   .project {
     margin: 0;
     max-width: 100%;
   }
+
   .about-flex {
     flex-direction: column;
   }
+
   .container-test {
     align-self: center;
   }
+
   .cards {
     flex-direction: column;
   }
+
   .dark {
     height: 3.5rem;
     width: 3.5rem;
   }
 }
+
 @media only screen and (max-width: 550px) {
   .container-test {
     max-height: 300px;
   }
+
   .about-flex img {
     height: 100%;
   }
 
 }
+
 @media only screen and (max-width: 840px) {
   .main-nav {
     display: none;
   }
+
   .burger-icon {
     display: flex;
     justify-content: space-between;
     padding: 2rem;
   }
+
   .small-nav-buttons {
     width: 100%;
   }
+
   .about-flex img {
     max-height: 260px;
   }
+
   #button-javascript,
   #button-figma,
   #button-github,
   #button-wordpress {
     max-width: 60px;
   }
+
+  .div-javascript,
+  .div-figma,
+  .div-github,
+  .div-wordpress:hover {
+    opacity: 0.8;
+  }
+
   #button-figma {
     bottom: 147px;
     right: -21px;
   }
+
   .javascript {
     left: -14rem;
     bottom: 2rem;
   }
+
   .figma {
     bottom: -5rem;
   }
+
   .github,
   .wordpress {
     bottom: -2rem;
   }
+
   .future-svg {
     bottom: -21px;
   }
 }
+
 article h3 {
   font-size: var(--h4);
 }
