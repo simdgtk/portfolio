@@ -105,8 +105,8 @@ header {
 }
 .projects {
   margin: 0 auto;
-  gap: 1fr;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
 }
 .img-container {
