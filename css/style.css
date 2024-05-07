@@ -40,6 +40,7 @@ header {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  user-select: none;
 }
 
 .presenting-me {
@@ -725,6 +726,7 @@ aside {
   width: 12rem;
   bottom: -30px;
   left: -10px;
+  user-select: none;
 }
 .cleaner_text span:last-child{
   color: var(--indigo-text)!important;
