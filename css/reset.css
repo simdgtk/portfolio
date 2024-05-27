@@ -376,7 +376,7 @@ footer {
 .legal-notices:link,
 .legal-notices:visited {
   margin-left: 1rem;
-  font-weight: 600;
+  text-decoration: underline;
   color: var(--blue-buttons);
 }
 /*Burger menu*/

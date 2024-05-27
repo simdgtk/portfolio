@@ -70,16 +70,10 @@ p {
   line-height: 140%;
 }
 
-.discover:link,
-.discover:visited {
+.discover {
   color: var(--blue-buttons);
   text-decoration: underline;
   font-weight: 400;
-}
-
-.discover:hover,
-.discover:active {
-  font-weight: 500;
 }
 
 .arrow {

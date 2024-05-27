@@ -51,6 +51,16 @@ header {
   font-size: 2rem;
   max-width: 67rem;
 }
+.presenting-me a{
+  color: var(--blue-buttons);
+  font-weight: 500;
+
+  text-decoration: underline;
+}
+.contact-link{
+  color: var(--blue-buttons);
+  text-decoration: underline;
+}
 .social-links {
   display: flex;
   gap: 2rem;
