@@ -87,3 +87,11 @@ let openIcon = document.querySelector(".burger");
 function show() {
   mobileMenu.style.display = "block";
 }
+
+// more projects
+let buttonMoreProjects = document.querySelector("#more");
+let moreProjects = document.querySelector(".more-projects");
+buttonMoreProjects.addEventListener("click", () => {
+  moreProjects.style.display = "block";
+  buttonMoreProjects.style.display = "none";
+});

@@ -108,7 +108,24 @@ header {
   padding-top: 10rem;
   background-color: var(--bg-light);
   background-size: contain;
+  
 }
+.more-projects {
+  display: none;
+  &.show {
+    display: block;
+  }
+}
+#more{
+    display: inline-block;
+    cursor: pointer;
+    padding: 2rem 0;
+    font-weight: 400;
+    margin-top: 3rem;
+    font-size: 1.6rem;
+    text-decoration: underline;
+    color: var(--blue-buttons);
+  }
 .p-projects {
   font-size: 1.6rem;
   color: var(--grey);
@@ -117,8 +134,9 @@ header {
 .projects {
   margin: 0 auto;
   display: flex;
-  flex-direction: row-reverse;
+  gap: 2rem;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .img-container {
   position: relative;
@@ -135,7 +153,6 @@ header {
 }
 
 .project {
-  margin-right: 3rem;
   position: relative;
   background-color: var(--white);
   height: fit-content;
@@ -326,14 +343,14 @@ header {
   border: none;
   background: transparent;
 }
-/*WORDPRESS BUTTON*/
-#button-wordpress {
+/*react BUTTON*/
+#button-react {
   position: absolute;
   z-index: 9;
   max-width: 80px;
   transform: rotate(-6.75deg);
   border: none;
-  background-image: url(../images/icons/wordpress.svg);
+  background-image: url(../images/icons/react.svg);
   background-color: transparent;
   background-size: contain;
   background-position: center;
@@ -341,10 +358,10 @@ header {
   bottom: 19px;
   right: 21px;
 }
-.box-wordpress {
+.box-react {
   background-color: transparent;
 }
-.wordpress {
+.react {
   background-color: var(--indigo-light);
   color: var(--text-regular);
   z-index: -5;
@@ -356,7 +373,7 @@ header {
   padding: 0.35rem 1rem;
   height: 3rem;
 }
-.wordpress::after {
+.react::after {
   z-index: -6;
   content: "";
   display: block;
@@ -518,7 +535,7 @@ header {
 .javascript,
 .figma,
 .github,
-.wordpress {
+.react {
   display: none;
 }
 .bg-aside {

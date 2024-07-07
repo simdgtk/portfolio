@@ -16,13 +16,15 @@
   }
 
   .projects {
+    display: grid;
     align-items: center;
     gap: 0;
-    display: grid;
-    row-gap: 4rem;
+    gap: 4rem;
     grid-template-columns: 1fr 1fr;
   }
-
+  .project{
+    max-width: 100%;
+  }
   .projects article:nth-child(2) {
     margin-right: 0;
   }
@@ -97,14 +99,14 @@
   #button-javascript,
   #button-figma,
   #button-github,
-  #button-wordpress {
+  #button-react {
     max-width: 60px;
   }
 
   .div-javascript,
   .div-figma,
   .div-github,
-  .div-wordpress:hover {
+  .div-react:hover {
     opacity: 0.8;
   }
 
@@ -123,7 +125,7 @@
   }
 
   .github,
-  .wordpress {
+  .react {
     bottom: -2rem;
   }
 
