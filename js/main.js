@@ -90,8 +90,10 @@ function show() {
 
 // more projects
 let buttonMoreProjects = document.querySelector("#more");
-let moreProjects = document.querySelector(".more-projects");
+let moreProjects = document.querySelectorAll(".more-projects");
 buttonMoreProjects.addEventListener("click", () => {
-  moreProjects.style.display = "block";
+  moreProjects.forEach((project) => {
+    project.style.display = "block";
+  });
   buttonMoreProjects.style.display = "none";
 });
