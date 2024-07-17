@@ -1,6 +1,6 @@
 body {
-  position: relative; /* Assurez-vous que le body a un position:relative; */
-  z-index: 1; /* Ajoutez ceci */
+  position: relative;
+  z-index: 1;
 }
 nav,
 header {
@@ -96,8 +96,8 @@ header {
   border-radius: 1px;
   left: -0.4%;
   width: 100.8%;
-  height: 0.8rem; /* Ajustez l'épaisseur du soulignement selon vos préférences */
-  background-color: var(--bg-light); /* Couleur du soulignement */
+  height: 0.8rem;
+  background-color: var(--bg-light);
   transition: height 0.4s;
 }
 .bg-section {
@@ -253,8 +253,8 @@ header {
   border-radius: 1px;
   left: -0.4%;
   width: 100.8%;
-  height: 0.8rem; /* Ajustez l'épaisseur du soulignement selon vos préférences */
-  background-color: var(--indigo-light); /* Couleur du soulignement */
+  height: 0.8rem;
+  background-color: var(--indigo-light);
   transition: height 0.4s;
 }
 #about-me {
@@ -672,32 +672,6 @@ aside {
 .strong-name-about div:last-child::after {
   width: 105%;
 }
-
-/*
-.underline-about-me {
-  font-weight: 400;
-  position: relative;
-  display: inline-block;
-
-  &:hover::after {
-    background-color: var(--blue-buttons);
-  }
-}
-.underline-about-me:hover,
-.underline-about-me:active {
-  font-weight: 500;
-}
-.underline-about-me::after {
-  content: "";
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  width: 102%;
-  height: 2px;
-  border-radius: 1px;
-  background-color: var(--blue-buttons);
-}
-*/
 .strong-name-about {
   z-index: 22;
   font-weight: 400;
