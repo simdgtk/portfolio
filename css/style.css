@@ -730,6 +730,3 @@ aside {
   left: -10px;
   user-select: none;
 }
-.cleaner_text span:last-child{
-  color: var(--indigo-text)!important;
-}
