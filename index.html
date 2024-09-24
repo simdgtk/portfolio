@@ -91,8 +91,67 @@
       </ul>
     </nav>
   </header>
+  <div id="dvd-screen">
+    <img class="alternance" id="alternance" src="./images/alternance.svg" alt="recherche d'alternance">
+  </div>
   <main>
+    <style>
+      #dvd-screen {
+        position: fixed;
+        user-select: none;
+        pointer-events: none;
+        z-index: 99;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
 
+      .alternance {
+        width: 250px;
+        height: auto;
+        position: absolute;
+      }
+    </style>
+    <script>
+      const dvdImage = document.getElementById('alternance');
+      const dvdScreen = document.getElementById('dvd-screen');
+
+      let xPosition = 10;
+      let yPosition = 10;
+      let xSpeed = 0.8;
+      let ySpeed = 0.8;
+      const dvdWidth = 250;
+      const dvdHeight = 150;
+
+      function moveDVDLogo() {
+        xPosition += xSpeed;
+        yPosition += ySpeed;
+
+        if (xPosition + dvdWidth >= window.innerWidth || xPosition <= 0) {
+          xSpeed = -xSpeed;
+          changeColor();
+        }
+
+        if (yPosition + dvdHeight >= window.innerHeight || yPosition <= 0) {
+          ySpeed = -ySpeed;
+          changeColor();
+        }
+
+        dvdImage.style.left = xPosition + 'px';
+        dvdImage.style.top = yPosition + 'px';
+
+        requestAnimationFrame(moveDVDLogo);
+      }
+
+      function changeColor() {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        dvdImage.style.filter = `invert(${r}%) sepia(${g}%) saturate(${b}%)`;
+      }
+      moveDVDLogo();
+
+    </script>
     <section id="accueil">
       <div class="presentation">
         <div class="presentation-texte">
@@ -525,5 +584,9 @@
         href="mentions-legales.html">Mentions Légales</a></p>
   </footer>
   <script src="js/main.js"></script>
+  <script>
+
+  </script>
 </body>
+
 </html>
