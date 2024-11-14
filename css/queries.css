@@ -22,9 +22,11 @@
     gap: 4rem;
     grid-template-columns: 1fr 1fr;
   }
-  .project{
+
+  .project {
     max-width: 100%;
   }
+
   .projects article:nth-child(2) {
     margin-right: 0;
   }
@@ -112,7 +114,7 @@
 
   #button-figma {
     bottom: 147px;
-    right: -21px;
+    right: 10px;
   }
 
   .javascript {

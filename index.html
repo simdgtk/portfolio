@@ -47,8 +47,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="preload"
     as="style" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcviYwY.woff2" crossorigin as="font"
-      type="font/woff2" />
+  <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcviYwY.woff2" crossorigin as="font"
+    type="font/woff2" />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -164,7 +164,7 @@
     </section>
     <div class="bg-section">
       <section id="some-projects">
-        <h2 class="underline-title">Quelques projets phares</h2>
+        <h2 class="underline-title">Quelques projets</h2>
         <p class="p-projects">Cliquez sur un projet pour en savoir plus</p>
         <div class="projects">
 
@@ -307,23 +307,41 @@
       <div class="about-flex">
         <div class="about-text">
           <p>
-            👋 Je m’appelle Simon Daguet-Kargl et je suis étudiant en BUT MMI,
+            👋 Je m’appelle Simon Daguet-Kargl et je suis étudiant 2ème année de BUT MMI,
             <a class="about-external-link" href="https://www.mmibordeaux.com/" target="_blank">
-              métiers du multimédia et de l’internet ↗</a>, une formation
-            pluridisciplinaire qui me forme autant à la
-            partie créative qu’aux aspects techniques du métier de
-            <strong>développeur front-end.</strong>
+              métiers du multimédia et de l’internet ↗</a>, une formation autant pour la
+            partie créative que pour les aspects techniques du métier de
+            <strong>développeur front-end</strong><span id="strong-emoji">👍</span>
+          </p>
+          <script>
+            const strongEmoji = document.getElementById("strong-emoji");
+            strongEmoji.addEventListener("mouseover", () => {
+              let scale = 1;
+              const interval = setInterval(() => {
+                // continue only if the mouse is still over the emoji
+                if (!strongEmoji.matches(":hover")) {
+                  clearInterval(interval);
+                  return;
+                }
+                scale += 0.1;
+                strongEmoji.style.transform = `rotate(${Math.random() * 25 - 12.5}deg)`;
+                strongEmoji.style.fontSize = `${scale}em`;
+                if (scale >= 10) {
+                  clearInterval(interval);
+                }
+              }, 80);
+            });
+          </script>
+          <p>
+            J’ai 19 ans, j’aime beaucoup de choses et le sport en général. Je fais du vélo, de l’escalade 🧗‍♂️ en ce
+            moment et
+            j’aime regarder
+            <span class="hover-image" id="image-nantes" data-image="./images/fc_nantes.webp">le foot</span>.
           </p>
           <p>
-            J’aime résoudre des problèmes et répondre à des problématiques
-            concrètes en développant et concevant des
-            <strong>interfaces modernes et inclusives.</strong> 🖥️
-          </p>
-          <p>
-            Je me forme continuellement et j’envisage d’en apprendre encore
-            beaucoup plus dans ce domaine. Je suis basé sur Bordeaux et sur
+            Je suis disponible sur Bordeaux et
             Nantes et
-            <strong class="strong-stage">je suis à la recherche d'une alternance à partir de septembre 2024.</strong>
+            <strong class="strong-stage">je suis à la recherche d'un stage d'au moins 2 mois à partir du 28 avril 2025</strong>, et qui pourrait potentiellement évoluer en une alternance pour ma 3ème année de BUT.
             <a class="contact-link" href="#discuss">Pour me contacter ↓</a>
           </p>
         </div>
@@ -357,6 +375,57 @@
         </div>
     </section>
   </main>
+  <!-- <div class="bg-section-green">
+    <section id="about-me-green">
+      <div class="title-about-green" id="titlesGreen">
+        <h2>
+          A PROPOS
+        </h2>
+        <div class="div-green">
+          <h2 id="second-h2-green">DE MOI
+          </h2>
+          <div class="texts-green">
+            <p>
+              J’ai 19 ans, j’aime beaucoup le sport en général. Je fais du vélo, de l’escalade 🧗‍♂️ en ce moment et
+              j’aime regarder
+              <span class="hover-image" id="image-nantes" data-image="./images/fc_nantes.webp">le foot</span>.
+            </p>
+            <p>
+              J’aime aussi apprendre des choses, d’où mon choix de partir en MMI, les langues (allemand & anglais) et
+              regarder <span class="hover-image" data-image="./images/parasite.webp">des films</span>.
+            </p>
+            <p>J’aime bien aussi l’univers de la 3D, avec Blender et j’aimerais dans le futur me former un peu au motion
+              design.</p>
+          </div>
+        </div>
+      </div>
+      <script>
+        // document.addEventListener("DOMContentLoaded", ()=>{
+        //   const
+        // })
+      </script>
+    </section>
+<img src="./images/dvd.svg" alt="dvd icon" id="dvd" />
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const dvd = document.getElementById("dvd");
+    let x = 0;
+    let y = 0;
+    setInterval(() => {
+      if(x > window.innerWidth - dvd.clientWidth || x < 0) {
+        x = 0;
+      }
+      if(y > window.innerHeight - dvd.clientHeight || y < 0) {
+        y = 0;
+      }
+      x += 1; 
+      y += 1;
+      dvd.style.transform = `translate(${x}px, ${y}px)`;
+    }, 10);
+  });
+</script>
+
+  </div> -->
   <div class="bg-aside">
     <aside>
       <div class="div">

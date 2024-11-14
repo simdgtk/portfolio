@@ -2,20 +2,24 @@ body {
   position: relative;
   z-index: 1;
 }
+
 nav,
 header {
   z-index: 1;
 }
+
 .underline-projects {
   color: var(--blue-buttons);
   font-weight: 400;
   position: relative;
   display: inline-block;
 }
+
 .underline-projects:hover,
 .underline-projects:active {
   font-weight: 500;
 }
+
 .underline-projects::after {
   content: "";
   bottom: 0;
@@ -31,6 +35,7 @@ header {
   display: flex;
   justify-content: space-between;
 }
+
 .presentation-image {
   height: 40rem;
 }
@@ -51,24 +56,29 @@ header {
   font-size: 2rem;
   max-width: 67rem;
 }
-.presenting-me a{
+
+.presenting-me a {
   color: var(--blue-buttons);
   font-weight: 500;
 
   text-decoration: underline;
 }
-.contact-link{
+
+.contact-link {
   color: var(--blue-buttons);
   text-decoration: underline;
 }
+
 .social-links {
   display: flex;
   gap: 2rem;
 }
+
 .social-links li {
   width: 5.5rem;
   height: 5.5rem;
 }
+
 .social-links li a img {
   max-width: 5.5rem;
   width: 100%;
@@ -79,15 +89,18 @@ header {
   display: flex;
   margin: 12rem 0;
 }
+
 .underline-projects-h {
   z-index: 2;
   margin-bottom: 2.5rem;
   position: relative;
   display: inline-block;
+
   &:hover::after {
     height: 4.6rem;
   }
 }
+
 .underline-projects-h::after {
   z-index: -3;
   content: "";
@@ -100,37 +113,58 @@ header {
   background-color: var(--bg-light);
   transition: height 0.4s;
 }
+
 .bg-section {
   background-color: var(--bg-light);
 }
+
+.bg-section-green {
+  background-color: #BAFF29;
+  position: relative;
+}
+
+#dvd {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16rem;
+  user-select: none;
+  pointer-events: none;
+}
+
 #some-projects {
   padding-bottom: 10rem;
   padding-top: 10rem;
   background-color: var(--bg-light);
   background-size: contain;
-  
+
 }
+
 .more-projects {
   display: none;
+
   &.show {
     display: block;
   }
 }
-#more{
-    display: inline-block;
-    cursor: pointer;
-    padding: 2rem 0;
-    font-weight: 400;
-    margin-top: 3rem;
-    font-size: 1.6rem;
-    text-decoration: underline;
-    color: var(--blue-buttons);
-  }
+
+#more {
+  display: inline-block;
+  cursor: pointer;
+  padding: 2rem 0;
+  font-weight: 400;
+  margin-top: 3rem;
+  font-size: 1.6rem;
+  text-decoration: underline;
+  color: var(--blue-buttons);
+}
+
 .p-projects {
   font-size: 1.6rem;
   color: var(--grey);
   margin-bottom: 6rem;
 }
+
 .projects {
   margin: 0 auto;
   display: grid;
@@ -139,7 +173,8 @@ header {
   row-gap: 4rem;
   justify-content: space-between;
 }
-.projects article{
+
+.projects article {
   position: relative;
   background-color: var(--white);
   height: fit-content;
@@ -148,6 +183,7 @@ header {
   min-width: 25rem;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.08);
 }
+
 .img-container {
   position: relative;
   height: 30rem;
@@ -155,6 +191,7 @@ header {
   border-radius: 20px 20px 0 0;
   overflow: hidden;
 }
+
 .img-container img {
   width: 100%;
   height: 100%;
@@ -165,10 +202,12 @@ header {
 .project:last-child {
   margin-right: 0;
 }
+
 .text-container {
   position: relative;
   padding: 2.5rem 2rem;
 }
+
 .text-container p {
   font-size: 1.6rem;
   color: var(--grey);
@@ -177,12 +216,14 @@ header {
   margin-bottom: 0;
   padding-top: 1.5rem;
 }
+
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
   max-width: 100%;
 }
+
 .tag {
   background-color: var(--indigo-light);
   color: var(--indigo-text);
@@ -192,6 +233,7 @@ header {
   border-radius: 10px;
   padding: 0.9rem 1.6rem;
 }
+
 .project-button:link,
 .project-button:visited {
   position: absolute;
@@ -205,30 +247,36 @@ header {
   width: 4.5rem;
   height: 4.5rem;
 }
+
 .project-link:link,
 .project-link:visited {
   text-decoration: none;
   color: inherit;
 }
+
 .arrow {
-  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
-    contrast(103%);
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
+
 .project {
   transition: transform 0.2s ease;
 }
+
 .project:hover {
   transform: scale(1.02);
 }
+
 .about-flex {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10rem;
   gap: 3rem;
 }
+
 .about-flex img {
   max-height: 400px;
 }
+
 .about-flex p {
   margin-bottom: 5rem;
   max-width: 60rem;
@@ -236,15 +284,18 @@ header {
   font-weight: 400;
   line-height: 140%;
 }
+
 .underline-title {
   z-index: 2;
   margin-bottom: 2.5rem;
   position: relative;
   display: inline-block;
+
   &:hover::after {
     height: 4.6rem;
   }
 }
+
 .underline-title::after {
   z-index: -3;
   content: "";
@@ -257,25 +308,134 @@ header {
   background-color: var(--indigo-light);
   transition: height 0.4s;
 }
+
 #about-me {
-  padding-top: 10rem;
-  margin-bottom: 10rem;
+  padding: 10rem 2rem;
 }
+
+#about-me-green {
+  position: relative;
+  background-color: #BAFF29;
+  overflow: hidden;
+  display: flex;
+  padding: 5rem 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@font-face {
+  font-family: 'highfat';
+  src: url('../fonts/highfat.woff2') format('woff2');
+  src: url('../fonts/highfat.woff') format('woff');
+}
+
+#titlesGreen {
+  transform: translateX(3.5vw);
+}
+
+.title-about-green {
+  color: #8EC830;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 5rem;
+  font-family: 'highfat', 'inter', sans-serif;
+}
+
+.title-about-green h2:first-of-type {
+  width: 95%;
+  text-align: left;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  font-size: clamp(1rem, 20vw, 35rem);
+}
+
+#second-h2-green {
+  font-weight: 700;
+  font-size: clamp(1rem, 13vw, 34rem);
+  text-align: left;
+  margin-bottom: 2rem;
+  max-width: 55vw;
+}
+
+@media screen and (max-width: 768px) {
+  #second-h2-green {
+    max-width: 35vw;
+  }
+
+}
+
+.div-green {
+  display: flex;
+  flex-direction: row;
+}
+
+.texts-green {
+  font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: var(--indigo-text);
+  font-size: var(--text-regular);
+  transform: translateX(-5.5vw);
+  margin-right: 2rem;
+}
+
+.hover-image {
+  text-decoration: underline;
+  cursor: default;
+  position: relative;
+}
+
+.hover-image {
+  position: relative;
+}
+
+.hover-image:hover::after {
+  content: '';
+  z-index: 99;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 120px;
+  transform: translateY(-10%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#image-nantes:hover::after {
+  background-image: url('../images/fc_nantes.webp');
+  transform: scale(1.2);
+  rotate: 20deg;
+}
+
+.hover-image:hover::after {
+  background-image: url('../images/parasite.webp');
+  rotate: -12deg;
+}
+
 .about-text p img {
   width: 20px;
   margin-left: 5px;
 }
+
 .about-text p img:first-child {
   width: 20px;
   margin-left: 0;
 }
+
 .about-external-link {
   color: var(--blue-buttons);
   text-decoration: underline;
 }
+
 .about-external-link img {
   height: 20px;
 }
+
 .strong-stage {
   position: relative;
   display: inline;
@@ -289,14 +449,17 @@ header {
   position: relative;
   display: inline-block;
   color: var(--blue-buttons);
+
   &:hover::after {
     background-color: var(--blue-buttons);
   }
 }
+
 .underline-about-me:hover,
 .underline-about-me:active {
   font-weight: 500;
 }
+
 .underline-about-me::after {
   content: "";
   bottom: 0;
@@ -307,15 +470,18 @@ header {
   border-radius: 1px;
   background-color: var(--blue-buttons);
 }
+
 .about-image {
   position: relative;
   z-index: -1;
 }
+
 .container-test {
   position: relative;
   height: fit-content;
   width: fit-content;
 }
+
 .div-javascript {
   transform: rotate(-10.5deg);
   position: absolute;
@@ -323,6 +489,7 @@ header {
   top: 18.5rem;
   left: 14.2rem;
 }
+
 .div-figma {
   transform: rotate(15deg);
   position: absolute;
@@ -344,6 +511,7 @@ header {
   border: none;
   background: transparent;
 }
+
 /*react BUTTON*/
 #button-react {
   position: absolute;
@@ -359,9 +527,11 @@ header {
   bottom: 19px;
   right: 21px;
 }
+
 .box-react {
   background-color: transparent;
 }
+
 .react {
   background-color: var(--indigo-light);
   color: var(--text-regular);
@@ -374,6 +544,7 @@ header {
   padding: 0.35rem 1rem;
   height: 3rem;
 }
+
 .react::after {
   z-index: -6;
   content: "";
@@ -388,6 +559,7 @@ header {
   left: 43%;
   transform: rotate(180deg);
 }
+
 /*GITHUB BUTTON*/
 .div-github {
   position: absolute;
@@ -395,6 +567,7 @@ header {
   bottom: 4.5rem;
   left: 0.2rem;
 }
+
 #button-github {
   position: absolute;
   z-index: 9;
@@ -409,9 +582,11 @@ header {
   bottom: 33px;
   right: 21px;
 }
+
 .box-github {
   background-color: transparent;
 }
+
 .github {
   background-color: var(--indigo-light);
   color: var(--text-regular);
@@ -423,6 +598,7 @@ header {
   padding: 0.35rem 1rem;
   height: 3rem;
 }
+
 .github::after {
   z-index: -6;
   content: "";
@@ -453,9 +629,11 @@ header {
   bottom: 33px;
   right: 21px;
 }
+
 .box-javascript {
   background-color: transparent;
 }
+
 .javascript {
   background-color: var(--indigo-light);
   color: var(--text-regular);
@@ -469,6 +647,7 @@ header {
   padding: 0.35rem 1rem;
   height: 3rem;
 }
+
 .javascript::after {
   z-index: -6;
   content: "";
@@ -496,12 +675,14 @@ header {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  bottom: 198px;
-  right: 15px;
+  bottom: 250px;
+  right: 55px;
 }
+
 .box-figma {
   background-color: transparent;
 }
+
 .figma {
   background-color: var(--indigo-light);
   color: var(--text-regular);
@@ -514,6 +695,7 @@ header {
   padding: 0.35rem 1rem;
   height: 3rem;
 }
+
 .figma::after {
   z-index: -6;
   content: "";
@@ -539,6 +721,7 @@ header {
 .react {
   display: none;
 }
+
 .bg-aside {
   font-weight: 500;
   font-family: "Inter", sans-serif;
@@ -552,6 +735,7 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 aside {
   display: flex;
   height: 100%;
@@ -559,14 +743,17 @@ aside {
   justify-content: center;
   color: #edf2fe;
 }
+
 .bg-aside p {
   margin: 3rem 0;
   padding-left: 2rem;
   padding-right: 2rem;
 }
+
 .bg-aside h2 {
   font-weight: 700;
 }
+
 .aside-link {
   color: #edf2fe;
   padding: 1rem 2rem;
@@ -575,17 +762,21 @@ aside {
   font-size: 2rem;
   border: 5px solid #edf2fe;
 }
+
 .discuss {
   padding-top: 10rem;
   margin-bottom: 10rem;
 }
+
 .discuss h2 {
   margin-bottom: 7rem;
 }
+
 .center {
   display: flex;
   justify-content: center;
 }
+
 .cards {
   line-height: 1.4;
   font-size: 2rem;
@@ -593,10 +784,12 @@ aside {
   gap: 7rem;
   justify-content: space-between;
 }
+
 .cards a {
   color: var(--blue-buttons);
   text-decoration: underline;
 }
+
 .socials,
 .cv {
   background-color: var(--bg-light);
@@ -607,29 +800,36 @@ aside {
 .socials p {
   margin-bottom: 1rem;
 }
+
 .socials-links {
   margin-top: 3.5rem;
 }
+
 .cards h3 {
   font-size: 3rem;
   font-weight: 600;
   margin-bottom: 4.5rem;
 }
+
 .cards img {
   max-width: 5.5rem;
 }
+
 .socials-flex p {
   margin: 0;
 }
+
 .socials-flex {
   display: flex;
   align-items: center;
   gap: 2.5rem;
   margin-bottom: 3rem;
 }
+
 .socials-flex:last-child {
   margin-bottom: 0;
 }
+
 .cv {
   height: fit-content;
 }
@@ -665,22 +865,27 @@ aside {
   background-color: var(--indigo-light);
   transition: height 0.4s;
 }
+
 .strong-name-about div:first-child::after {
   width: 150%;
   left: -5%;
 }
+
 .strong-name-about div:last-child::after {
   width: 105%;
 }
+
 .strong-name-about {
   z-index: 22;
   font-weight: 400;
   position: relative;
   color: var(--indigo-text);
 }
+
 .strong-name-about p {
   font-weight: 500;
 }
+
 .strong-name-projects div {
   z-index: 22;
   position: relative;
@@ -704,9 +909,11 @@ aside {
   background-color: var(--indigo-light);
   transition: height 0.4s;
 }
+
 .strong-name-projects div:first-child::after {
   width: 150%;
 }
+
 .strong-name-projects div:last-child::after {
   width: 105%;
 }
@@ -715,18 +922,33 @@ aside {
   width: 108%;
   left: 0;
 }
+
 .strong-name-discuss div:last-child::after {
   width: 105%;
 }
+
 /*FUTUR développeur*/
 .future {
   position: relative;
   display: inline-block;
 }
+
 .future-svg {
   position: absolute;
   width: 12rem;
   bottom: -30px;
   left: -10px;
   user-select: none;
+}
+
+/* Emoji that grows on hover */
+#strong-emoji {
+  z-index: 9999;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.1s ease;
 }
