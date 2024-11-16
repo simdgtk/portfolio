@@ -71,6 +71,7 @@ header {
 
 .social-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
@@ -79,7 +80,8 @@ header {
   height: 5.5rem;
 }
 
-.social-links li a img {
+.social-links li a img,
+.social-links li a svg {
   max-width: 5.5rem;
   width: 100%;
   height: 100%;
