@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .cache {
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .flex {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section {
+      width: 100%;
+      background-color: blue;
+      height: 100vh;
+      border-radius: 60px;
+      transition: all 0.5s ease;
+    }
+
+    .red {
+      background-color: red;
+      transform: translateY(-80%);
+    }
+
+    .green {
+      background-color: green;
+      transform: translateY(-160%);
+      z-index: 99;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cache">
+
+    <div class="flex">
+      <div class="section blue"></div>
+      <div class="section red"></div>
+      <div class="section green"></div>
+    </div>
+  </div>
+  <script>
+    document.querySelectorAll(".section").forEach((section, index) => {
+      section.addEventListener("click", () => {
+        if (section.classList.contains("red")) {
+          section.style.transform = "translateY(-80%)";
+        } else if (section.classList.contains("green")) {
+          section.style.transform = "translateY(-180%)";
+          document.querySelector(".red").style.transform = "translateY(-90%)";
+        } else {
+          section.style.transform = "translateY(0)";
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

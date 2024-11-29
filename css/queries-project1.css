@@ -1,20 +1,25 @@
 @media only screen and (max-width: 1080px) {
     html {
-      font-size: 50%;
-    } 
+        font-size: 50%;
+    }
 }
+
 @media only screen and (max-width: 950px) {
     .accueil-flex {
         flex-direction: column;
+        align-items: start;
     }
-    .accessibility{
+
+    .accessibility {
         flex-direction: column;
         max-width: 50rem;
     }
-    .accessibility-image{
+
+    .accessibility-image {
         max-width: 100%;
     }
-    .img-container{
+
+    .img-container {
         grid-template-columns: 1fr;
         align-self: center;
         width: auto;
@@ -24,23 +29,28 @@
 
     }
 }
+
 @media only screen and (max-width: 700px) {
-    .projects{
+    .projects {
         flex-direction: column;
     }
-    .other-project{
-        max-width: 100%!important;
+
+    .other-project {
+        max-width: 100% !important;
     }
 }
+
 @media only screen and (max-width: 700px) {
-    .img-container{
+    .img-container {
         grid-template-columns: 1fr;
         align-self: auto;
     }
+
     .aside {
         flex-direction: column;
     }
-    button{
+
+    button {
         width: 54px;
-      }
+    }
 }
