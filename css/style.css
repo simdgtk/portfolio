@@ -408,16 +408,14 @@ header {
   margin-right: 2rem;
 }
 
-.hover-image {
-  cursor: default;
+.hover-images {
+  text-decoration: underline;
+  cursor: pointer;
   position: relative;
 }
 
-.hover-image {
-  position: relative;
-}
-
-.hover-image:hover::after {
+.hover-images:hover::after {
+  cursor: pointer;
   content: '';
   z-index: 99;
   background-size: contain;
@@ -430,20 +428,115 @@ header {
   left: 0;
 }
 
-#image-nantes:hover::after {
-  background-image: url('../images/fc_nantes.webp');
-  transform: scale(1.2);
-  rotate: 20deg;
-}
-
-.hover-image:hover::after {
-  background-image: url('../images/parasite.webp');
-  rotate: -12deg;
-}
 
 .about-text p img {
   width: 20px;
   margin-left: 5px;
+}
+
+.hover-films,
+.hover-musics {
+  transform-origin: center;
+  position: relative;
+  user-select: none;
+  pointer-events: all;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 999;
+}
+.hover-musics{
+transform: translateX(20%);
+}
+.hover-img-container {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 7px;
+  overflow: hidden;
+  height: 150px;
+  aspect-ratio: 1/1.44;
+  background-color: beige;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.hover-musics .hover-img-container {
+  height: 100px;
+  aspect-ratio: 1;
+}
+
+
+.hover-img-container:nth-child(1) {
+  transform: rotate(-13.57deg) translateY(10%);
+  z-index: 2;
+}
+
+.hover-img-container:nth-child(1):hover {
+  transform: rotate(-14.57deg) translateY(10%) scale(1.1);
+}
+
+.hover-musics .hover-img-container:nth-child(1) {
+  transform: rotate(-12.17deg) translateY(0%);
+}
+.hover-musics .hover-img-container:nth-child(1):hover {
+  transform: rotate(-13.17deg) translateY(0%) scale(1.1);
+}
+
+.hover-musics .hover-img-container:nth-child(2) {
+  transform: rotate(-2.51deg) translateY(-40%) translateX(-30%);
+}
+
+.hover-musics .hover-img-container:nth-child(2):hover {
+  transform: rotate(-3.51deg) translateY(-40%) translateX(-30%) scale(1.1);
+}
+
+.hover-musics .hover-img-container:nth-child(3) {
+  transform: rotate(6.69deg) translateY(-5%) translateX(-95%);
+  z-index: 5;
+}
+
+.hover-musics .hover-img-container:nth-child(3):hover {
+  transform: rotate(7.69deg) translateY(-5%) translateX(-95%) scale(1.1);
+}
+.hover-musics .hover-img-container:nth-child(4) {
+  transform: rotate(14.62deg) translateY(-25%) translateX(-130%);
+}
+
+.hover-musics .hover-img-container:nth-child(4):hover {
+  transform: rotate(15.62deg) translateY(-25%) translateX(-130%) scale(1.1);
+}
+.hover-musics .hover-img-container:nth-child(5) {
+  transform: rotate(-1.77deg) translateY(0%) translateX(-200%);
+  z-index: 4;
+}
+
+.hover-musics .hover-img-container:nth-child(5):hover {
+  transform: rotate(-2.77deg) translateY(0%) translateX(-200%) scale(1.1);
+}
+
+.hover-img-container:nth-child(2) {
+  transform: rotate(2.38deg);
+  z-index: 3;
+}
+
+.hover-img-container:nth-child(2):hover {
+  transform: rotate(3.38deg) scale(1.1);
+}
+
+.hover-img-container:nth-child(3) {
+  transform: rotate(16.22deg) translateY(15%);
+  z-index: 4;
+}
+
+.hover-img-container:nth-child(3):hover {
+  transform: rotate(17.22deg) translateY(15%) scale(1.1);
+}
+
+.hover-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .about-text p img:first-child {
@@ -967,7 +1060,7 @@ aside {
 
 /* Emoji that grows on hover */
 #strong-emoji {
-  z-index: 9999;
+  z-index: 9;
   width: 80px;
   height: 80px;
   position: absolute;

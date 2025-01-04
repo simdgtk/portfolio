@@ -367,10 +367,10 @@
             J’ai 19 ans, j’aime beaucoup de choses, notamment le sport et apprendre des tas de choses. Je fais du vélo,
             en ce
             moment de l’escalade 🧗‍♂️ et
-            j’aime regarder
-            <span class="hover-image" id="image-nantes" data-image="./images/fc_nantes.webp">le foot</span>, <span
-              class="hover-image" data-image="./images/parasite.webp">des films</span>. Je dirais que je suis autonome et que j'ai le souci du
-              détail.
+            j’aime <span class="hover-images" id="span-films">regarder des films</span>, <span class="hover-images"
+              id="span-musics">écouter de la musique</span>. Je dirais que je suis autonome et que
+            j'ai le souci du
+            détail.
           </p>
           <p>
             Je suis disponible sur Bordeaux et
@@ -413,6 +413,34 @@
             alt="Simon Daguet-Kargl je maîtrise figma, javascript, github et react" loading="lazy" height="600px" />
         </div>
       </div>
+      <div class="hover-films">
+        <div class="hover-img-container">
+          <img src="images/hover/pulp_fiction.webp" alt="">
+        </div>
+        <div class="hover-img-container">
+          <img src="images/hover/parasite.webp" alt="">
+        </div>
+        <div class="hover-img-container">
+          <img src="images/hover/grand_budapest_hotel.webp" alt="">
+        </div>
+      </div>
+      <div class="hover-musics">
+        <div class="hover-img-container">
+          <img src="images/hover/redhot.webp" alt="">
+        </div>
+        <div class="hover-img-container">
+          <img src="images/hover/pnl.webp" alt="">
+        </div>
+        <div class="hover-img-container">
+          <img src="images/hover/nekfeu.webp" alt="">
+        </div>
+        <div class="hover-img-container">
+          <img src="images/hover/pink_floyd.webp" alt="">
+        </div>
+        <div class="hover-img-container">
+          <img src="images/hover/alpha_wann.webp" alt="">
+        </div>
+      </div>
     </section>
   </main>
   <!-- <div class="bg-section-green">
@@ -428,11 +456,11 @@
             <p>
               J’ai 19 ans, j’aime beaucoup le sport en général. Je fais du vélo, de l’escalade 🧗‍♂️ en ce moment et
               j’aime regarder
-              <span class="hover-image" id="image-nantes" data-image="./images/fc_nantes.webp">le foot</span>.
+              <span class="hover-images" id="image-nantes" data-image="./images/fc_nantes.webp">le foot</span>.
             </p>
             <p>
               J’aime aussi apprendre des choses, d’où mon choix de partir en MMI, les langues (allemand & anglais) et
-              regarder <span class="hover-image" data-image="./images/parasite.webp">des films</span>.
+              regarder <span class="hover-images" data-image="./images/parasite.webp">des films</span>.
             </p>
             <p>J’aime bien aussi l’univers de la 3D, avec Blender et j’aimerais dans le futur me former un peu au motion
               design.</p>
@@ -654,6 +682,47 @@
         }
       }
     </script>
+
+    <script>
+      window.addEventListener('load', () => {
+        const elements = [
+          { trigger: 'span-films', hover: 'hover-films' },
+          { trigger: 'span-musics', hover: 'hover-musics' },
+        ];
+
+        elements.forEach(({ trigger, hover }) => {
+          const triggerElement = document.getElementById(trigger);
+          const hoverElement = document.querySelector(`.${hover}`);
+
+          if (triggerElement && hoverElement) {
+            triggerElement.addEventListener('mouseover', () => {
+              const rect = triggerElement.getBoundingClientRect();
+              hoverElement.style.position = 'absolute';
+              hoverElement.style.display = 'flex';
+              triggerElement.style.pointerEvents = 'none';
+              hoverElement.style.top = `${rect.top + window.scrollY - hoverElement.offsetHeight - 10}px`;
+              hoverElement.style.left = `${rect.left + window.scrollX - hoverElement.offsetWidth / 2 + rect.width / 2}px`;
+              hoverElement.style.userSelect = 'none';
+            });
+
+            let timeout;
+
+            hoverElement.addEventListener('mouseout', () => {
+              timeout = setTimeout(() => {
+                hoverElement.style.display = 'none';
+                hoverElement.style.userSelect = 'auto';
+                triggerElement.style.pointerEvents = 'auto';
+              }, 300);
+            });
+
+            hoverElement.addEventListener('mouseover', () => {
+              clearTimeout(timeout);
+            });
+          }
+        });
+      });
+    </script>
+
     <p>© Simon Daguet-Kargl - <span class="date">2023</span><a class="legal-notices"
         href="mentions-legales.html">Mentions Légales</a></p>
   </footer>
