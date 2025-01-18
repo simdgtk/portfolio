@@ -65,7 +65,6 @@ toggleMode2.addEventListener("click", () => {
     img2.setAttribute("src", "images/icons/dark.svg");
     futureIcon.setAttribute("src", "images/futur.svg");
   }
-  console.log("clicked2");
   document.body.classList.toggle("dark-mode");
   if (img2.getAttribute("src") === "images/icons/light.svg") {
     img2.setAttribute("src", "images/icons/dark.svg");

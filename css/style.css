@@ -33,15 +33,16 @@ header {
 
 .presentation {
   display: flex;
+  gap: 2rem;
   justify-content: space-between;
 }
 
 .presentation-image {
-  height: 40rem;
+  height: 42rem;
 }
 
 .hero-img {
-  max-width: 40rem;
+  max-width: 42rem;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -445,9 +446,23 @@ header {
   display: none;
   z-index: 999;
 }
-.hover-musics{
-transform: translateX(20%);
+
+@media screen and (max-width: 768px) {
+  .hover-images {
+    text-decoration: none;
+    cursor: default;
+  }
+
+  .hover-films,
+  .hover-musics {
+    display: none !important;
+  }
 }
+
+.hover-musics {
+  transform: translateX(20%);
+}
+
 .hover-img-container {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 7px;
@@ -479,6 +494,7 @@ transform: translateX(20%);
 .hover-musics .hover-img-container:nth-child(1) {
   transform: rotate(-12.17deg) translateY(0%);
 }
+
 .hover-musics .hover-img-container:nth-child(1):hover {
   transform: rotate(-13.17deg) translateY(0%) scale(1.1);
 }
@@ -499,6 +515,7 @@ transform: translateX(20%);
 .hover-musics .hover-img-container:nth-child(3):hover {
   transform: rotate(7.69deg) translateY(-5%) translateX(-95%) scale(1.1);
 }
+
 .hover-musics .hover-img-container:nth-child(4) {
   transform: rotate(14.62deg) translateY(-25%) translateX(-130%);
 }
@@ -506,6 +523,7 @@ transform: translateX(20%);
 .hover-musics .hover-img-container:nth-child(4):hover {
   transform: rotate(15.62deg) translateY(-25%) translateX(-130%) scale(1.1);
 }
+
 .hover-musics .hover-img-container:nth-child(5) {
   transform: rotate(-1.77deg) translateY(0%) translateX(-200%);
   z-index: 4;
@@ -845,12 +863,19 @@ transform: translateX(20%);
   color: var(--white);
   font-size: var(--text-regular);
   text-align: center;
-  height: 40rem;
+  height: 50rem;
   background-image: url(../images/aside/3D_creations.webp);
   background-attachment: fixed;
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.bg-aside__flex {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  align-items: center;
 }
 
 aside {
@@ -862,9 +887,14 @@ aside {
 }
 
 .bg-aside p {
-  margin: 3rem 0;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 0 2rem;
+  line-height: 1.4;
+  max-width: 500px;
+}
+
+.bg-aside a {
+  width: fit-content;
+  display: inline-block;
 }
 
 .bg-aside h2 {
@@ -873,11 +903,11 @@ aside {
 
 .aside-link {
   color: #edf2fe;
-  padding: 1rem 2rem;
-  margin-top: 3rem;
-  border-radius: 10px;
+  padding: 1.5rem 3rem;
+  border-radius: 8px;
   font-size: 2rem;
-  border: 5px solid #edf2fe;
+  font-weight: 400;
+  border: 2px solid #edf2fe;
 }
 
 .discuss {
@@ -912,6 +942,18 @@ aside {
   background-color: var(--bg-light);
   padding: 5rem;
   border-radius: 20px;
+}
+
+.cv {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+@media screen and (max-width: 768px) {
+  .cv {
+    align-items: center;
+  }
 }
 
 .socials p {

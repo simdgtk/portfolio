@@ -56,6 +56,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/split-type"></script>
+  <script src="https://unpkg.com/lenis@1.1.19/dist/lenis.min.js"></script>
 </head>
 
 <body>
@@ -88,7 +89,7 @@
         <li><a class="link" href="#some-projects">Mes projets</a></li>
         <li><a class="link" href="#about-me">À propos</a></li>
         <li><a class="button" href="#discuss">Me contacter</a></li>
-        <li><button class="toggle-mode2" onclick="toggleMode2()">
+        <li><button class="toggle-mode2">
             <img class="dark2" src="images/icons/dark.svg" alt="dark2 mode" width="37" height="37" />
           </button>
         </li>
@@ -200,6 +201,26 @@
               </div>
             </a>
           </article>
+          <article class="project wip">
+            <a class="project-link" href="https://grand-budapest.vercel.app/" target="_blank">
+              <div class="img-container">
+                <img src="images/projet_budapest.webp" alt="hero site Grand Budapest Hotel" loading="lazy" />
+              </div>
+              <div class="text-container">
+                <h3>Grand Budapest</h3>
+                <p>
+                  Site inspiré du film de Wes Anderson, avec des animations au scroll et des web shaders.
+                </p>
+                <div class="tags">
+                  <span class="tag">Web shaders</span>
+                  <span class="tag">GSAP</span>
+                </div>
+                <a class="project-button" href="https://grand-budapest.vercel.app/" target="_blank">
+                  <img class="arrow" src="images/icons/arrow_up.svg" alt="arrow icon" height="20px" />
+                </a>
+              </div>
+            </a>
+          </article>
           <article class="project">
             <a class="project-link" href="https://archi-webgl.vercel.app/" target="_blank">
               <div class="img-container">
@@ -220,7 +241,7 @@
               </div>
             </a>
           </article>
-          <article class="project">
+          <article class="project more-projects">
             <a class="project-link" href="https://canevas.vercel.app/" target="_blank">
               <div class="img-container">
                 <img src="images/canevas.webp" alt="site canevas" loading="lazy" />
@@ -235,26 +256,6 @@
                   <span class="tag">Matter.js</span>
                 </div>
                 <a class="project-button" href="https://canevas.vercel.app/">
-                  <img class="arrow" src="images/icons/arrow_up.svg" alt="arrow icon" height="20px" />
-                </a>
-              </div>
-            </a>
-          </article>
-          <article class="project more-projects wip">
-            <a class="project-link" href="https://grand-budapest.vercel.app/" target="_blank">
-              <div class="img-container">
-                <img src="images/projet_budapest.webp" alt="hero site Grand Budapest Hotel" loading="lazy" />
-              </div>
-              <div class="text-container">
-                <h3>Grand Budapest</h3>
-                <p>
-                  Site inspiré du film de Wes Anderson, avec des animations au scroll et des web shaders.
-                </p>
-                <div class="tags">
-                  <span class="tag">Web shaders</span>
-                  <span class="tag">GSAP</span>
-                </div>
-                <a class="project-button" href="https://grand-budapest.vercel.app/" target="_blank">
                   <img class="arrow" src="images/icons/arrow_up.svg" alt="arrow icon" height="20px" />
                 </a>
               </div>
@@ -302,28 +303,6 @@
               </div>
             </a>
           </article>
-          <!-- <article class="project more-projects">
-            <a class="project-link" href="projet1.html">
-              <div class="img-container">
-                <img src="images/projet_musee/presentation_musee_aquitaine_refonte.webp"
-                  alt="lien vers mon projet de refonte du site du musée d'Aquitaine" loading="lazy" />
-              </div>
-              <div class="text-container">
-                <h3>Refonte de site d’un musée</h3>
-                <p>
-                  Le site s’adapte à toute taille d’écran et à été pensé pour
-                  être accessible.
-                </p>
-                <div class="tags">
-                  <span class="tag">html & css</span>
-                  <span class="tag">accessibilité</span>
-                </div>
-                <a class="project-button" href="projet1.html">
-                  <img class="arrow" src="images/icons/arrow_up.svg" alt="flèche vers lien externe" height="20px" />
-                </a>
-              </div>
-            </a>
-          </article> -->
         </div>
         <p id="more">Voir plus de projets</p>
       </section>
@@ -364,7 +343,7 @@
             });
           </script>
           <p>
-            J’ai 19 ans, j’aime beaucoup de choses, notamment le sport et apprendre des tas de choses. Je fais du vélo,
+            J’ai 19 ans, j’aime apprendre et me former à de nouvelles compétences. Je fais du vélo,
             en ce
             moment de l’escalade 🧗‍♂️ et
             j’aime <span class="hover-images" id="span-films">regarder des films</span>, <span class="hover-images"
@@ -380,34 +359,6 @@
             <a class="contact-link" href="#discuss">Pour me contacter ↓</a>
           </p>
         </div>
-        <!-- <div class="container-test">
-          <div class="div-javascript">
-            <button id="button-javascript" onclick="toggle(this)">javascript</button>
-            <div class="javascript tag">
-              <p class="tag-text">javascript</p>
-            </div>
-          </div>
-          <div class="div-figma" id="button-figma" onclick="toggle(this)">
-            <button class="box-figma">figma</button>
-            <div class="figma tag">
-              <p class="tag-text">figma</p>
-            </div>
-          </div>
-          <div class="div-github" id="button-github" onclick="toggle(this)">
-            <button class="box-github">github</button>
-            <div class="github tag">
-              <p class="tag-text">github</p>
-            </div>
-          </div>
-          <div class="div-react" id="button-react" onclick="toggle(this)">
-            <button class="box-react">react</button>
-            <div class="react tag">
-              <p class="tag-text">react</p>
-            </div>
-          </div>
-          <img class="second-image" src="images/hero_img.webp"
-            alt="Simon Daguet-Kargl je maîtrise figma, javascript, github et react" loading="lazy" height="400px" />
-        </div> -->
         <div class="container-test">
           <img class="second-image" src="images/a_propos.webp"
             alt="Simon Daguet-Kargl je maîtrise figma, javascript, github et react" loading="lazy" height="600px" />
@@ -443,60 +394,9 @@
       </div>
     </section>
   </main>
-  <!-- <div class="bg-section-green">
-    <section id="about-me-green">
-      <div class="title-about-green" id="titlesGreen">
-        <h2>
-          A PROPOS
-        </h2>
-        <div class="div-green">
-          <h2 id="second-h2-green">DE MOI
-          </h2>
-          <div class="texts-green">
-            <p>
-              J’ai 19 ans, j’aime beaucoup le sport en général. Je fais du vélo, de l’escalade 🧗‍♂️ en ce moment et
-              j’aime regarder
-              <span class="hover-images" id="image-nantes" data-image="./images/fc_nantes.webp">le foot</span>.
-            </p>
-            <p>
-              J’aime aussi apprendre des choses, d’où mon choix de partir en MMI, les langues (allemand & anglais) et
-              regarder <span class="hover-images" data-image="./images/parasite.webp">des films</span>.
-            </p>
-            <p>J’aime bien aussi l’univers de la 3D, avec Blender et j’aimerais dans le futur me former un peu au motion
-              design.</p>
-          </div>
-        </div>
-      </div>
-      <script>
-        // document.addEventListener("DOMContentLoaded", ()=>{
-        //   const
-        // })
-      </script>
-    </section>
-<img src="./images/dvd.svg" alt="dvd icon" id="dvd" />
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const dvd = document.getElementById("dvd");
-    let x = 0;
-    let y = 0;
-    setInterval(() => {
-      if(x > window.innerWidth - dvd.clientWidth || x < 0) {
-        x = 0;
-      }
-      if(y > window.innerHeight - dvd.clientHeight || y < 0) {
-        y = 0;
-      }
-      x += 1; 
-      y += 1;
-      dvd.style.transform = `translate(${x}px, ${y}px)`;
-    }, 10);
-  });
-</script>
-
-  </div> -->
   <div class="bg-aside">
     <aside>
-      <div class="div">
+      <div class="div bg-aside__flex">
         <h2>Découvrez en plus</h2>
         <p>En ayant fait pendant plusieurs années de la 3D, j’envisage d’en apprendre plus sur ce domaine pour le web et
           ses usages</p>
@@ -557,7 +457,7 @@
     <div class="cards">
       <div class="socials">
         <h3>Par mes réseaux</h3>
-        <p>Par mail, à l’adresse <a href="mailto:simondaguetkargl@gmail.com">simondaguetkargl@gmail.com</a></p>
+        <p>Par mail, à <a href="mailto:simondaguetkargl@gmail.com">simondaguetkargl@gmail.com</a></p>
         <p>Par téléphone, au <a href="tel:+33768442459">+337 68 44 24 59</a></p>
         <div class="socials-links">
           <div class="socials-flex">
@@ -720,6 +620,14 @@
             });
           }
         });
+      });
+    </script>
+
+    <!-- Smooth scroll -->
+    <script defer>
+      // Initialize Lenis
+      const lenis = new Lenis({
+        autoRaf: true,
       });
     </script>
 
