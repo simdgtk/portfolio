@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simon Daguet-Kargl | Développeur Front-end</title>
+  <meta name="description"
+    content="Enchanté, moi c'est Simon Daguet-Kargl je suis un développeur front-end basé sur Bordeaux et sur Nantes. Découvrez mon portfolio !" />
+  <link rel="icon" href="images/emoji_u1f5a5_favicon.svg" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/project1.css" />
+  <link rel="stylesheet" href="css/queries-project1.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <nav>
+    <ul class="project-nav">
+      <li><a class="link" href="index.html">Revenir à l'accueil</a></li>
+      <li class="button-project"><a class="button button-project" href="index.html#discuss">Me contacter</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section class="accueil">
+      <div class="accueil-flex">
+        <div class="container">
+          <div>
+            <h1 class="strong-name">
+              <div>Projet</div>
+            </h1>
+            <h2>Aile numérique collaborative pour le musée d'Aquitaine</h2>
+            </h2>
+            <p class="project-text">
+              En 2 semaines, nous avons commencé à préparer un projet pour la Bacchanight, une soirée organisée par le
+              Musée d'Aquitaine de Bordeaux. Nous avons proposé une application web collaborative pour les visiteurs,
+              qui créeront leur propre salle de musée, en y ajoutant des œuvres, du mobilier et de la couleur.
+              <a href="#deroulement" class="discover discover-more">Découvrez-en plus ↓</a>
+            </p>
+            <a href="https://bacchanight-room.vercel.app/" class="discover" target="_blank">Lien du site ↗</a>
+          </div>
+        </div>
+        <div class="image image-drink">
+          <img src="images/projet_bacchanight/baccanight3.webp"
+            alt="page d'accueil mettant en avant les posts befake" />
+        </div>
+      </div>
+    </section>
+    <section id="deroulement">
+      <h2 class="project-main">
+        La conception de l'application
+      </h2>
+      <div class="accueil-flex">
+        <div class="project-texts">
+          <p>
+            Nous sommes partis sur React, React Three Fiber et express js pour le serveur. Une fois la salle finie,
+            l'image est
+            créée depuis le canvas puis envoyée à un serveur local (pour des raisons de performances et de bande
+            passante
+            limitée). Elle est compressée et redimentionnée pour apparaitre ensuite dans la gallerie collaborative, en
+            temps (quasi) réel. Le
+            lendemain, les images générées lors de la soirée seront mises en ligne.
+          </p>
+        </div>
+        <div class="project-img-container">
+          <img src="images/projet_bacchanight/baccanight1.webp" alt="page post" />
+        </div>
+      </div>
+    </section>
+    <section id="benefits">
+      <div class="accueil-flex accueil-center">
+        <div class="container">
+          <div class="project-texts">
+            <h2 class="project-main">
+              Ce qui changera
+            </h2>
+            <p>
+              Après les retours qui nous ont été faits et avec les évolutions que nous pensions faire, nous allons
+              partir sur un style plus assumé et plus 2D (comme sur <a class="discover"
+                href="https://bacchanight-room.vercel.app/les-salles" target="_blank">l'écran de présentation</a>), que
+              nous n'avions
+              pas intégré par manque de temps.
+            </p>
+            <p>
+              J'étais avec <a class="discover" target="_blank"
+                href="https://www.linkedin.com/in/billel-tighidet-76b292234/">Billel
+                Tighidet</a>, <a class="discover" target="_blank" href="https://www.linkedin.com/in/thomas-riq/">Thomas
+                Riquier</a>,
+              <a class="discover" target="_blank" href="https://www.linkedin.com/in/edgar-quemere/">Edgar Quemere</a>,
+              <a class="discover" target="_blank" href="https://fr.linkedin.com/in/alexis-juhel16">Alexis Juhel</a> et
+              <a class="discover" target="_blank" href="https://fr.linkedin.com/in/antoine-corberand-49898b294">Antoine
+                Corberand</a>
+            </p>
+            <a href="https://github.com/simdgtk/befake" class="discover" target="_blank">Lien du repo github, le site
+              n'est plus hébergé ↗</a>
+          </div>
+        </div>
+        <div class="image image-drink">
+          <img src="images/projet_bacchanight/baccanight2.webp" alt="page création d'un post" />
+        </div>
+      </div>
+    </section>
+    <aside>
+      <section class="aside">
+        <h3>Vous avez aimé ce projet ? Travaillons ensemble !</h3>
+        <a class="button" href="index.html#discuss">Contactez-moi</a>
+      </section>
+    </aside>
+    <section id="some-projects">
+      <h2>Découvrez d’autres de mes projets</h2>
+      <div class="projects">
+        <article class="other-project">
+          <a class="project-link" href="projet1.html">
+            <div class="other-img-container">
+              <img src="images/projet_musee/presentation_musee_aquitaine_refonte.webp"
+                alt="lien vers mon projet de refonte du site du musée d'Aquitaine" loading="lazy" />
+            </div>
+            <div class="text-container">
+              <h3>Refonte de site d’un musée</h3>
+              <p>
+                Le site s’adapte à toute taille d’écran et à été pensé pour
+                être accessible.
+              </p>
+              <div class="tags">
+                <span class="tag">html & css</span>
+                <span class="tag">accessibilité</span>
+              </div>
+              <a class="project-button" href="projet1.html">
+                <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
+              </a>
+            </div>
+          </a>
+        </article>
+        <article class="other-project">
+          <a class="project-link" href="projet2.html">
+            <div class="other-img-container">
+              <img src="images/projet_treejs/treejs_hero.webp" alt="lien vers la mon site tree js" loading="lazy" />
+            </div>
+            <div class="text-container">
+              <h3>Web et 3D</h3>
+              <p>
+                Premier site réalisé avec Three.JS. La plante grandit au scroll.
+              </p>
+              <div class="tags">
+                <span class="tag">Three.JS</span>
+                <span class="tag">GSAP</span>
+              </div>
+              <a class="project-button" href="projet2.html">
+                <img class="arrow" src="images/icons/arrow_up.svg" alt="" />
+              </a>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>© Simon Daguet-Kargl - <span class="date">2023</span><a class="legal-notices"
+        href="mentions-legales.html">Mentions Légales</a></p>
+  </footer>
+  <script>
+    document.querySelector(".date").textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>

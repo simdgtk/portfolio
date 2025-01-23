@@ -140,6 +140,8 @@ p {
   object-fit: cover;
   height: 100%;
   width: 100%;
+  border-radius: 15px;
+  border: solid 2px;
 }
 
 .project-text {
@@ -193,7 +195,6 @@ p {
 
 .project-img-container,
 .accessibility-image {
-  height: 40rem;
   border-radius: 15px;
   overflow: hidden;
 }
@@ -205,6 +206,7 @@ p {
   border-radius: 15px;
   object-fit: cover;
   height: auto;
+  border: solid 2px;
 }
 
 h3 {
