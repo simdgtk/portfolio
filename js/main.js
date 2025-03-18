@@ -76,10 +76,10 @@ toggleMode2.addEventListener("click", () => {
 document.querySelector(".date").textContent = new Date().getFullYear();
 
 document.addEventListener("DOMContentLoaded", () => {
-  const birthDate = new Date(2005, 2, 25);
+  const birthDate = new Date(2005, 1, 25);
   const ageDif = Date.now() - birthDate.getTime();
   const ageDate = new Date(ageDif);
-  document.getElementById("age").textContent = ageDate.getFullYear() - 1970;
+  document.getElementById("age").textContent = ageDate.getFullYear() - new Date(1970, 0, 1).getFullYear();
 });
 
 //hidding the mobile nav
