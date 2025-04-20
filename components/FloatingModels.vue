@@ -170,11 +170,11 @@ onMounted(() => {
   // scene.environment = environmentMap;
   const environmentMap = cubeTextureLoader.load([
     "/environment_maps/px.png",
-    "/environment_maps/nx.png",
-    "/environment_maps/py.png",
-    "/environment_maps/ny.png",
-    "/environment_maps/pz.png",
-    "/environment_maps/nz.png",
+    "/environment_maps/px.png",
+    "/environment_maps/px.png",
+    "/environment_maps/px.png",
+    "/environment_maps/px.png",
+    "/environment_maps/px.png",
   ]);
   scene.environment = environmentMap;
 

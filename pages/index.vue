@@ -12,20 +12,13 @@ const mainRef = ref(null);
 const cellSize = 50;
 
 useHead({
-  title: 'Portfolio',
   meta: [
-    { charset: 'utf-8' },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1.0'
-    },
     {
       name: 'description',
       content: 'Portfolio de Simon Daguet-Kargl, je suis un développeur front-end basé sur Bordeaux et Nantes. Découvrez mon portfolio de développeur frontend.'
     }
   ],
   link: [
-    { rel: 'icon', href: '/favicon.ico' },
     {
       rel: 'preload',
       href: '/fonts/subset-EBGaramond-MediumItalic.woff2',
