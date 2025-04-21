@@ -66,19 +66,31 @@ onMounted(() => {
   text-align: right;
 
   ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-end;
+
     li {
       margin-top: 8px;
 
       a,
       p {
         text-decoration: underline;
-        text-underline-offset: 3px;
         text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+
+        position: relative;
+        text-decoration: none;
+        color: inherit;
+
       }
     }
   }
 
   &__mail {
+    text-align: right;
+    width: fit-content;
     cursor: pointer;
   }
 }

@@ -22,5 +22,17 @@
     font-style: normal;
     font-weight: 400;
   }
+
+  a {
+    @media screen and (max-width: 768px) {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+
+      &::after {
+        content: "";
+      }
+    }
+  }
 }
 </style>

@@ -4,6 +4,7 @@ import HeaderText from '@/components/HeaderText.vue';
 import LinksList from '@/components/LinksList.vue';
 import ScrollText from '@/components/ScrollText.vue';
 import FloatingModels from '@/components/FloatingModels.vue';
+import AllProjects from '@/components/AllProjects.vue';
 
 import { ref, onMounted } from 'vue';
 

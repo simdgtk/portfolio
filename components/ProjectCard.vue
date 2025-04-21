@@ -1,32 +1,49 @@
 <template>
-  <a href="https://grand-budapest.vercel.app/" target="_blank" class="project-card">
-    <div class="project-card__background">
-      <img class="project-card__background__image" src="@/assets/images/holographic_texture.webp" alt="" />
-    </div>
-    <div class="project-card__else">
-      <div class="project-card__image-container">
-        <img class="project-card__image" src="@/assets/images/project_budapest.webp" alt="Site Grand budapest hôtel" />
+  <div class="container">
+
+    <a :href="link" target="_blank" class="project-card">
+      <div class="project-card__background">
+        <img class="project-card__background__image" src="@/assets/images/holographic_texture.webp" alt="" />
       </div>
-      <div class="project-card__separator"></div>
-      <div class="project-card__text">
-        <h2 class="project-card__text__title">Application web avec Ruby on Rails</h2>
-        <p class="project-card__text__description">
-          Projet scolaire, les visiteurs du musée créent leur salle en 3D, qui s'ajoute ensuite à une fresque
-          collaborative.</p>
-        <div class="project-card__text__tags">
-          <span class="project-card__text__tags__tag">React Three Fiber</span>
-          <span class="project-card__text__tags__tag">Front / Back</span>
+      <div class="project-card__else">
+        <div class="project-card__image-container">
+          <img class="project-card__image" :src="image" :alt="imageAlt" />
+        </div>
+        <div class="project-card__separator"></div>
+        <div class="project-card__text">
+          <h2 class="project-card__text__title">{{ title }}</h2>
+          <p class="project-card__text__description">
+            {{ description }}</p>
+          <div class="project-card__text__tags">
+            <span v-for="(tag, index) in tags" :key="index" class="project-card__text__tags__tag">
+              {{ tag }}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  </a>
+    </a>
+  </div>
 </template>
 <script setup>
+defineProps({
+  link: String,
+  image: String,
+  imageAlt: String,
+  title: String,
+  description: String,
+  tags: Array,
+})
+
 </script>
 <style lang="scss" scoped>
 @use '@/assets/styles/_utils' as *;
 @use '@/assets/styles/_variables' as *;
 
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
 .project-card {
   text-decoration: none;
   width: fit-content;
@@ -39,6 +56,12 @@
   overflow: hidden;
   position: relative;
 
+
+
+  &::after {
+    display: none;
+  }
+
   &__background {
     position: absolute;
     user-select: none;
@@ -49,7 +72,6 @@
     z-index: 2;
     opacity: 0.39;
     overflow: hidden;
-    border-radius: 16px;
   }
 
   &__background__image {
@@ -66,6 +88,10 @@
     align-items: center;
     position: relative;
     overflow: hidden;
+
+    @media screen and (max-width: 930px) {
+      flex-direction: column;
+    }
   }
 
   &__image-container {
@@ -104,7 +130,7 @@
       font-weight: 400;
       font-size: toRem(16);
       line-height: 95.3%;
-      text-align: justify;
+      text-align: left;
       margin-top: 0.5rem;
     }
 
