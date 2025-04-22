@@ -1,28 +1,28 @@
 <template>
-  <div class="container">
+  <!--  <div class="container">-->
 
-    <a :href="link" target="_blank" class="project-card">
-      <div class="project-card__background">
-        <img class="project-card__background__image" src="@/assets/images/holographic_texture.webp" alt="" />
+  <a :href="link" target="_blank" class="project-card">
+    <div class="project-card__background">
+      <img class="project-card__background__image" src="@/assets/images/holographic_texture.webp" alt="" />
+    </div>
+    <div class="project-card__else">
+      <div class="project-card__image-container">
+        <img class="project-card__image" :src="image" :alt="imageAlt" />
       </div>
-      <div class="project-card__else">
-        <div class="project-card__image-container">
-          <img class="project-card__image" :src="image" :alt="imageAlt" />
-        </div>
-        <div class="project-card__separator"></div>
-        <div class="project-card__text">
-          <h2 class="project-card__text__title">{{ title }}</h2>
-          <p class="project-card__text__description">
-            {{ description }}</p>
-          <div class="project-card__text__tags">
-            <span v-for="(tag, index) in tags" :key="index" class="project-card__text__tags__tag">
-              {{ tag }}
-            </span>
-          </div>
+      <div class="project-card__separator"></div>
+      <div class="project-card__text">
+        <h2 class="project-card__text__title">{{ title }}</h2>
+        <p class="project-card__text__description">
+          {{ description }}</p>
+        <div class="project-card__text__tags">
+          <span v-for="(tag, index) in tags" :key="index" class="project-card__text__tags__tag">
+            {{ tag }}
+          </span>
         </div>
       </div>
-    </a>
-  </div>
+    </div>
+  </a>
+  <!--</div>-->
 </template>
 <script setup>
 defineProps({
@@ -44,6 +44,7 @@ defineProps({
   display: flex;
   align-items: center;
 }
+
 .project-card {
   text-decoration: none;
   width: fit-content;
@@ -55,6 +56,7 @@ defineProps({
   gap: 1rem;
   overflow: hidden;
   position: relative;
+  pointer-events: all;
 
 
 
@@ -121,7 +123,7 @@ defineProps({
       font-weight: 500;
       font-size: toRem(20);
       text-decoration: underline;
-      text-decoration-thickness: 2px;
+      text-decoration-thickness: 1px;
       text-underline-offset: 0.2rem;
       line-height: 130%;
     }

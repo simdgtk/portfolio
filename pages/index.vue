@@ -7,10 +7,16 @@ import FloatingModels from '@/components/FloatingModels.vue';
 import AllProjects from '@/components/AllProjects.vue';
 
 import { ref, onMounted } from 'vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const gridRef = ref(null);
 const mainRef = ref(null);
 const cellSize = 50;
+
+
 
 useHead({
   meta: [
@@ -44,9 +50,65 @@ useHead({
   ]
 })
 
+const projectsRef = ref([
+  {
+    link: "https://treejs-one.vercel.app/",
+    image: "/projects/project_treejs.webp",
+    imageAlt: "Projet Tree.js",
+    title: "Tree.js",
+    description: "Premier site que j'avais réalisé avec Three.JS. La plante grandit au scroll de l'utilisateur et l'animation de la plante est faite sur Blender",
+    tags: ["Three.js", "GSAP", "Blender"]
+  },
+  {
+    link: "https://www.youtube.com/watch?v=6LYfe4mrv_s",
+    image: "/projects/project_motiondesign.webp",
+    imageAlt: "Projet de motion design",
+    title: "Motion design d'une minute",
+    description: "Motion design réalisé avec Tom Wainberg. Il nous fallait vulgariser une théorie scientifique.",
+    tags: ["After Effects", "Illustrator", "Premiere pro"]
+  },
+  {
+    link: "https://github.com/simdgtk/befake",
+    image: "/projects/project_befake.webp",
+    imageAlt: "Projet Befake, parodie de Bereal",
+    title: "Application web avec Ruby on Rails",
+    description: "Projet backend avec le framework Ruby on Rails, parodie du réseau social BeReal avec Midjourney.",
+    tags: ["Midjourney", "Front / Back", "Ruby"]
+  },
+  {
+    link: "https://bacchanight-room.vercel.app/",
+    image: "/projects/project_bacchanight.webp",
+    imageAlt: "Projet Bacchanight",
+    title: "Fresque numérique collaborative",
+    description: "Projet scolaire, les visiteurs du musée peuvent créer leur salle en 3D qui s'ajoute à une fresque collaborative.",
+    tags: ["React Three Fiber", "Front / Back"]
+  },
+  {
+    link: "https://grand-budapest.vercel.app/",
+    image: "/projects/project_budapest.webp",
+    imageAlt: "Projet Grand Budapest Hôtel",
+    title: "Grand Budapest Hotel",
+    description: "Site pensé d'après le film de Wes Anderson, avec des animations au scroll et autres effets JS.",
+    tags: ["Anime.js", "GSAP"]
+  },
+  {
+    link: "https://nousnavonspasnumerise.mmibordeaux.com/",
+    image: "/projects/project_nousnavonspasnumerise.webp",
+    imageAlt: "Projet Nous n'avons pas numérisé",
+    title: "Nous n'avons pas numérisé",
+    description: "Site présentant une remise en question de la création d'une application web",
+    tags: ["Print", "Retour d'expérience"]
+  },
+])
+const projects = projectsRef.value;
+const containerRef = ref(null);
+const projectsContainerRef = ref(null);
+
 
 onMounted(() => {
+  const cloneProjects = [...projects];
 
+  // GRILLE
   const gridElement = gridRef.value;
   const cells = ref([]);
 
@@ -123,26 +185,138 @@ onMounted(() => {
     createGrid();
   });
 
+  // SCROLL PROJECTS
+  // gsap.to('#project-0', {
+  //   scrollTrigger: {
+  //     trigger: '#project-0',
+  //     start: "top 50%",
+  //     end: "bottom 50%",
+  //     scrub: true,
+  //     markers: true,
+  //   },
+  //   // x: window.innerWidth / 2 + 200,
+  //   y: - window.innerHeight + 200,
+  //   transform: "rotate(13.94deg)"
+  // });
+  // function infiniteScroll() {
+  //   ScrollTrigger.create({
+  //     start: 1,
+  //     end: "max",
+  //     onLeaveBack: self => self.scroll(ScrollTrigger.maxScroll(window) - 2),
+  //     onLeave: self => self.scroll(2),
+  //   }).scroll(2);
+  // }
+  // infiniteScroll();
+
+  const addMoreProjects = () => {
+    const newProjects = cloneProjects.map((project, index) => {
+      return {
+        ...project,
+        id: `project-${projects.length + index}`
+      }
+    });
+    projectsRef.value.push(...newProjects);
+  }
+  const height = window.innerHeight;
+  const infiniteScroll = () => {
+    ScrollTrigger.create({
+      trigger: containerRef.value,
+      start: `bottom bottom-${height}`,
+      onEnter: () => {
+        console.log('add');
+        addMoreProjects();
+        ScrollTrigger.refresh();
+      }
+    })
+  }
+  infiniteScroll()
+
+  // Si utilisateur inactif pdt 5 secondes, rescroll vers le haut
+  function inactivityTimeout() {
+    let timer;
+    const IDLE_TIMEOUT = 6000;
+
+    const resetTimer = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        // User is inactive, do something like displaying a warning or logging out
+        projectsContainerRef.value.style.opacity = 0;
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+        setTimeout(() => {
+          projectsContainerRef.value.style.opacity = 1;
+        }, 800);
+
+      }, IDLE_TIMEOUT);
+    };
+
+    window.onload = resetTimer;
+    document.onmousemove = resetTimer;
+    document.onmousedown = resetTimer;
+    document.onscroll = () => {
+      resetTimer();
+    };
+
+  }
+
+  // Call the function to initiate
+  inactivityTimeout();
 });
 </script>
 
 <template>
-  <main ref="mainRef">
-    <HeaderText />
-    <CenteredText />
-    <FloatingModels />
-    <ScrollText />
-    <LinksList />
-    <div class="background-grid">
-      <div class="grid" ref="gridRef">
+  <div class="container" ref="containerRef">
+    <main ref="mainRef">
+      <HeaderText />
+      <CenteredText />
+      <FloatingModels />
+      <ScrollText />
+      <LinksList />
+      <div class="background-grid">
+        <div class="grid" ref="gridRef">
+        </div>
       </div>
+    </main>
+    <div class="projects" ref="projectsContainerRef">
+      <ProjectCard v-for="(project, index) in projects" :key="index" v-bind="project" :id="'project-' + index"
+        class="project" />
     </div>
-  </main>
+  </div>
 </template>
 <style lang="scss">
 @use "@/assets/styles/variables.scss" as *;
 
 $cell-size: 50px;
+
+main {
+  height: 100vh;
+  position: fixed;
+}
+
+.projects {
+  transform: translateY(100vh);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+
+  .project {
+    margin-bottom: 400px;
+
+    &:nth-child(even) {
+      align-self: flex-end;
+    }
+  }
+
+}
+
+.container {
+  // height: 800vh !important;
+  height: fit-content;
+}
 
 .grid {
   pointer-events: all;

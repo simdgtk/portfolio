@@ -43,7 +43,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 }
 
 .grain {
-  position: absolute;
+  position: fixed;
   pointer-events: none;
   user-select: none;
   top: 0;
