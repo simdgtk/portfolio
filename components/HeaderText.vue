@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <span class="header__text">Simon Daguet-Kargl - développeur web front-end & étudiant en </span><a
+    <span class="header__text">Simon Daguet-Kargl - développeur web front-end / web créa & étudiant en </span><a
       href="https://www.mmibordeaux.com/" target="_blank" rel="noopener noreferrer"
       title="nouvelle fenêtre, site de MMI Bordeaux" translate="no">BUT MMI
       Bordeaux</a>

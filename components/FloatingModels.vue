@@ -77,7 +77,7 @@ onMounted(() => {
     model.position.set((- sizes.width * 0.9) / 300, (- sizes.height * 0.8) / 300, 1);
 
     if (sizes.width > sizes.height) {
-      model.scale.set((sizes.width * 0.5) / 400, (sizes.width * 0.5) / 400, (sizes.width * 0.5) / 400);
+      model.scale.set((sizes.width * 0.6) / 400, (sizes.width * 0.5) / 400, (sizes.width * 0.6) / 400);
     } else {
       model.scale.set((sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300);
     }
@@ -93,9 +93,9 @@ onMounted(() => {
 
       model.position.y += (x - oldX) * 0.05;
       model.position.x += (y - oldY) * 0.05;
-      model.rotation.y += (x - oldX) * 0.05;
-      model.rotation.x += (y - oldY) * 0.05;
-      model.rotation.z += (y - oldY) * 0.05;
+      // model.rotation.y += (x - oldX) * 0.9;
+      // model.rotation.x += (y - oldY) * 0.9;
+      // model.rotation.z += (y - oldY) * 0.9;
 
 
       oldX = x;
@@ -117,7 +117,7 @@ onMounted(() => {
     pc.position.set((sizes.width * 0.9) / 300 - 1, (sizes.height * 0.7) / 300 - 1, 1);
 
     if (sizes.width > sizes.height) {
-      pc.scale.set((sizes.width * 0.5) / 400, (sizes.width * 0.5) / 400, (sizes.width * 0.5) / 400);
+      pc.scale.set((sizes.width * 0.57) / 400, (sizes.width * 0.57) / 400, (sizes.width * 0.57) / 400);
     } else {
       pc.scale.set((sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300);
     }
@@ -133,9 +133,9 @@ onMounted(() => {
 
       pc.position.y += (x - oldX) * - 0.05;
       pc.position.x += (y - oldY) * -0.05;
-      pc.rotation.y += (x - oldX) * -0.05;
-      pc.rotation.x += (y - oldY) * -0.05;
-      pc.rotation.z += (y - oldY) * -0.05;
+      // pc.rotation.y += (x - oldX) * -0.05;
+      // pc.rotation.x += (y - oldY) * -0.05;
+      // pc.rotation.z += (y - oldY) * -0.05;
 
 
       oldX = x;
@@ -186,9 +186,22 @@ onMounted(() => {
   // renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
   // Animation loop
+  const offset = ref(Math.random() * 0);
+  const floatingRange = ref([-0.2, 0.2]);
+  const floatIntensity = ref(3);
+  const speed = ref(1);
+  const rotationIntensity = ref(1);
+  console.log(offset);
   function animate() {
-    if (model) {
-      // model.rotation.y -= 0.002;
+    if (model && pc) {
+      const elapsedTime = Date.now() * 0.001;
+      model.rotation.x = (Math.cos((elapsedTime / 4) * speed.value) / 8) * rotationIntensity.value + 1.43;
+      model.rotation.y = (Math.sin((elapsedTime / 4) * speed.value) / 8) * rotationIntensity.value + 1.02;
+      model.rotation.z = (Math.sin((elapsedTime / 4) * speed.value) / 20) * rotationIntensity.value - 0.89;
+
+      pc.rotation.x = (Math.cos((elapsedTime / 4) * speed.value) / 8) * rotationIntensity.value + 0.34;
+      pc.rotation.y = (Math.sin((elapsedTime / 4) * speed.value) / 8) * rotationIntensity.value + 0.61;
+      pc.rotation.z = (Math.sin((elapsedTime / 4) * speed.value) / 20) * rotationIntensity.value - 0.20;
     }
     renderer.render(scene, camera);
   }

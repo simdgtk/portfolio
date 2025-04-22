@@ -73,18 +73,6 @@ onMounted(() => {
 
     li {
       margin-top: 8px;
-
-      a,
-      p {
-        text-decoration: underline;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 3px;
-
-        position: relative;
-        text-decoration: none;
-        color: inherit;
-
-      }
     }
   }
 
