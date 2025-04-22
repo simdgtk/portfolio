@@ -302,6 +302,7 @@ main {
   flex-direction: column;
   opacity: 1;
   transition: opacity 0.2s ease-in-out;
+  padding: 0 8vw;
 
   .project {
     margin-bottom: 400px;
