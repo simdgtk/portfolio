@@ -11,10 +11,12 @@
 
 <style lang="scss" scoped>
 .scroll-text {
+  z-index: 100000;
+  mix-blend-mode: difference;
   user-select: none;
   pointer-events: none;
-  position: absolute;
-  z-index: 11;
+  position: fixed;
+  // z-index: 11;
   bottom: 0%;
   left: 50%;
   transform: translateX(-50%);

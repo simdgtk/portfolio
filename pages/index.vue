@@ -186,26 +186,27 @@ onMounted(() => {
     createGrid();
   });
 
-  window.addEventListener('mousemove', (e) => {
-    const x = e.clientX
-    const y = e.clientY
+  // CUSTOM CURSOR
+  // window.addEventListener('mousemove', (e) => {
+  //   const x = e.clientX
+  //   const y = e.clientY
 
-    cursorCenterRef.value.style.left = `${x}px`
-    cursorCenterRef.value.style.top = `${y}px`
-    cursorOutlineRef.value.style.left = `${x}px`;
-    cursorOutlineRef.value.style.top = `${y}px`;
-  })
+  //   cursorCenterRef.value.style.left = `${x}px`
+  //   cursorCenterRef.value.style.top = `${y}px`
+  //   cursorOutlineRef.value.style.left = `${x}px`;
+  //   cursorOutlineRef.value.style.top = `${y}px`;
+  // })
   const projectElements = Array.from(projectsContainerRef.value.children);
-  projectElements.forEach((project) => {
-    project.addEventListener('mouseover', () => {
-      cursorCenterRef.value.style.opacity = '1';
-      cursorOutlineRef.value.style.opacity = '1';
-    });
-    project.addEventListener('mouseout', () => {
-      cursorCenterRef.value.style.opacity = '0';
-      cursorOutlineRef.value.style.opacity = '0';
-    });
-  });
+  // projectElements.forEach((project) => {
+  //   project.addEventListener('mouseover', () => {
+  //     cursorCenterRef.value.style.opacity = '1';
+  //     cursorOutlineRef.value.style.opacity = '1';
+  //   });
+  //   project.addEventListener('mouseout', () => {
+  //     cursorCenterRef.value.style.opacity = '0';
+  //     cursorOutlineRef.value.style.opacity = '0';
+  //   });
+  // });
 
   // SCROLL PROJECTS
   const addMoreProjects = () => {
@@ -220,7 +221,7 @@ onMounted(() => {
       console.log(project.id);
     })
   }
-  const height = window.innerHeight;
+  const height = window.innerHeight * 1.2;
   const infiniteScroll = () => {
     ScrollTrigger.create({
       trigger: containerRef.value,
@@ -234,7 +235,7 @@ onMounted(() => {
   }
   infiniteScroll()
 
-  // Si utilisateur inactif pdt 5 secondes, rescroll vers le haut
+  // Si utilisateur inactif, scroll vers le haut
   function inactivityTimeout() {
     let timer;
     const IDLE_TIMEOUT = 6000;
@@ -276,7 +277,6 @@ onMounted(() => {
       <HeaderText />
       <CenteredText />
       <FloatingModels />
-      <ScrollText />
       <LinksList />
       <div class="background-grid">
         <div class="grid" ref="gridRef">
@@ -284,11 +284,12 @@ onMounted(() => {
       </div>
     </main>
     <div class="projects" ref="projectsContainerRef">
-      <ProjectCard :container="mainRef" v-for="(project, index) in projects" :key="index" v-bind="project" :keynumber="index"
-        :id="'project-' + index" class="project" />
+      <ProjectCard :container="mainRef" v-for="(project, index) in projects" :key="index" v-bind="project"
+        :keynumber="index" :id="'project-' + index" class="project" />
     </div>
-    <div class="cursor-dot" ref="cursorCenterRef"></div>
-    <div class="cursor-outline" ref="cursorOutlineRef"></div>
+    <!--<div class="cursor-dot" ref="cursorCenterRef"></div>
+    <div class="cursor-outline" ref="cursorOutlineRef"></div>-->
+    <ScrollText />
 
   </div>
 </template>
@@ -330,7 +331,9 @@ main {
 }
 
 .projects {
-  transform: translateY(100vh);
+  max-width: 100vw;
+  overflow: hidden;
+  transform: translateY(120vh);
   pointer-events: none;
   display: flex;
   flex-direction: column;
@@ -340,10 +343,11 @@ main {
 
   .project {
     margin-bottom: 400px;
+    align-self: center;
 
-    &:nth-child(even) {
-      align-self: flex-end;
-    }
+    // &:nth-child(even) {
+    //   align-self: flex-end;
+    // }
 
     &:nth-child(6n) {
       margin-bottom: 130vh;

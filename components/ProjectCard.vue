@@ -47,9 +47,12 @@ onMounted(() => {
     if (triggerElement) {
       console.log("triggerElement", triggerElement)
       gsap.fromTo(`#${props.id}`, {
-        transform: props.keynumber % 2 ? "rotate(12.28deg)" : "rotate(-6.15deg)",
+        transform: props.keynumber % 2 ? "rotate(20deg)" : "rotate(-13deg)",
       }, {
-        transform: props.keynumber % 2 ? "rotate(-6.15deg)" : "rotate(12.28deg)",
+        transform: props.keynumber % 2 ? "rotate(3deg)" : "rotate(-2deg)",
+        // x: "-25%",
+        // transform: "rotate(0deg)",
+
         // stagger: 0.1,
         scrollTrigger: {
           trigger: `#${props.id}`,
@@ -63,6 +66,7 @@ onMounted(() => {
           // invalidateOnRefresh: true,
           // onEnterBack: () => gsap.to(".project-card", { y: -100, duration: 0.5 }),
         },
+        ease: "power1.inOut",
       });
     }
   }, 1000)

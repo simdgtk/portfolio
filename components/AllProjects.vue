@@ -21,7 +21,7 @@ const projects = [
     image: "/projects/project_motiondesign.webp",
     imageAlt: "Projet de motion design",
     title: "Motion design d'une minute",
-    description: "Motion design réalisé avec Tom Wainberg. Il nous fallait vulgariser une théorie scientifique.",
+    description: "Motion design réalisé à deux. Il nous fallait vulgariser une théorie scientifique.",
     tags: ["After Effects", "Illustrator", "Premiere pro"]
   },
   {
