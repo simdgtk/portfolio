@@ -3,11 +3,12 @@
 
   <a :href="link" target="_blank" class="project-card">
     <div class="project-card__background">
-      <img class="project-card__background__image" src="@/assets/images/holographic_texture.webp" alt="" />
+      <img class="project-card__background__image" loading="lazy" src="@/assets/images/holographic_texture.webp"
+        alt="" />
     </div>
     <div class="project-card__else">
       <div class="project-card__image-container">
-        <img class="project-card__image" :src="image" :alt="imageAlt" />
+        <img class="project-card__image" :src="image" :alt="imageAlt" loading="lazy" />
       </div>
       <div class="project-card__separator"></div>
       <div class="project-card__text">
@@ -57,23 +58,40 @@ defineProps({
   overflow: hidden;
   position: relative;
   pointer-events: all;
+  // cursor: url('@/assets/images/cursor.svg') 25 25, auto;
+  cursor: none;
 
 
 
   &::after {
     display: none;
   }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeat url('@/assets/images/grain.webp');
+      z-index: 20;
+      opacity: 0.5;
+      image-rendering: pixelated;
+    }
 
   &__background {
     position: absolute;
     user-select: none;
     top: -10%;
-    left: 0;
+    left: -10%;
     width: 110%;
     height: 110%;
     z-index: 2;
     opacity: 0.39;
     overflow: hidden;
+
+    // grain
+    
   }
 
   &__background__image {

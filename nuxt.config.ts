@@ -58,7 +58,7 @@ export default defineNuxtConfig({
         },
         { name: "twitter:image", content: "/favicon.jpg" },
         // Mobile Web App
-        { name: "apple-mobile-web-app-capable", content: "yes" },
+        { name: "mobile-web-app-capable", content: "yes" },
         {
           name: "apple-mobile-web-app-title",
           content: "Simon Daguet-Kargl | Développeur Front-end Bordeaux",

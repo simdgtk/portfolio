@@ -91,6 +91,7 @@ onMounted(() => {
 
 <template>
   <main ref="mainRef">
+    <GrainFixed />
     <HeaderText />
     <LegalsText />
     <div class="background-grid">
@@ -103,6 +104,10 @@ onMounted(() => {
 @use "@/assets/styles/variables.scss" as *;
 
 $cell-size: 50px;
+
+main {
+  width: 100%;
+}
 
 .grid {
   pointer-events: all;

@@ -4,7 +4,6 @@ import HeaderText from '@/components/HeaderText.vue';
 import LinksList from '@/components/LinksList.vue';
 import ScrollText from '@/components/ScrollText.vue';
 import FloatingModels from '@/components/FloatingModels.vue';
-import AllProjects from '@/components/AllProjects.vue';
 
 import { ref, onMounted } from 'vue';
 import { gsap } from 'gsap';
@@ -52,12 +51,20 @@ useHead({
 
 const projectsRef = ref([
   {
-    link: "https://treejs-one.vercel.app/",
-    image: "/projects/project_treejs.webp",
-    imageAlt: "Projet Tree.js",
-    title: "Tree.js",
-    description: "Premier site que j'avais réalisé avec Three.JS. La plante grandit au scroll de l'utilisateur et l'animation de la plante est faite sur Blender",
-    tags: ["Three.js", "GSAP", "Blender"]
+    link: "https://bacchanight-room.vercel.app/",
+    image: "/projects/project_bacchanight.webp",
+    imageAlt: "Projet Bacchanight",
+    title: "Fresque numérique collaborative",
+    description: "Projet scolaire, les visiteurs du musée peuvent créer leur salle en 3D qui s'ajoute à une fresque collaborative.",
+    tags: ["React Three Fiber", "Front / Back"]
+  },
+  {
+    link: "https://grand-budapest.vercel.app/",
+    image: "/projects/project_budapest.webp",
+    imageAlt: "Projet Grand Budapest Hôtel",
+    title: "Grand Budapest Hotel",
+    description: "Site pensé d'après le film de Wes Anderson, avec des animations au scroll et autres effets JS.",
+    tags: ["Anime.js", "GSAP"]
   },
   {
     link: "https://www.youtube.com/watch?v=6LYfe4mrv_s",
@@ -76,22 +83,6 @@ const projectsRef = ref([
     tags: ["Midjourney", "Front / Back", "Ruby"]
   },
   {
-    link: "https://bacchanight-room.vercel.app/",
-    image: "/projects/project_bacchanight.webp",
-    imageAlt: "Projet Bacchanight",
-    title: "Fresque numérique collaborative",
-    description: "Projet scolaire, les visiteurs du musée peuvent créer leur salle en 3D qui s'ajoute à une fresque collaborative.",
-    tags: ["React Three Fiber", "Front / Back"]
-  },
-  {
-    link: "https://grand-budapest.vercel.app/",
-    image: "/projects/project_budapest.webp",
-    imageAlt: "Projet Grand Budapest Hôtel",
-    title: "Grand Budapest Hotel",
-    description: "Site pensé d'après le film de Wes Anderson, avec des animations au scroll et autres effets JS.",
-    tags: ["Anime.js", "GSAP"]
-  },
-  {
     link: "https://nousnavonspasnumerise.mmibordeaux.com/",
     image: "/projects/project_nousnavonspasnumerise.webp",
     imageAlt: "Projet Nous n'avons pas numérisé",
@@ -99,10 +90,20 @@ const projectsRef = ref([
     description: "Site présentant une remise en question de la création d'une application web",
     tags: ["Print", "Retour d'expérience"]
   },
+  {
+    link: "https://treejs-one.vercel.app/",
+    image: "/projects/project_treejs.webp",
+    imageAlt: "Projet Tree.js",
+    title: "Tree.js",
+    description: "Premier site que j'avais réalisé avec Three.JS. La plante grandit au scroll de l'utilisateur et l'animation de la plante est faite sur Blender",
+    tags: ["Three.js", "GSAP", "Blender"]
+  },
 ])
 const projects = projectsRef.value;
 const containerRef = ref(null);
 const projectsContainerRef = ref(null);
+const cursorCenterRef = ref(null);
+const cursorOutlineRef = ref(null);
 
 
 onMounted(() => {
@@ -185,28 +186,28 @@ onMounted(() => {
     createGrid();
   });
 
+  window.addEventListener('mousemove', (e) => {
+    const x = e.clientX
+    const y = e.clientY
+
+    cursorCenterRef.value.style.left = `${x}px`
+    cursorCenterRef.value.style.top = `${y}px`
+    cursorOutlineRef.value.style.left = `${x}px`;
+    cursorOutlineRef.value.style.top = `${y}px`;
+  })
+  const projectElements = Array.from(projectsContainerRef.value.children);
+  projectElements.forEach((project) => {
+    project.addEventListener('mouseover', () => {
+      cursorCenterRef.value.style.opacity = '1';
+      cursorOutlineRef.value.style.opacity = '1';
+    });
+    project.addEventListener('mouseout', () => {
+      cursorCenterRef.value.style.opacity = '0';
+      cursorOutlineRef.value.style.opacity = '0';
+    });
+  });
+
   // SCROLL PROJECTS
-  // gsap.to('#project-0', {
-  //   scrollTrigger: {
-  //     trigger: '#project-0',
-  //     start: "top 50%",
-  //     end: "bottom 50%",
-  //     scrub: true,
-  //     markers: true,
-  //   },
-  //   // x: window.innerWidth / 2 + 200,
-  //   y: - window.innerHeight + 200,
-  //   transform: "rotate(13.94deg)"
-  // });
-  // function infiniteScroll() {
-  //   ScrollTrigger.create({
-  //     start: 1,
-  //     end: "max",
-  //     onLeaveBack: self => self.scroll(ScrollTrigger.maxScroll(window) - 2),
-  //     onLeave: self => self.scroll(2),
-  //   }).scroll(2);
-  // }
-  // infiniteScroll();
 
   const addMoreProjects = () => {
     const newProjects = cloneProjects.map((project, index) => {
@@ -216,6 +217,9 @@ onMounted(() => {
       }
     });
     projectsRef.value.push(...newProjects);
+    newProjects.forEach((project, index) => {
+      console.log(project.id);
+    })
   }
   const height = window.innerHeight;
   const infiniteScroll = () => {
@@ -269,6 +273,7 @@ onMounted(() => {
 <template>
   <div class="container" ref="containerRef">
     <main ref="mainRef">
+      <GrainFixed />
       <HeaderText />
       <CenteredText />
       <FloatingModels />
@@ -283,12 +288,42 @@ onMounted(() => {
       <ProjectCard v-for="(project, index) in projects" :key="index" v-bind="project" :id="'project-' + index"
         class="project" />
     </div>
+    <div class="cursor-dot" ref="cursorCenterRef"></div>
+    <div class="cursor-outline" ref="cursorOutlineRef"></div>
+
   </div>
 </template>
 <style lang="scss">
 @use "@/assets/styles/variables.scss" as *;
 
 $cell-size: 50px;
+
+
+.cursor-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.cursor-outline {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.cursor-dot,
+.cursor-outline {
+  position: fixed;
+  opacity: 0;
+  // display: none;
+  pointer-events: none;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
 
 main {
   height: 100vh;
