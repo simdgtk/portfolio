@@ -208,7 +208,6 @@ onMounted(() => {
   });
 
   // SCROLL PROJECTS
-
   const addMoreProjects = () => {
     const newProjects = cloneProjects.map((project, index) => {
       return {
@@ -266,7 +265,7 @@ onMounted(() => {
   }
 
   // Call the function to initiate
-  inactivityTimeout();
+  // inactivityTimeout();
 });
 </script>
 
@@ -285,8 +284,8 @@ onMounted(() => {
       </div>
     </main>
     <div class="projects" ref="projectsContainerRef">
-      <ProjectCard v-for="(project, index) in projects" :key="index" v-bind="project" :id="'project-' + index"
-        class="project" />
+      <ProjectCard :container="mainRef" v-for="(project, index) in projects" :key="index" v-bind="project" :keynumber="index"
+        :id="'project-' + index" class="project" />
     </div>
     <div class="cursor-dot" ref="cursorCenterRef"></div>
     <div class="cursor-outline" ref="cursorOutlineRef"></div>
@@ -344,6 +343,10 @@ main {
 
     &:nth-child(even) {
       align-self: flex-end;
+    }
+
+    &:nth-child(6n) {
+      margin-bottom: 130vh;
     }
   }
 

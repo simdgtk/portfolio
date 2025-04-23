@@ -1,7 +1,5 @@
 <template>
-  <!--  <div class="container">-->
-
-  <a :href="link" target="_blank" class="project-card">
+  <a :href="link" target="_blank" class="project-card" :id="id">
     <div class="project-card__background">
       <img class="project-card__background__image" loading="lazy" src="@/assets/images/holographic_texture.webp"
         alt="" />
@@ -23,16 +21,51 @@
       </div>
     </div>
   </a>
-  <!--</div>-->
 </template>
 <script setup>
-defineProps({
+import { onMounted, ref } from 'vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger)
+
+const props = defineProps({
   link: String,
   image: String,
   imageAlt: String,
   title: String,
   description: String,
   tags: Array,
+  container: Object,
+  id: String,
+  keynumber: Number,
+})
+onMounted(() => {
+  setTimeout(() => {
+    console.log(props.keynumber);
+    const triggerElement = props.container;
+    if (triggerElement) {
+      console.log("triggerElement", triggerElement)
+      gsap.fromTo(`#${props.id}`, {
+        transform: props.keynumber % 2 ? "rotate(12.28deg)" : "rotate(-6.15deg)",
+      }, {
+        transform: props.keynumber % 2 ? "rotate(-6.15deg)" : "rotate(12.28deg)",
+        // stagger: 0.1,
+        scrollTrigger: {
+          trigger: `#${props.id}`,
+          start: "top 100%",
+          end: "center 20%",
+          scrub: true,
+          // markers: true,
+          // pin: true,
+          // pinSpacing: false,
+          // anticipatePin: 1,
+          // invalidateOnRefresh: true,
+          // onEnterBack: () => gsap.to(".project-card", { y: -100, duration: 0.5 }),
+        },
+      });
+    }
+  }, 1000)
 })
 
 </script>
@@ -59,25 +92,26 @@ defineProps({
   position: relative;
   pointer-events: all;
   // cursor: url('@/assets/images/cursor.svg') 25 25, auto;
-  cursor: none;
+  // cursor: none;
 
 
 
   &::after {
     display: none;
   }
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeat url('@/assets/images/grain.webp');
-      z-index: 20;
-      opacity: 0.5;
-      image-rendering: pixelated;
-    }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeat url('@/assets/images/grain.webp');
+    z-index: 20;
+    opacity: 0.5;
+    image-rendering: pixelated;
+  }
 
   &__background {
     position: absolute;
@@ -91,7 +125,7 @@ defineProps({
     overflow: hidden;
 
     // grain
-    
+
   }
 
   &__background__image {
