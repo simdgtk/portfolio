@@ -8,6 +8,16 @@ const gridRef = ref(null);
 const mainRef = ref(null);
 const cellSize = 50;
 
+useHead({
+  title: 'Mentions légales - Simon Daguet-Kargl',
+  meta: [
+    {
+      name: 'robots',
+      content: 'noindex, nofollow',
+    },
+  ],
+});
+
 onMounted(() => {
 
   const gridElement = gridRef.value;

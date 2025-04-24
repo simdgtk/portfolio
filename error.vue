@@ -1,8 +1,8 @@
 <script setup>
 import HeaderText from '@/components/HeaderText.vue';
-import LegalsText from '@/components/LegalsText.vue';
 
 import { ref, onMounted } from 'vue';
+import LinksList from './components/LinksList.vue';
 
 const gridRef = ref(null);
 const mainRef = ref(null);
@@ -93,10 +93,11 @@ onMounted(() => {
   <main ref="mainRef">
     <GrainFixed />
     <HeaderText />
-    <div class="center">
-      <h2>Page non trouvée</h2>
-      <a href="/" class="button">Retour à l'accueil</a>
+    <div class="center centered-text__title-container__title">
+      <h2>Page non trouvée...</h2>
+      <NuxtLink to="/" class="button">Retour à l'accueil</NuxtLink>
     </div>
+    <LinksList />
     <div class="background-grid">
       <div class="grid" ref="gridRef">
       </div>
@@ -108,8 +109,21 @@ onMounted(() => {
 
 $cell-size: 50px;
 
+.center {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 main {
   width: 100%;
+}
+
+@media screen and (max-width: 360px) {
+  .centered-text__title-container__title h2 {
+    font-size: 11.25vw !important;
+  }
 }
 
 .grid {
