@@ -55,7 +55,7 @@ const projectsRef = ref([
     image: "/projects/project_bacchanight.webp",
     imageAlt: "Projet Bacchanight",
     title: "Fresque numérique collaborative",
-    description: "Projet scolaire, les visiteurs du musée peuvent créer leur salle en 3D qui s'ajoute à une fresque collaborative.",
+    description: "Projet scolaire, les visiteurs du musée peuvent créer leur salle en 3D qui s'ajoute à une fresque collaborative",
     tags: ["React Three Fiber", "Front / Back"]
   },
   {
@@ -63,15 +63,15 @@ const projectsRef = ref([
     image: "/projects/project_budapest.webp",
     imageAlt: "Projet Grand Budapest Hôtel",
     title: "Grand Budapest Hotel",
-    description: "Site pensé d'après le film de Wes Anderson, avec des animations au scroll et autres effets JS.",
+    description: "Site pensé d'après le film de Wes Anderson, avec des animations au scroll et autres effets JS",
     tags: ["Anime.js", "GSAP"]
   },
   {
     link: "https://www.youtube.com/watch?v=6LYfe4mrv_s",
     image: "/projects/project_motiondesign.webp",
     imageAlt: "Projet de motion design",
-    title: "Motion design d'une minute",
-    description: "Motion design réalisé avec Tom Wainberg. Il nous fallait vulgariser une théorie scientifique.",
+    title: "Motion design de théorie scientifique",
+    description: "Motion design réalisé avec Tom Wainberg. Il nous fallait vulgariser une théorie scientifique",
     tags: ["After Effects", "Illustrator", "Premiere pro"]
   },
   {
@@ -79,7 +79,7 @@ const projectsRef = ref([
     image: "/projects/project_befake.webp",
     imageAlt: "Projet Befake, parodie de Bereal",
     title: "Application web avec Ruby on Rails",
-    description: "Projet backend avec le framework Ruby on Rails, parodie du réseau social BeReal avec Midjourney.",
+    description: "Projet backend avec le framework Ruby on Rails, parodie du réseau social BeReal avec Midjourney",
     tags: ["Midjourney", "Front / Back", "Ruby"]
   },
   {
@@ -87,7 +87,7 @@ const projectsRef = ref([
     image: "/projects/project_nousnavonspasnumerise.webp",
     imageAlt: "Projet Nous n'avons pas numérisé",
     title: "Nous n'avons pas numérisé",
-    description: "Site présentant une remise en question de la création d'une application web",
+    description: "Site présentant une remise en question de la création d'une application web, pour des raisons éthiques et écologiques",
     tags: ["Print", "Retour d'expérience"]
   },
   {
@@ -221,7 +221,7 @@ onMounted(() => {
       console.log(project.id);
     })
   }
-  const height = window.innerHeight * 1.2;
+  const height = window.innerHeight * 1.4;
   const infiniteScroll = () => {
     ScrollTrigger.create({
       trigger: containerRef.value,
@@ -332,14 +332,17 @@ main {
 
 .projects {
   max-width: 100vw;
-  overflow: hidden;
-  transform: translateY(120vh);
+  transform: translateY(140vh);
   pointer-events: none;
   display: flex;
   flex-direction: column;
   opacity: 1;
   transition: opacity 0.2s ease-in-out;
   padding: 0 8vw;
+
+  @media screen and (max-width: 920px) {
+    overflow: hidden;
+  }
 
   .project {
     margin-bottom: 400px;

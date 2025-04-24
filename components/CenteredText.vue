@@ -12,8 +12,8 @@
         d’alternance à partir de septembre 2025</span>
       <img src="@/assets/images/earth.svg" alt=""
         class="centered-text__title-container__img centered-text__title-container__img--earth" width="34" height="34" />
-      <span class="centered-text__title-container__info centered-text__title-container__info--wawww">Actuellement
-        @<a href="https://www.wawww.studio/fr" target="_blank" title="nouvelle fenêtre, Studio WAWWW"
+      <span class="centered-text__title-container__info centered-text__title-container__info--wawww">
+        Prochainement @<a href="https://www.wawww.studio/fr" target="_blank" title="nouvelle fenêtre, Studio WAWWW"
           translate="no">WAWWW</a>
         (stage)</span>
       <span class="centered-text__title-container__info centered-text__title-container__info--stack"
@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use 'sass:math';
 @use '@/assets/styles/_utils' as *;
 @use '@/assets/styles/variables.scss' as *;
@@ -67,6 +67,11 @@
           font-size: toRem(68);
         }
 
+        @media screen and (max-width: 360px) {
+          font-size: 17vw;
+          margin-top: 0;
+        }
+
         &:last-child {
           margin-top: -3.5vw;
           z-index: 9;
@@ -78,6 +83,10 @@
           @media screen and (max-width: 930px) {
             // margin-top: calc(-3.5vw *2.45);
             margin-top: toRem(-32);
+          }
+
+          @media screen and (max-width: 360px) {
+            margin-top: -0.5rem;
           }
         }
       }
@@ -141,6 +150,10 @@
           left: 0%;
           text-align: center;
         }
+
+        @media screen and (max-width: 360px) {
+          top: 147%;
+        }
       }
 
       &--stack {
@@ -179,6 +192,10 @@
           background-color: $light-gray;
           padding: 15px 17px;
           color: $black;
+        }
+
+        @media screen and (max-width: 360px) {
+          bottom: -41%;
         }
       }
     }
