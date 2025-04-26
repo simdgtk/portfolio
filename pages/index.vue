@@ -217,23 +217,39 @@ onMounted(() => {
       }
     });
     projectsRef.value.push(...newProjects);
-    newProjects.forEach((project, index) => {
-      console.log(project.id);
-    })
   }
   const height = window.innerHeight * 1.4;
-  const infiniteScroll = () => {
-    ScrollTrigger.create({
-      trigger: containerRef.value,
-      start: `bottom bottom-${height}`,
-      onEnter: () => {
-        console.log('add');
-        addMoreProjects();
-        ScrollTrigger.refresh();
-      }
-    })
-  }
-  infiniteScroll()
+  // const infiniteScroll = () => {
+  //   ScrollTrigger.create({
+  //     trigger: containerRef.value,
+  //     start: `bottom bottom-${height}`,
+  //     onEnter: () => {
+  //       addMoreProjects();
+  //       ScrollTrigger.refresh();
+  //     }
+  //   })
+  // }
+  // infiniteScroll()
+
+  // const infiniteScroll = () => {
+  //   ScrollTrigger.create({
+  //     trigger: containerRef.value,
+  //     start: `bottom bottom-${height}`,
+  //     onEnter: () => {
+  //       // projectsContainerRef.value.style.opacity = 0;
+  //       console.log('onEnter')
+  //       window.scrollTo({
+  //         top: 0,
+  //         behavior: 'smooth'
+  //       });
+  //       // setTimeout(() => {
+  //       //   projectsContainerRef.value.style.opacity = 1;
+  //       // }, 800);
+  //       ScrollTrigger.refresh();
+  //     }
+  //   })
+  // }
+  // infiniteScroll()
 
   // Si utilisateur inactif, scroll vers le haut
   function inactivityTimeout() {

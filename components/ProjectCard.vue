@@ -42,10 +42,8 @@ const props = defineProps({
 })
 onMounted(() => {
   setTimeout(() => {
-    console.log(props.keynumber);
     const triggerElement = props.container;
     if (triggerElement) {
-      console.log("triggerElement", triggerElement)
       gsap.fromTo(`#${props.id}`, {
         transform: props.keynumber % 2 ? "rotate(20deg)" : "rotate(-13deg)",
       }, {

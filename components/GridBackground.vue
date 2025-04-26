@@ -6,9 +6,8 @@ const cellSize = 50;
 
 onMounted(() => {
   if ('ontouchstart' in window) {
-    console.log('Mobile device detected, skipping grid creation.');
+    return;
   } else {
-    console.log('Desktop device detected, creating grid.');
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
     const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;

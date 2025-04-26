@@ -65,7 +65,6 @@ onMounted(() => {
   let tl = gsap.timeline();
   if (allProjectsRef.value && allProjectsRef.value.children) {
     const cards = Array.from(allProjectsRef.value.children);
-    console.log(cards);
     function infiniteScroll() {
       ScrollTrigger.create({
         start: 1,

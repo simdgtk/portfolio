@@ -17,8 +17,8 @@
       <div class="legal__block legal__hosting">
         <h3 class="legal__subtitle">Hébergeur</h3>
         <p class="legal__text">
-          Vercel Inc.<br>
-          440 N Barranca Ave #4133 Covina, CA 91723, États-Unis
+          Netlify, Inc.<br>
+          44 Montgomery Street, Suite 300, San Francisco, CA 94104
         </p>
       </div>
 

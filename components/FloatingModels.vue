@@ -191,7 +191,6 @@ onMounted(() => {
   const floatIntensity = ref(3);
   const speed = ref(1);
   const rotationIntensity = ref(1);
-  console.log(offset);
   function animate() {
     if (model && pc) {
       const elapsedTime = Date.now() * 0.001;
