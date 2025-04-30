@@ -13,7 +13,7 @@
       <img src="@/assets/images/earth.svg" alt=""
         class="centered-text__title-container__img centered-text__title-container__img--earth" width="34" height="34" />
       <span class="centered-text__title-container__info centered-text__title-container__info--wawww">
-        Prochainement @<a href="https://www.wawww.studio/fr" target="_blank" title="nouvelle fenêtre, Studio WAWWW"
+        Actuellement @<a href="https://www.wawww.studio/fr" target="_blank" title="nouvelle fenêtre, Studio WAWWW"
           translate="no">WAWWW</a>
         (stage)</span>
       <span class="centered-text__title-container__info centered-text__title-container__info--stack"
