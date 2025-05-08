@@ -6,7 +6,7 @@
     </div>
     <div class="project-card__else">
       <div class="project-card__image-container">
-        <img class="project-card__image" :src="image" :alt="imageAlt" loading="lazy" />
+        <img class="project-card__image" :src="image" :alt="imageAlt" :title="imageAlt" loading="lazy" />
       </div>
       <div class="project-card__separator"></div>
       <div class="project-card__text">

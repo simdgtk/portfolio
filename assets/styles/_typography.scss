@@ -1,6 +1,7 @@
 * {
   font-family: "EB Garamond", serif;
   font-optical-sizing: auto;
+  font-display: swap;
 }
 
 h2 {
@@ -13,9 +14,6 @@ h2 {
 
 a,
 .links-list__mail {
-  // text-decoration: underline;
-  // text-decoration-thickness: 1px;
-  // text-underline-offset: 3px;
   position: relative;
   text-decoration: none;
   color: inherit;
