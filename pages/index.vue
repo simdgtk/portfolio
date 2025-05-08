@@ -26,25 +26,17 @@ useHead({
   ],
   link: [
     {
-      rel: 'preload',
-      href: '/fonts/subset-EBGaramond-MediumItalic.woff2',
-      as: 'font',
-      type: 'font/woff2',
+      rel: 'preconnect',
+      href: 'https://fonts.googleapis.com'
+    },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.gstatic.com',
       crossorigin: ''
     },
     {
-      rel: 'preload',
-      href: '/fonts/EBGaramond-Italic.woff2',
-      as: 'font',
-      type: 'font/woff2',
-      crossorigin: ''
-    },
-    {
-      rel: 'preload',
-      href: '/fonts/EBGaramond-Regular.woff2',
-      as: 'font',
-      type: 'font/woff2',
-      crossorigin: ''
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap'
     }
   ]
 })
