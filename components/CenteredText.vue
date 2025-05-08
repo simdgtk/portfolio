@@ -5,8 +5,8 @@
   <div class="centered-text">
     <div class="centered-text__title-container">
       <div class="centered-text__title-container__title">
-        <h2 translate="no">Simon</h2>
-        <h2 translate="no">Daguet-Kargl</h2>
+        <h1 translate="no">Simon</h1>
+        <h1 translate="no">Daguet-Kargl</h1>
       </div>
       <span class="centered-text__title-container__info centered-text__title-container__info--alternance">En recherche
         d’alternance à partir de septembre 2025</span>
@@ -50,7 +50,7 @@
       align-items: center;
       justify-content: center;
 
-      h2 {
+      h1 {
         letter-spacing: -0.375vw;
         z-index: 10;
         color: white;

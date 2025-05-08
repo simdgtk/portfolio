@@ -1,8 +1,7 @@
 <template>
   <a :href="link" target="_blank" class="project-card" :id="id">
     <div class="project-card__background">
-      <img class="project-card__background__image" loading="lazy" src="@/assets/images/holographic_texture.webp"
-        alt="" />
+      <img class="project-card__background__image" loading="lazy" src="@/assets/images/holographic_texture.webp" alt="" />
     </div>
     <div class="project-card__else">
       <div class="project-card__image-container">

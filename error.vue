@@ -94,7 +94,7 @@ onMounted(() => {
     <GrainFixed />
     <HeaderText />
     <div class="center centered-text__title-container__title">
-      <h2>Page non trouvée...</h2>
+      <h1>Page non trouvée...</h1>
       <NuxtLink to="/" class="button">Retour à l'accueil</NuxtLink>
     </div>
     <LinksList />
@@ -120,9 +120,9 @@ main {
   width: 100%;
 }
 
-@media screen and (max-width: 360px) {
-  .centered-text__title-container__title h2 {
-    font-size: 11.25vw !important;
+@media screen and (max-width: 930px) {
+  .centered-text__title-container__title h1 {
+    font-size: 11.25vw;
   }
 }
 

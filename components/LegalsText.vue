@@ -1,7 +1,7 @@
 <template>
   <section class="legal">
     <div class="legal__container">
-      <h2 class="legal__title">Mentions légales</h2>
+      <h1 class="legal__title">Mentions légales</h1>
 
       <NuxtLink to="/" class="legal__link legal__back" title="retour au portfolio">Retour au portfolio</NuxtLink>
 
