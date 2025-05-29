@@ -63,7 +63,6 @@
         }
 
         @media screen and (max-width: 930px) {
-          // font-size: calc(7.5vw * 2.45);
           font-size: toRem(68);
         }
 
@@ -81,12 +80,24 @@
           }
 
           @media screen and (max-width: 930px) {
-            // margin-top: calc(-3.5vw *2.45);
             margin-top: toRem(-32);
           }
 
           @media screen and (max-width: 360px) {
             margin-top: -0.5rem;
+          }
+        }
+      }
+
+      &--small {
+        h1 {
+          @media screen and (max-width: 930px) {
+            font-size: toRem(52);
+          }
+
+          @media screen and (max-width: 360px) {
+            font-size: 13vw;
+            margin-top: 0;
           }
         }
       }
@@ -99,10 +110,6 @@
       // font-size: 1.3vw;
       line-height: 97%;
       font-style: italic;
-
-      // @media screen and (max-width: 1200px) {
-      //   font-size: calc(1vw * 1.5);
-      // }
 
       @media screen and (max-width: 1200px) {
         font-size: min(16px, calc(1vw * 2.3));
@@ -157,7 +164,6 @@
       }
 
       &--stack {
-        // width: 20%;
         top: 39%;
         right: 3%;
 
@@ -217,8 +223,6 @@
       }
 
       @media screen and (max-width: 930px) {
-        // width: calc(1.9vw * 2.3);
-        // height: calc(1.9vw * 2.3)
         width: toRem(18);
         height: toRem(18);
       }

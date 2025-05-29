@@ -5,17 +5,26 @@ import LinksList from '@/components/LinksList.vue';
 import ScrollText from '@/components/ScrollText.vue';
 import FloatingModels from '@/components/FloatingModels.vue';
 
-import { ref, onMounted } from 'vue';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
 const gridRef = ref(null);
 const mainRef = ref(null);
 const cellSize = 50;
 
 
+// gsap.registerPlugin(ScrollTrigger);
+// onMounted(() => {
+//   ScrollTrigger.create({
+//     start: 0,
+//     end: "max",
+//     onLeave: self => {
+//       window.scrollTo({ top: 100 });
+//       ScrollTrigger.update();
+//     },
+//     onLeaveBack: self => {
+//       window.scrollTo({ top: ScrollTrigger.maxScroll(window) - 100 });
+//       ScrollTrigger.update();
+//     }
+//   });
+// })
 
 useHead({
   meta: [
@@ -183,103 +192,6 @@ onMounted(() => {
     createGrid();
   });
 
-  // CUSTOM CURSOR
-  // window.addEventListener('mousemove', (e) => {
-  //   const x = e.clientX
-  //   const y = e.clientY
-
-  //   cursorCenterRef.value.style.left = `${x}px`
-  //   cursorCenterRef.value.style.top = `${y}px`
-  //   cursorOutlineRef.value.style.left = `${x}px`;
-  //   cursorOutlineRef.value.style.top = `${y}px`;
-  // })
-  const projectElements = Array.from(projectsContainerRef.value.children);
-  // projectElements.forEach((project) => {
-  //   project.addEventListener('mouseover', () => {
-  //     cursorCenterRef.value.style.opacity = '1';
-  //     cursorOutlineRef.value.style.opacity = '1';
-  //   });
-  //   project.addEventListener('mouseout', () => {
-  //     cursorCenterRef.value.style.opacity = '0';
-  //     cursorOutlineRef.value.style.opacity = '0';
-  //   });
-  // });
-
-  // SCROLL PROJECTS
-  const addMoreProjects = () => {
-    const newProjects = cloneProjects.map((project, index) => {
-      return {
-        ...project,
-        id: `project-${projects.length + index}`
-      }
-    });
-    projectsRef.value.push(...newProjects);
-  }
-  const height = window.innerHeight * 1.4;
-  // const infiniteScroll = () => {
-  //   ScrollTrigger.create({
-  //     trigger: containerRef.value,
-  //     start: `bottom bottom-${height}`,
-  //     onEnter: () => {
-  //       addMoreProjects();
-  //       ScrollTrigger.refresh();
-  //     }
-  //   })
-  // }
-  // infiniteScroll()
-
-  // const infiniteScroll = () => {
-  //   ScrollTrigger.create({
-  //     trigger: containerRef.value,
-  //     start: `bottom bottom-${height}`,
-  //     onEnter: () => {
-  //       // projectsContainerRef.value.style.opacity = 0;
-  //       console.log('onEnter')
-  //       window.scrollTo({
-  //         top: 0,
-  //         behavior: 'smooth'
-  //       });
-  //       // setTimeout(() => {
-  //       //   projectsContainerRef.value.style.opacity = 1;
-  //       // }, 800);
-  //       ScrollTrigger.refresh();
-  //     }
-  //   })
-  // }
-  // infiniteScroll()
-
-  // Si utilisateur inactif, scroll vers le haut
-  function inactivityTimeout() {
-    let timer;
-    const IDLE_TIMEOUT = 6000;
-
-    const resetTimer = () => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        // User is inactive, do something like displaying a warning or logging out
-        projectsContainerRef.value.style.opacity = 0;
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-        setTimeout(() => {
-          projectsContainerRef.value.style.opacity = 1;
-        }, 800);
-
-      }, IDLE_TIMEOUT);
-    };
-
-    window.onload = resetTimer;
-    document.onmousemove = resetTimer;
-    document.onmousedown = resetTimer;
-    document.onscroll = () => {
-      resetTimer();
-    };
-
-  }
-
-  // Call the function to initiate
-  // inactivityTimeout();
 });
 </script>
 
@@ -354,7 +266,7 @@ main {
   padding: 0 8vw;
 
   @media screen and (max-width: 920px) {
-    overflow: hidden;
+    // overflow: hidden;
   }
 
   .project {
@@ -366,7 +278,7 @@ main {
     // }
 
     &:nth-child(6n) {
-      margin-bottom: 130vh;
+      margin-bottom: 140vh;
     }
   }
 

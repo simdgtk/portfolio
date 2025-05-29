@@ -60,116 +60,6 @@ const projects = [
 
 const allProjectsRef = ref(null);
 const scrollContainerRef = ref(null);
-
-onMounted(() => {
-  let tl = gsap.timeline();
-  if (allProjectsRef.value && allProjectsRef.value.children) {
-    const cards = Array.from(allProjectsRef.value.children);
-    function infiniteScroll() {
-      ScrollTrigger.create({
-        start: 1,
-        end: "max",
-        onLeaveBack: self => self.scroll(ScrollTrigger.maxScroll(window) - 2),
-        onLeave: self => self.scroll(2),
-      }).scroll(2);
-    }
-    infiniteScroll();
-  }
-
-
-  // cards.forEach((card, i) => {
-  //   gsap.set(card, {
-  //     y: i * cardHeight * 2 + window.innerHeight,
-  //     x: window.innerWidth / 2 + 200,
-  //     transform: "rotate(-13.94deg)",
-  //   });
-  // });
-  // console.log(cards[0].y)
-
-  // gsap.to(cards, {
-  //   y: 0,
-  //   x: - window.innerWidth / 2,
-  //   transform: "rotate(30.59deg)",
-  //   stagger: 0.1,
-  //   duration: 1,
-  //   scrollTrigger: {
-  //     trigger: scrollContainerRef.value,
-  //     start: "top 0%",
-  //     end: "center 20%",
-  //     scrub: true,
-  //     markers: true,
-  //   },
-  //   onComplete: () => {
-  //     console.log("Animation complete");
-  //     gsap.to(cards, {
-  //       y: 0,
-  //       x: - window.innerWidth / 2,
-  //       transform: "rotate(30.59deg)",
-  //       stagger: 0.1,
-  //       duration: 1,
-  //       scrollTrigger: {
-  //         trigger: scrollContainerRef.value,
-  //         start: "top 0%",
-  //         end: "center 20%",
-  //         scrub: true,
-  //         markers: true,
-  //       },
-  //     })
-  //   },
-  // })
-
-  // gsap.to("#project-0", {
-  //   scrollTrigger: {
-  //     trigger: allProjectsRef.value,
-  //     start: "top 0%",
-  //     end: "bottom 50%",
-  //     scrub: true,
-  //     markers: true,
-  //   },
-  //   scale: 3,
-  //   // duration: 1,
-  // })
-
-  // gsap.fromTo("#project-0", {
-  //   x: window.innerWidth / 2 + 200,
-  //   y: window.innerHeight + 200,
-  //   transform: "rotate(13.94deg)"
-  // }, {
-  //   scrollTrigger: {
-  //     trigger: scrollContainerRef.value,
-  //     start: "top 0%",
-  //     end: "center 20%",
-  //     scrub: true,
-  //     markers: true,
-  //   },
-  //   x: - window.innerWidth / 2,
-  //   y: - window.innerHeight,
-  //   transform: "rotate(-30.59deg)",
-  //   onComplete: () => {
-
-  //   },
-
-  // })
-
-  // gsap.fromTo("#project-1", {
-  //   x: window.innerWidth / 2 + 200,
-  //   y: window.innerHeight * 2 + 200,
-  //   transform: "rotate(13.94deg)",
-  // }, {
-  //   scrollTrigger: {
-  //     trigger: scrollContainerRef.value,
-  //     start: "top 0%",
-  //     end: "center 20%",
-  //     scrub: true,
-  //     markers: true,
-  //   },
-  //   x: - window.innerWidth / 2,
-  //   y: - window.innerHeight,
-  //   transform: "rotate(-30.59deg)"
-
-  // })
-
-})
 </script>
 <template>
   <div class="infinite-scroll" ref="scrollContainerRef">
@@ -184,21 +74,6 @@ onMounted(() => {
 @use '@/assets/styles/_utils' as *;
 @use '@/assets/styles/_variables' as *;
 
-// body {
-//   overflow: hidden;
-//   /* empêche le scroll global */
-// }
-
-// .infinite-scroll {
-//   position: absolute;
-//   z-index: 90000000;
-//   top: 0;
-//   left: 0;
-//   width: 100vw;
-//   height: 100vh;
-//   overflow-y: scroll;
-// }
-
 .infinite-scroll {
   position: absolute;
   right: 0;
@@ -207,9 +82,7 @@ onMounted(() => {
   width: 100vw;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  /* pour les iOS */
   overscroll-behavior: contain;
-  /* évite les débordements vers le body */
   z-index: 200;
   pointer-events: auto;
 
@@ -239,14 +112,6 @@ onMounted(() => {
 }
 
 .all-projects {
-  // position: absolute;
-  // z-index: 10;
-  // top: 0;
-  // left: 0;
-  // width: 100vw;
-  // height: 100vh;
-
-
   &:first-child {
     display: block;
   }
