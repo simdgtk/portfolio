@@ -8,12 +8,11 @@
         <h1 translate="no">Simon</h1>
         <h1 translate="no">Daguet-Kargl</h1>
       </div>
-      <span class="centered-text__title-container__info centered-text__title-container__info--alternance">En recherche
-        d’alternance à partir de septembre 2025</span>
+      <span class="centered-text__title-container__info centered-text__title-container__info--alternance"></span>
       <img src="@/assets/images/earth.svg" alt=""
         class="centered-text__title-container__img centered-text__title-container__img--earth" width="34" height="34" />
       <span class="centered-text__title-container__info centered-text__title-container__info--wawww">
-        Actuellement @<a href="https://www.wawww.studio/fr" target="_blank" title="nouvelle fenêtre, Studio WAWWW"
+        @<a href="https://www.wawww.studio/fr" target="_blank" title="nouvelle fenêtre, Studio WAWWW"
           translate="no">WAWWW</a>
         (stage)</span>
       <span class="centered-text__title-container__info centered-text__title-container__info--stack"
@@ -140,15 +139,15 @@
 
       &--wawww {
         top: 55%;
-        left: 16%;
         z-index: 10;
-
+        left: 25%;
+        
         a {
           letter-spacing: -2px;
         }
-
+        
         @media screen and (max-width: 1500px) {
-          left: 16%;
+          left: 25%;
         }
 
         @media screen and (max-width: 930px) {

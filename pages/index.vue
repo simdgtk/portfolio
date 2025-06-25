@@ -108,8 +108,6 @@ const projectsRef = ref([
 const projects = projectsRef.value;
 const containerRef = ref(null);
 const projectsContainerRef = ref(null);
-const cursorCenterRef = ref(null);
-const cursorOutlineRef = ref(null);
 
 
 onMounted(() => {
@@ -192,6 +190,26 @@ onMounted(() => {
     createGrid();
   });
 
+
+  // ajout des projets dès que l'utilisateur scroll en bas de la page
+  // var options = {
+  //   root: containerRef.value,
+  //   rootMargin: "0px",
+  //   threshold: 1.0,
+  // };
+  // var callback = function (entries, observer) {
+  //   entries.forEach((entry) => {
+  //     console.log(entry)
+  //   });
+  // };
+
+
+  // var observer = new IntersectionObserver(callback, options);
+  // var target = projectsContainerRef.value;
+
+
+  // observer.observe(target);
+
 });
 </script>
 
@@ -212,8 +230,6 @@ onMounted(() => {
       <ProjectCard :container="mainRef" v-for="(project, index) in projects" :key="index" v-bind="project"
         :keynumber="index" :id="'project-' + index" class="project" />
     </div>
-    <!--<div class="cursor-dot" ref="cursorCenterRef"></div>
-    <div class="cursor-outline" ref="cursorOutlineRef"></div>-->
     <ScrollText />
 
   </div>
