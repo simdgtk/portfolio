@@ -34,7 +34,7 @@
 <style lang="scss" scoped>
 .legal {
   // max-width: 750px;
-  max-height: 100vh;
+  max-height: 100dvh;
   overflow: auto;
   margin: 0 auto;
 

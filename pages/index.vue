@@ -228,7 +228,8 @@ onMounted(() => {
     </main>
     <div class="projects" ref="projectsContainerRef">
       <ProjectCard :container="mainRef" v-for="(project, index) in projects" :key="index" v-bind="project"
-        :keynumber="index" :id="'project-' + index" class="project" />
+        :class="{ 'last-child': index === projects.length - 1 }" :keynumber="index" :id="'project-' + index"
+        class="project" />
     </div>
     <ScrollText />
 
@@ -267,11 +268,20 @@ $cell-size: 50px;
 }
 
 main {
-  height: 100vh;
+  height: 100dvh;
   position: fixed;
 }
 
+.container {
+  position: relative;
+}
+
 .projects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: fit-content;
   max-width: 100vw;
   transform: translateY(140vh);
   pointer-events: none;
@@ -281,27 +291,28 @@ main {
   transition: opacity 0.2s ease-in-out;
   padding: 0 8vw;
 
-  @media screen and (max-width: 920px) {
-    // overflow: hidden;
+  @media screen and (max-width: 750px) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    overflow: hidden;
   }
 
   .project {
     margin-bottom: 400px;
     align-self: center;
 
-    // &:nth-child(even) {
-    //   align-self: flex-end;
-    // }
-
     &:nth-child(6n) {
       margin-bottom: 140vh;
+    }
+
+    &.last-child {
+      margin-bottom: 140vh !important;
     }
   }
 
 }
 
 .container {
-  // height: 800vh !important;
   height: fit-content;
 }
 
@@ -313,7 +324,7 @@ main {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 
   &__cell {
