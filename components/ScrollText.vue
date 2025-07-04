@@ -16,7 +16,6 @@
   user-select: none;
   pointer-events: none;
   position: fixed;
-  // z-index: 11;
   bottom: 0%;
   left: 50%;
   transform: translateX(-50%);

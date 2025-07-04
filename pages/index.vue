@@ -9,23 +9,6 @@ const gridRef = ref(null);
 const mainRef = ref(null);
 const cellSize = 50;
 
-
-// gsap.registerPlugin(ScrollTrigger);
-// onMounted(() => {
-//   ScrollTrigger.create({
-//     start: 0,
-//     end: "max",
-//     onLeave: self => {
-//       window.scrollTo({ top: 100 });
-//       ScrollTrigger.update();
-//     },
-//     onLeaveBack: self => {
-//       window.scrollTo({ top: ScrollTrigger.maxScroll(window) - 100 });
-//       ScrollTrigger.update();
-//     }
-//   });
-// })
-
 useHead({
   meta: [
     {
@@ -77,7 +60,7 @@ const projectsRef = ref([
     image: "/projects/project_motiondesign.webp",
     imageAlt: "Projet de motion design",
     title: "Motion design de théorie scientifique",
-    description: "Motion design réalisé avec Tom Wainberg. Il nous fallait vulgariser une théorie scientifique",
+    description: "Motion design réalisé à deux (avec Tom Wainberg). Il nous fallait vulgariser une théorie scientifique",
     tags: ["After Effects", "Illustrator", "Premiere pro"]
   },
   {
@@ -189,27 +172,6 @@ onMounted(() => {
     }
     createGrid();
   });
-
-
-  // ajout des projets dès que l'utilisateur scroll en bas de la page
-  // var options = {
-  //   root: containerRef.value,
-  //   rootMargin: "0px",
-  //   threshold: 1.0,
-  // };
-  // var callback = function (entries, observer) {
-  //   entries.forEach((entry) => {
-  //     console.log(entry)
-  //   });
-  // };
-
-
-  // var observer = new IntersectionObserver(callback, options);
-  // var target = projectsContainerRef.value;
-
-
-  // observer.observe(target);
-
 });
 </script>
 

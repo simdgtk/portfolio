@@ -48,21 +48,11 @@ onMounted(() => {
         transform: props.keynumber % 2 ? "rotate(20deg)" : "rotate(-13deg)",
       }, {
         transform: props.keynumber % 2 ? "rotate(3deg)" : "rotate(-2deg)",
-        // x: "-25%",
-        // transform: "rotate(0deg)",
-
-        // stagger: 0.1,
         scrollTrigger: {
           trigger: `#${props.id}`,
           start: "top 100%",
           end: "center 20%",
           scrub: true,
-          // markers: true,
-          // pin: true,
-          // pinSpacing: false,
-          // anticipatePin: 1,
-          // invalidateOnRefresh: true,
-          // onEnterBack: () => gsap.to(".project-card", { y: -100, duration: 0.5 }),
         },
         ease: "power1.inOut",
       });
@@ -93,10 +83,6 @@ onMounted(() => {
   overflow: hidden;
   position: relative;
   pointer-events: all;
-  // cursor: url('@/assets/images/cursor.svg') 25 25, auto;
-  // cursor: none;
-
-
 
   &::after {
     display: none;
@@ -125,9 +111,6 @@ onMounted(() => {
     z-index: 2;
     opacity: 0.39;
     overflow: hidden;
-
-    // grain
-
   }
 
   &__background__image {
@@ -151,7 +134,6 @@ onMounted(() => {
   }
 
   &__image-container {
-    // min-width: toRem(250);
     max-width: toRem(300);
     width: fit-content;
     height: fit-content;
@@ -171,7 +153,6 @@ onMounted(() => {
     max-width: toRem(300);
     height: 100%;
     padding: 16px 12px;
-    // gap: auto;
 
     &__title {
       font-weight: 500;
@@ -215,7 +196,6 @@ onMounted(() => {
     width: 1px;
     height: 100%;
     margin-left: 12px;
-    // background: $gray-border;
     border-left: 1px dashed $gray-border;
   }
 

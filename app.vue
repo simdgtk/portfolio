@@ -17,7 +17,7 @@ watchEffect((onInvalidate) => {
 
 </script>
 <template>
-  <VueLenis root ref="lenisRef" :options="{ autoRaf: false }" />
+  <VueLenis root ref="lenisRef" :options="{ autoRaf: false, infinite: true }" />
   <div class="main-container">
     <NuxtLayout>
       <NuxtPage />

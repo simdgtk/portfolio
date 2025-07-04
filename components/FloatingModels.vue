@@ -19,7 +19,6 @@ onMounted(() => {
   gltfLoader.setDRACOLoader(dracoLoader);
   const cubeTextureLoader = new THREE.CubeTextureLoader();
 
-
   // Lights
   const ambientLight = new THREE.AmbientLight(0xffffff);
   const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x000000, 6);
@@ -34,9 +33,7 @@ onMounted(() => {
     iridescenceIOR: 1.4,
     iridescenceThicknessRange: [0, 1000],
     sheen: 2.0,
-    // sheenColor: new THREE.Color(0x9933ff), // violet
-    sheenColor: new THREE.Color(0x4232ff), // violet
-
+    sheenColor: new THREE.Color(0x4232ff)
   });
 
   let sizes = {
@@ -68,7 +65,6 @@ onMounted(() => {
 
   //  resize
   window.addEventListener("resize", () => {
-    console.log("resize");
     // update sizes
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
