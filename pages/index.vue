@@ -194,7 +194,7 @@ onMounted(() => {
         class="project" />
     </div>
     <ScrollText />
-
+    <AsciiConsole />
   </div>
 </template>
 <style lang="scss">

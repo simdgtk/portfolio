@@ -63,8 +63,12 @@ onMounted(() => {
     }
   }
 
+  // Variables pour le parallax effect (scope global)
+  let roseOldX = 0, roseOldY = 0;
+  let pcOldX = 0, pcOldY = 0;
+
   //  resize
-  window.addEventListener("resize", () => {
+  function handleResize() {
     // update sizes
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
@@ -82,6 +86,18 @@ onMounted(() => {
 
     // update model positions and scales
     updateModelTransforms();
+
+    // Réinitialise oldX/oldY pour le parallax (évite les sauts)
+    roseOldX = 0; roseOldY = 0;
+    pcOldX = 0; pcOldY = 0;
+  }
+
+  window.addEventListener("resize", handleResize);
+  window.addEventListener("orientationchange", handleResize);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+      handleResize();
+    }
   });
 
   // Model loading
@@ -98,19 +114,16 @@ onMounted(() => {
     scene.add(model);
 
     // parallax effect
-    let oldX = 0;
-    let oldY = 0;
     window.addEventListener("mousemove", (event) => {
       const x = (event.clientX / sizes.width) * 2 - 1;
       const y = -(event.clientY / sizes.height) * 2 + 1;
 
-      model.position.y += (x - oldX) * 0.05;
-      model.position.x += (y - oldY) * 0.05;
+      model.position.y += (x - roseOldX) * 0.05;
+      model.position.x += (y - roseOldY) * 0.05;
 
-      oldX = x;
-      oldY = y;
-    })
-
+      roseOldX = x;
+      roseOldY = y;
+    });
   });
 
   // Model loading
@@ -126,19 +139,16 @@ onMounted(() => {
     scene.add(pc);
 
     // parallax effect
-    let oldX = 0;
-    let oldY = 0;
     window.addEventListener("mousemove", (event) => {
       const x = (event.clientX / sizes.width) * 2 - 1;
       const y = -(event.clientY / sizes.height) * 2 + 1;
 
-      pc.position.y += (x - oldX) * - 0.05;
-      pc.position.x += (y - oldY) * -0.05;
+      pc.position.y += (x - pcOldX) * -0.05;
+      pc.position.x += (y - pcOldY) * -0.05;
 
-      oldX = x;
-      oldY = y;
-    })
-
+      pcOldX = x;
+      pcOldY = y;
+    });
   });
 
   // Camera setup
