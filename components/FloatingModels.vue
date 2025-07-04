@@ -43,8 +43,32 @@ onMounted(() => {
     height: window.innerHeight,
     width: window.innerWidth,
   };
+
+
+  function updateModelTransforms() {
+    // Rose (en bas à gauche)
+    if (model) {
+      model.position.set((-sizes.width * 0.9) / 300, (-sizes.height * 0.8) / 300, 1);
+      if (sizes.width > sizes.height) {
+        model.scale.set((sizes.width * 0.6) / 400, (sizes.width * 0.5) / 400, (sizes.width * 0.6) / 400);
+      } else {
+        model.scale.set((sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300);
+      }
+    }
+    // PC (en haut à droite)
+    if (pc) {
+      pc.position.set((sizes.width * 0.9) / 300 - 1, (sizes.height * 0.7) / 300 - 1, 1);
+      if (sizes.width > sizes.height) {
+        pc.scale.set((sizes.width * 0.57) / 400, (sizes.width * 0.57) / 400, (sizes.width * 0.57) / 400);
+      } else {
+        pc.scale.set((sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300);
+      }
+    }
+  }
+
   //  resize
   window.addEventListener("resize", () => {
+    console.log("resize");
     // update sizes
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
@@ -59,28 +83,21 @@ onMounted(() => {
     // update renderer
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // update model positions and scales
+    updateModelTransforms();
   });
 
   // Model loading
   let model = null;
   gltfLoader.load("/models/rose.glb", (gltf) => {
     model = gltf.scene.children[0];
-    // model.rotation = [0, Math.PI / 2, 0];
+
     model.rotation.x = 1.43;
     model.rotation.y = 1.02;
     model.rotation.z = -0.89;
 
-    // positionné en bas à gauche
-    // model.position.set(- sizes.width / 300, - sizes.height / 300, 1);
-
-    // positionné en bas à gauche avec offset
-    model.position.set((- sizes.width * 0.9) / 300, (- sizes.height * 0.8) / 300, 1);
-
-    if (sizes.width > sizes.height) {
-      model.scale.set((sizes.width * 0.6) / 400, (sizes.width * 0.5) / 400, (sizes.width * 0.6) / 400);
-    } else {
-      model.scale.set((sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300);
-    }
+    updateModelTransforms();
     model.material = chromeMaterial;
     scene.add(model);
 
@@ -93,10 +110,6 @@ onMounted(() => {
 
       model.position.y += (x - oldX) * 0.05;
       model.position.x += (y - oldY) * 0.05;
-      // model.rotation.y += (x - oldX) * 0.9;
-      // model.rotation.x += (y - oldY) * 0.9;
-      // model.rotation.z += (y - oldY) * 0.9;
-
 
       oldX = x;
       oldY = y;
@@ -108,19 +121,11 @@ onMounted(() => {
   let pc = null;
   gltfLoader.load("/models/pc.glb", (gltf) => {
     pc = gltf.scene.children[0];
-    // model.rotation = [0, Math.PI / 2, 0];
     pc.rotation.x = 0.34;
     pc.rotation.y = 0.61;
     pc.rotation.z = -0.20;
 
-    // positionné en haut à droite avec offset
-    pc.position.set((sizes.width * 0.9) / 300 - 1, (sizes.height * 0.7) / 300 - 1, 1);
-
-    if (sizes.width > sizes.height) {
-      pc.scale.set((sizes.width * 0.57) / 400, (sizes.width * 0.57) / 400, (sizes.width * 0.57) / 400);
-    } else {
-      pc.scale.set((sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300);
-    }
+    updateModelTransforms();
     pc.material = chromeMaterial;
     scene.add(pc);
 
@@ -133,10 +138,6 @@ onMounted(() => {
 
       pc.position.y += (x - oldX) * - 0.05;
       pc.position.x += (y - oldY) * -0.05;
-      // pc.rotation.y += (x - oldX) * -0.05;
-      // pc.rotation.x += (y - oldY) * -0.05;
-      // pc.rotation.z += (y - oldY) * -0.05;
-
 
       oldX = x;
       oldY = y;
@@ -145,7 +146,6 @@ onMounted(() => {
   });
 
   // Camera setup
-  // const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   const camera = new THREE.OrthographicCamera(
     -sizes.width / 300,
     sizes.width / 300,
@@ -155,19 +155,8 @@ onMounted(() => {
     1000
   );
   scene.add(camera);
-  camera.position.set(0, 0, 10); // Recule la caméra en augmentant la valeur de z
+  camera.position.set(0, 0, 10);
 
-  // const environmentMap = cubeTextureLoader.load([
-  //   "/environment_maps/px.png",
-  //   "/environment_maps/nx.png",
-  //   "/environment_maps/py.png",
-  //   "/environment_maps/ny.png",
-  //   "/environment_maps/pz.png",
-  //   "/environment_maps/nz.png",
-  // ]);
-  // // environmentMap.encoding = THREE.sRGBEncoding;
-  // // scene.background = environmentMap;
-  // scene.environment = environmentMap;
   const environmentMap = cubeTextureLoader.load([
     "/environment_maps/px.png",
     "/environment_maps/px.png",
@@ -178,17 +167,11 @@ onMounted(() => {
   ]);
   scene.environment = environmentMap;
 
-
-
   // Renderer setup
   const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.value, antialias: true, alpha: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  // renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
   // Animation loop
-  const offset = ref(Math.random() * 0);
-  const floatingRange = ref([-0.2, 0.2]);
-  const floatIntensity = ref(3);
   const speed = ref(1);
   const rotationIntensity = ref(1);
   function animate() {
