@@ -196,7 +196,7 @@ const frames = [
 
 ]
 
-function normalizeVertical(frame) {
+function replaceCharacters(frame) {
   return frame
     .replace(/%/g, '█')
     .replace(/#/g, '▓')
@@ -219,7 +219,7 @@ onMounted(() => {
       }
 
       const rawFrame = `\n\n${frames[frameIndex.value]}\n`
-      const formattedFrame = normalizeVertical(rawFrame)
+      const formattedFrame = replaceCharacters(rawFrame)
 
       console.log(formattedFrame)
 
