@@ -18,10 +18,6 @@ export default defineNuxtConfig({
       meta: [
         { charset: "UTF-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1.0" },
-        {
-          name: "google-site-verification",
-          content: "BsnqRs81DhxsX9BWKdvDp5oveYbebub9zm-Jr8oyAJo",
-        },
         { name: "robots", content: "all" },
         { name: "target", content: "all" },
         { name: "author", content: "Simon Daguet-Kargl" },

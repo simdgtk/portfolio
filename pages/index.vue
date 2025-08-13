@@ -52,7 +52,7 @@ const projectsRef = ref([
     image: "/projects/project_budapest.webp",
     imageAlt: "Projet Grand Budapest Hôtel",
     title: "Grand Budapest Hotel",
-    description: "Site pensé d'après le film de Wes Anderson, avec des animations au scroll et autres effets JS",
+    description: "Site inspiré du film de Wes Anderson, avec des animations au scroll et autres effets JS",
     tags: ["Anime.js", "GSAP"]
   },
   {
@@ -64,11 +64,11 @@ const projectsRef = ref([
     tags: ["After Effects", "Illustrator", "Premiere pro"]
   },
   {
-    link: "https://github.com/simdgtk/befake",
+    link: "https://befake.osc-fr1.scalingo.io/",
     image: "/projects/project_befake.webp",
     imageAlt: "Projet Befake, parodie de Bereal",
     title: "Application web avec Ruby on Rails",
-    description: "Projet backend avec le framework Ruby on Rails, parodie du réseau social BeReal avec Midjourney",
+    description: "Projet fullstack avec le framework Ruby on Rails, parodie du réseau social BeReal avec Midjourney",
     tags: ["Midjourney", "Front / Back", "Ruby"]
   },
   {
@@ -77,14 +77,14 @@ const projectsRef = ref([
     imageAlt: "Projet Nous n'avons pas numérisé",
     title: "Nous n'avons pas numérisé",
     description: "Site présentant une remise en question de la création d'une application web, pour des raisons éthiques et écologiques",
-    tags: ["Print", "Retour d'expérience"]
+    tags: ["Print / web", "Retour d'expérience"]
   },
   {
     link: "https://treejs-one.vercel.app/",
     image: "/projects/project_treejs.webp",
     imageAlt: "Projet Tree.js",
     title: "Tree.js",
-    description: "Premier site que j'avais réalisé avec Three.JS. La plante grandit au scroll de l'utilisateur et l'animation de la plante est faite sur Blender",
+    description: "Premier site que j'avais réalisé avec Three.JS. La plante grandit au scroll de l'utilisateur et son animation est faite sur Blender",
     tags: ["Three.js", "GSAP", "Blender"]
   },
 ])
@@ -133,7 +133,6 @@ onMounted(() => {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
       const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
-      const gridHeight = Math.floor(windowHeight / cellSize) * cellSize;
       const x = Math.floor(event.clientX / cellSize);
       const y = Math.floor(event.clientY / cellSize);
       const index = coordo2dTo1d(x, y, gridWidth / cellSize + 2);

@@ -12,9 +12,9 @@
       <img src="@/assets/images/earth.svg" alt=""
         class="centered-text__title-container__img centered-text__title-container__img--earth" width="34" height="34" />
       <span class="centered-text__title-container__info centered-text__title-container__info--wawww">
-        @<a href="https://www.wawww.studio/fr" target="_blank" title="nouvelle fenêtre, Studio WAWWW"
+        alternant @<a href="https://www.wawww.studio/fr" target="_blank" title="nouvelle fenêtre, Studio WAWWW"
           translate="no">WAWWW</a>
-        (stage)</span>
+        </span>
       <span class="centered-text__title-container__info centered-text__title-container__info--stack"
         translate="no">Blender, <br />
         Three.js, Sass,<br /> Vue.js, Nuxt, React</span>
@@ -106,7 +106,6 @@
       position: absolute;
       font-weight: 400;
       font-size: clamp(1vw, 16px, 1.3vw);
-      // font-size: 1.3vw;
       line-height: 97%;
       font-style: italic;
 

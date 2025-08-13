@@ -27,6 +27,12 @@
           Dernière mise à jour : avril 2025
         </p>
       </div>
+      <div class="legal__block legal__hosting">
+        <h3 class="legal__subtitle">Crédits</h3>
+        <p class="legal__text">
+          <a href="https://medium.com/@alexandre.pujol/ascii-hover-effect-with-shader-and-post-processing-part-1-589064c33385" target="_blank" rel="noopener noreferrer">ASCII Hover effect with shader and post-processing - Alexandre PUJOL</a>
+        </p>
+      </div>
     </div>
   </section>
 
