@@ -210,23 +210,20 @@ let frameCounter = 0
 const MAX_FRAMES_BEFORE_CLEAR = 30
 
 onMounted(() => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  if (!prefersReducedMotion) {
-    intervalId = setInterval(() => {
-      if (frameCounter >= MAX_FRAMES_BEFORE_CLEAR) {
-        console.clear()
-        frameCounter = 0
-      }
+  intervalId = setInterval(() => {
+    if (frameCounter >= MAX_FRAMES_BEFORE_CLEAR) {
+      console.clear()
+      frameCounter = 0
+    }
 
-      const rawFrame = `\n\n${frames[frameIndex.value]}\n`
-      const formattedFrame = replaceCharacters(rawFrame)
+    const rawFrame = `\n\n${frames[frameIndex.value]}\n`
+    const formattedFrame = replaceCharacters(rawFrame)
 
-      console.log(formattedFrame)
+    console.log(formattedFrame)
 
-      frameIndex.value = (frameIndex.value + 1) % frames.length
-      frameCounter++
-    }, 200)
-  }
+    frameIndex.value = (frameIndex.value + 1) % frames.length
+    frameCounter++
+  }, 200)
 })
 
 onBeforeUnmount(() => {
@@ -235,5 +232,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <!-- aucun rendu DOM -->
+  <ClientOnly>
+    <!-- Le composant ne s'affiche que côté client -->
+  </ClientOnly>
 </template>
