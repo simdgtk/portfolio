@@ -193,7 +193,9 @@ onMounted(() => {
   // Shader ascii
   // basé sur le tutoriel d'Alexandre PUJOL : https://medium.com/@alexandre.pujol/ascii-hover-effect-with-shader-and-post-processing-part-1-589064c33385
   const font = "arial";
-  const characters = ` ░▒▓▄Zab[/><±Σ∑$§▌ABCWXgjkstyz2359¢"',:~\\|*`;
+  // ¥ԪǾǼ#$¶
+  //  const characters = ` ░▒▓▄Zab[/><±Σ∑$§▌ABCWXgjkstyz2359¢"',:~\\|*`;
+  const characters = ` ░▒Ǿ▄Zab[/><±Σ∑$§▌ABCWXgjkstyz2359¢"',:~\\|*`;
   const fontSize = 70;
   const cellSize = 8;
   const color = "#ffffff";
