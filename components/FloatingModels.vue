@@ -195,7 +195,7 @@ onMounted(() => {
   const font = "arial";
   // ¥ԪǾǼ#$¶
   //  const characters = ` ░▒▓▄Zab[/><±Σ∑$§▌ABCWXgjkstyz2359¢"',:~\\|*`;
-  const characters = ` ░▒Ǿ▄Zab[/><±Σ∑$§▌ABCWXgjkstyz2359¢"',:~\\|*`;
+  const characters = ` ░▒Ǿ▄Δab[/><±Σ∑$§▌ABCWXgjkstyz2359¢"',:~\\|*`;
   const fontSize = 70;
   const cellSize = 8;
   const color = "#ffffff";
