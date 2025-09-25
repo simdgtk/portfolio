@@ -1,8 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const gridRef = ref(null);
 const cellSize = 50;
+
+let mouseMoveHandler = null;
+let activeTimeouts = [];
+let cells = [];
 
 onMounted(() => {
   if ('ontouchstart' in window) {
@@ -13,7 +17,7 @@ onMounted(() => {
     const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
     const gridHeight = Math.floor(windowHeight / cellSize) * cellSize;
     const gridElement = gridRef.value;
-    const cells = [];
+    cells = [];
 
     const coordo2dTo1d = (x, y, cellSize) => {
       return y * cellSize + x;
@@ -22,7 +26,6 @@ onMounted(() => {
     for (let j = 0; j < gridHeight / cellSize + 2; j++) {
       for (let i = 0; i < gridWidth / cellSize + 2; i++) {
         const cell = document.createElement('div');
-        // décalage de 8px pour pas coller au bord
         cell.style.transform = `translate(${i * cellSize - 8}px, ${j * cellSize - 8}px)`;
 
         cell.className = 'grid__cell';
@@ -32,7 +35,7 @@ onMounted(() => {
       }
     }
 
-    gridRef.value.addEventListener('mousemove', (event) => {
+    mouseMoveHandler = (event) => {
       const x = Math.floor(event.clientX / cellSize);
       const y = Math.floor(event.clientY / cellSize);
       const index = coordo2dTo1d(x, y, gridWidth / cellSize + 2);
@@ -41,19 +44,42 @@ onMounted(() => {
       cells[index + 1].classList.add('grid__cell--gray');
       cells[index + gridWidth / cellSize + 2].classList.add('grid__cell--gray');
 
-      setTimeout(() => {
+      const timeout1 = setTimeout(() => {
         cells[index].classList.remove('grid__cell--gray');
       }, 2500);
-      setTimeout(() => {
+      const timeout2 = setTimeout(() => {
         cells[index + gridWidth / cellSize + 2].classList.remove('grid__cell--gray');
       }, 2500);
-      setTimeout(() => {
+      const timeout3 = setTimeout(() => {
         cells[index + 1].classList.remove('grid__cell--gray');
       }, 2500);
 
-    });
+      activeTimeouts.push(timeout1, timeout2, timeout3);
+    };
+
+    gridRef.value.addEventListener('mousemove', mouseMoveHandler);
   }
 
+});
+
+onUnmounted(() => {
+  if (gridRef.value && mouseMoveHandler) {
+    gridRef.value.removeEventListener('mousemove', mouseMoveHandler);
+  }
+
+  activeTimeouts.forEach(timeoutId => {
+    clearTimeout(timeoutId);
+  });
+
+  if (gridRef.value) {
+    while (gridRef.value.firstChild) {
+      gridRef.value.removeChild(gridRef.value.firstChild);
+    }
+  }
+
+  mouseMoveHandler = null;
+  activeTimeouts = [];
+  cells = [];
 });
 </script>
 
