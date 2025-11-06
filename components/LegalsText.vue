@@ -39,7 +39,6 @@
 </template>
 <style lang="scss" scoped>
 .legal {
-  // max-width: 750px;
   max-height: 100dvh;
   overflow: auto;
   margin: 0 auto;
@@ -52,7 +51,6 @@
 
   &__title {
     font-size: 3rem;
-    // font-weight: 600;
     margin-bottom: 1rem;
   }
 

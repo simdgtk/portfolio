@@ -23,7 +23,7 @@
   </a>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 

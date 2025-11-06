@@ -38,7 +38,7 @@ onMounted(() => {
           title="nouvelle fenêtre, mon Linkedin">Linkedin</a>
       </li>
       <li>
-        <NuxtLink to="/legals">Mentions légales</NuxtLink>
+        <NuxtLink to="/mentions-legales">Mentions légales</NuxtLink>
       </li>
       <li>
         <a href="tel:0768442459" title="ouverture d'un service téléphonique">+(33)7 68 44 24 59</a>

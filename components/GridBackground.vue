@@ -111,7 +111,6 @@ $cell-size: 50px;
     height: $cell-size;
     border: 1px solid $gray-border;
     background-color: $background-color;
-    // background-color: blue !important;
     transition: background-color 0.2s ease-in-out;
 
     &--gray {

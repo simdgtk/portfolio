@@ -1,9 +1,15 @@
+
 <script setup>
+import { ref, onMounted } from 'vue';
+import { useHead } from '#app';
 import CenteredText from '@/components/CenteredText.vue';
 import HeaderText from '@/components/HeaderText.vue';
 import LinksList from '@/components/LinksList.vue';
 import ScrollText from '@/components/ScrollText.vue';
 import FloatingModels from '@/components/FloatingModels.vue';
+import GrainFixed from '@/components/GrainFixed.vue';
+import AsciiConsole from '@/components/AsciiConsole.vue';
+import ProjectCard from '@/components/ProjectCard.vue';
 
 const gridRef = ref(null);
 const mainRef = ref(null);
@@ -87,14 +93,23 @@ const projectsRef = ref([
     description: "Premier site que j'avais réalisé avec Three.JS. La plante grandit au scroll de l'utilisateur et son animation est faite sur Blender",
     tags: ["Three.js", "GSAP", "Blender"]
   },
+  {
+    link: "https://airann.itch.io/rhumflow",
+    image: "/projects/project_rumflow.webp",
+    imageAlt: "Projet Rum Flow",
+    title: "Rum Flow",
+    description: "Un jeu vidéo 2D fait sur Unity en 2 semaines. Reliez des îles entre elles, empêchez les attaques pirates et récoltez le plus de rhum possible !",
+    tags: ["Unity", "C#", "Jeu vidéo"]
+  },
 ])
+
 const projects = projectsRef.value;
 const containerRef = ref(null);
 const projectsContainerRef = ref(null);
 
 
 onMounted(() => {
-  const cloneProjects = [...projects];
+
 
   // GRILLE
   const gridElement = gridRef.value;
@@ -130,8 +145,7 @@ onMounted(() => {
     return;
   } else {
     mainRef.value.addEventListener('mousemove', (event) => {
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
+  const windowWidth = window.innerWidth;
       const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
       const x = Math.floor(event.clientX / cellSize);
       const y = Math.floor(event.clientY / cellSize);
@@ -183,14 +197,20 @@ onMounted(() => {
       <FloatingModels />
       <LinksList />
       <div class="background-grid">
-        <div class="grid" ref="gridRef">
-        </div>
+        <div class="grid" ref="gridRef"></div>
       </div>
     </main>
     <div class="projects" ref="projectsContainerRef">
-      <ProjectCard :container="mainRef" v-for="(project, index) in projects" :key="index" v-bind="project"
-        :class="{ 'last-child': index === projects.length - 1 }" :keynumber="index" :id="'project-' + index"
-        class="project" />
+      <ProjectCard
+        :container="mainRef"
+        v-for="(project, index) in projects"
+        :key="'project-' + index"
+        v-bind="project"
+        :class="{ 'last-child': index === projects.length - 1 }"
+        :keynumber="index"
+        :id="'project-' + index"
+        class="project"
+      />
     </div>
     <ScrollText />
     <AsciiConsole />
@@ -220,7 +240,6 @@ $cell-size: 50px;
 .cursor-outline {
   position: fixed;
   opacity: 0;
-  // display: none;
   pointer-events: none;
   z-index: 1000;
   top: 0;
@@ -261,8 +280,13 @@ main {
   .project {
     margin-bottom: 400px;
     align-self: center;
+    transition: filter 0.2s ease-in-out;
 
-    &:nth-child(6n) {
+    &:hover {
+      filter: brightness(0.95);
+    }
+
+    &:nth-child(7n) {
       margin-bottom: 140vh;
     }
 
@@ -293,7 +317,6 @@ main {
     height: $cell-size;
     border: 1px solid $gray-border;
     background-color: $background-color;
-    // background-color: blue !important;
     transition: background-color 0.2s ease-in-out;
 
     &--gray {

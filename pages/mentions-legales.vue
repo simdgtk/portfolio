@@ -1,8 +1,9 @@
 <script setup>
+import { ref, onMounted } from 'vue';
+import { useHead } from '#app';
+
 import HeaderText from '@/components/HeaderText.vue';
 import LegalsText from '@/components/LegalsText.vue';
-
-import { ref, onMounted } from 'vue';
 
 const gridRef = ref(null);
 const mainRef = ref(null);
@@ -54,9 +55,7 @@ onMounted(() => {
   } else {
     mainRef.value.addEventListener('mousemove', (event) => {
       const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
       const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
-      const gridHeight = Math.floor(windowHeight / cellSize) * cellSize;
       const x = Math.floor(event.clientX / cellSize);
       const y = Math.floor(event.clientY / cellSize);
       const index = coordo2dTo1d(x, y, gridWidth / cellSize + 2);

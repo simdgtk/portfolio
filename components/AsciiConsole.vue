@@ -233,6 +233,5 @@ onBeforeUnmount(() => {
 
 <template>
   <ClientOnly>
-    <!-- Le composant ne s'affiche que côté client -->
   </ClientOnly>
 </template>
