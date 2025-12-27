@@ -54,6 +54,14 @@ const projectsRef = ref([
     tags: ["React Three Fiber", "Front / Back"]
   },
   {
+    link: "https://interactive-posters.simondaguetkargl.fr/",
+    image: "/projects/project_interactive_posters.webp",
+    imageAlt: "Posters webgl interactifs",
+    title: "Posters webgl interactifs - WIP",
+    description: "Site pour m'entraîner au webgl, avec des shaders et du postprocessing, en Three.js",
+    tags: ["Three.js", "Webgl", "Shaders"]
+  },
+  {
     link: "https://grand-budapest.vercel.app/",
     image: "/projects/project_budapest.webp",
     imageAlt: "Projet Grand Budapest Hôtel",
@@ -70,7 +78,7 @@ const projectsRef = ref([
     tags: ["After Effects", "Illustrator", "Premiere pro"]
   },
   {
-    link: "https://befake.osc-fr1.scalingo.io/",
+    link: "https://github.com/simdgtk/befake",
     image: "/projects/project_befake.webp",
     imageAlt: "Projet Befake, parodie de Bereal",
     title: "Application web avec Ruby on Rails",
