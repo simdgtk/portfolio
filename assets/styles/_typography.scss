@@ -28,23 +28,16 @@ a,
     background: currentColor;
     transform-origin: left;
     transform: scaleX(1);
-    transition: transform 0.3s ease-in-out;
     will-change: transform;
   }
 
   &:hover::after {
-    animation: underline-remove 0.2s;
-    transition: transform 0.15s ease-out;
-  }
-
-  &:hover {
-    &::after {
-      animation: underline-reveal 0.3s ease-out 0s forwards;
-    }
+    animation: underline 0.22s forwards;
+    animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0);
   }
 }
 
-@keyframes underline-reveal {
+@keyframes underline {
   0% {
     transform: scaleX(0);
     transform-origin: left;
@@ -52,18 +45,6 @@ a,
 
   100% {
     transform: scaleX(1);
-    transform-origin: left;
-  }
-}
-
-@keyframes underline-remove {
-  0% {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-
-  100% {
-    transform: scaleX(0);
     transform-origin: left;
   }
 }

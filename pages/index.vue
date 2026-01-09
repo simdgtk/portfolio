@@ -1,4 +1,3 @@
-
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useHead } from '#app';
@@ -19,7 +18,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Portfolio de Simon Daguet-Kargl, je suis un développeur front-end basé sur Bordeaux et Nantes. Découvrez mon portfolio de développeur frontend.'
+      content: 'Portfolio de Simon Daguet-Kargl, je suis un développeur front-end et web créatif basé sur Bordeaux et Nantes. Découvrez mon portfolio de développeur frontend.'
     }
   ],
   link: [
@@ -112,12 +111,8 @@ const projectsRef = ref([
 ])
 
 const projects = projectsRef.value;
-const containerRef = ref(null);
-const projectsContainerRef = ref(null);
-
 
 onMounted(() => {
-
 
   // GRILLE
   const gridElement = gridRef.value;
@@ -139,7 +134,6 @@ onMounted(() => {
         const cell = document.createElement('div');
         // décalage de 8px pour pas coller au bord
         cell.style.transform = `translate(${i * cellSize - 8}px, ${j * cellSize - 8}px)`;
-
         cell.className = 'grid__cell';
         cell.style.position = 'absolute';
         gridElement.appendChild(cell);
@@ -153,7 +147,7 @@ onMounted(() => {
     return;
   } else {
     mainRef.value.addEventListener('mousemove', (event) => {
-  const windowWidth = window.innerWidth;
+      const windowWidth = window.innerWidth;
       const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
       const x = Math.floor(event.clientX / cellSize);
       const y = Math.floor(event.clientY / cellSize);
@@ -180,9 +174,6 @@ onMounted(() => {
           }
         }, 2500);
       }
-
-
-
     });
   }
 
@@ -197,7 +188,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container" ref="containerRef">
+  <div class="container">
     <main ref="mainRef">
       <GrainFixed />
       <HeaderText />
@@ -208,17 +199,10 @@ onMounted(() => {
         <div class="grid" ref="gridRef"></div>
       </div>
     </main>
-    <div class="projects" ref="projectsContainerRef">
-      <ProjectCard
-        :container="mainRef"
-        v-for="(project, index) in projects"
-        :key="'project-' + index"
-        v-bind="project"
-        :class="{ 'last-child': index === projects.length - 1 }"
-        :keynumber="index"
-        :id="'project-' + index"
-        class="project"
-      />
+    <div class="projects">
+      <ProjectCard :container="mainRef" v-for="(project, index) in projects" :key="'project-' + index" v-bind="project"
+        :class="{ 'last-child': index === projects.length - 1 }" :keynumber="index" :id="'project-' + index"
+        class="project" />
     </div>
     <ScrollText />
     <AsciiConsole />
@@ -228,7 +212,6 @@ onMounted(() => {
 @use "@/assets/styles/variables.scss" as *;
 
 $cell-size: 50px;
-
 
 .cursor-dot {
   width: 5px;
@@ -294,7 +277,7 @@ main {
       filter: brightness(0.95);
     }
 
-    &:nth-child(7n) {
+    &:last-child {
       margin-bottom: 140vh;
     }
 

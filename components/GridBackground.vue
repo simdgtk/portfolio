@@ -90,7 +90,7 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/assets/styles/variables.scss" as *;
 
 $cell-size: 50px;
