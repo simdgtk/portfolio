@@ -28,7 +28,6 @@ a,
     background: currentColor;
     transform-origin: left;
     transform: scaleX(1);
-    will-change: transform;
   }
 
   &:hover::after {
