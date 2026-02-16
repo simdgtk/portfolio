@@ -113,8 +113,6 @@ const projectsRef = ref([
 const projects = projectsRef.value;
 
 onMounted(() => {
-
-  // GRILLE
   const gridElement = gridRef.value;
   const cells = ref([]);
 
@@ -132,7 +130,6 @@ onMounted(() => {
     for (let j = 0; j < gridHeight / cellSize + 2; j++) {
       for (let i = 0; i < gridWidth / cellSize + 2; i++) {
         const cell = document.createElement('div');
-        // décalage de 8px pour pas coller au bord
         cell.style.transform = `translate(${i * cellSize - 8}px, ${j * cellSize - 8}px)`;
         cell.className = 'grid__cell';
         cell.style.position = 'absolute';
