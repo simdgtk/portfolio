@@ -19,7 +19,7 @@ onMounted(() => {
   const gltfLoader = new GLTFLoader();
   const dracoLoader = new DRACOLoader();
   dracoLoader.setDecoderConfig({ type: 'js' });
-  dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+  dracoLoader.setDecoderPath('/draco/');
   gltfLoader.setDRACOLoader(dracoLoader);
   const cubeTextureLoader = new THREE.CubeTextureLoader();
 
@@ -44,7 +44,6 @@ onMounted(() => {
     height: window.innerHeight,
     width: window.innerWidth,
   };
-
 
   function updateModelTransforms() {
     // Rose
@@ -193,8 +192,6 @@ onMounted(() => {
   // Shader ascii
   // basé sur le tutoriel d'Alexandre PUJOL : https://medium.com/@alexandre.pujol/ascii-hover-effect-with-shader-and-post-processing-part-1-589064c33385
   const font = "arial";
-  // ¥ԪǾǼ#$¶
-  //  const characters = ` ░▒▓▄Zab[/><±Σ∑$§▌ABCWXgjkstyz2359¢"',:~\\|*`;
   const characters = ` ░▒Ǿ▄Δab[/><±Σ∑$§▌ABCWXgjkstyz2359¢"',:~\\|*`;
   const fontSize = 70;
   const cellSize = 8;

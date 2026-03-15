@@ -1,6 +1,7 @@
 <script setup>
 import { gsap } from 'gsap';
 import { VueLenis } from 'lenis/vue'
+import { ref, watchEffect } from 'vue';
 
 const lenisRef = ref()
 

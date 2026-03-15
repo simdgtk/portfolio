@@ -44,9 +44,7 @@ onMounted(() => {
   } else {
     mainRef.value.addEventListener('mousemove', (event) => {
       const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
       const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
-      const gridHeight = Math.floor(windowHeight / cellSize) * cellSize;
       const x = Math.floor(event.clientX / cellSize);
       const y = Math.floor(event.clientY / cellSize);
       const index = coordo2dTo1d(x, y, gridWidth / cellSize + 2);
@@ -135,14 +133,12 @@ main {
   left: 0;
   width: 100vw;
   height: 100dvh;
-  // overflow: hidden;
 
   &__cell {
     width: $cell-size;
     height: $cell-size;
     border: 1px solid $gray-border;
     background-color: $background-color;
-    // background-color: blue !important;
     transition: background-color 0.2s ease-in-out;
 
     &--gray {

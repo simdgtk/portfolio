@@ -69,6 +69,22 @@ const projectsRef = ref([
     tags: ["Anime.js", "GSAP"]
   },
   {
+    link: "https://3d-genealogy-tapestry.vercel.app/",
+    image: "/projects/project_tapestry.webp",
+    imageAlt: "Fresque généalogique en 3D",
+    title: "Fresque généalogique en 3D",
+    description: "Projet scolaire, la consigne était de faire un arbre généalogique, pour un projet full-stack. J'ai utilisé la lib EZ-Tree, et les utilisateurs peuvent créer leur arbre généalogique et le visualiser en 3D.",
+    tags: ["Mongo DB", "Nuxt", "Three.js"]
+  },
+  {
+    link: "https://tsl-intro.vercel.app/",
+    image: "/projects/project_tsl.webp",
+    imageAlt: "Projet d'introduction au TSL",
+    title: "Découverte du TSL / WebGPU",
+    description: "TSL, Three.js Shading Language, pour découvrir le webGPU, avec du postprocessing avec un effet de motion blur. J'ai modélisé les caméras sur Blender.",
+    tags: ["Three.js", "WebGPU", "Blender"]
+  },
+  {
     link: "https://www.youtube.com/watch?v=6LYfe4mrv_s",
     image: "/projects/project_motiondesign.webp",
     imageAlt: "Projet de motion design",
