@@ -1,42 +1,55 @@
 <script setup>
 import HeaderText from '@/components/HeaderText.vue';
 
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import LinksList from './components/LinksList.vue';
 
 const gridRef = ref(null);
 const mainRef = ref(null);
 const cellSize = 50;
+const cells = ref([]);
+let activeTimeouts = [];
 
-onMounted(() => {
+const coordo2dTo1d = (x, y, cellSize) => {
+  return y * cellSize + x;
+}
 
+const clearAllTimeouts = () => {
+  activeTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
+  activeTimeouts = [];
+};
+
+const createGrid = () => {
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
+  const gridHeight = Math.floor(windowHeight / cellSize) * cellSize;
   const gridElement = gridRef.value;
-  const cells = ref([]);
 
-  const coordo2dTo1d = (x, y, cellSize) => {
-    return y * cellSize + x;
-  }
+  for (let j = 0; j < gridHeight / cellSize + 2; j++) {
+    for (let i = 0; i < gridWidth / cellSize + 2; i++) {
+      const cell = document.createElement('div');
+      // décalage de 8px pour pas coller au bord
+      cell.style.transform = `translate(${i * cellSize - 8}px, ${j * cellSize - 8}px)`;
 
-  const createGrid = () => {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
-    const gridHeight = Math.floor(windowHeight / cellSize) * cellSize;
-    const gridElement = gridRef.value;
-
-    for (let j = 0; j < gridHeight / cellSize + 2; j++) {
-      for (let i = 0; i < gridWidth / cellSize + 2; i++) {
-        const cell = document.createElement('div');
-        // décalage de 8px pour pas coller au bord
-        cell.style.transform = `translate(${i * cellSize - 8}px, ${j * cellSize - 8}px)`;
-
-        cell.className = 'grid__cell';
-        cell.style.position = 'absolute';
-        gridElement.appendChild(cell);
-        cells.value.push(cell);
-      }
+      cell.className = 'grid__cell';
+      cell.style.position = 'absolute';
+      gridElement.appendChild(cell);
+      cells.value.push(cell);
     }
   }
+}
+
+let resizeHandler = () => {
+  clearAllTimeouts();
+  if (gridRef.value) {
+    gridRef.value.innerHTML = '';
+    cells.value = [];
+  }
+  createGrid();
+}
+
+onMounted(() => {
   createGrid();
 
   if ('ontouchstart' in window) {
@@ -54,36 +67,36 @@ onMounted(() => {
         cells.value[index + 1].classList.add('grid__cell--gray');
         cells.value[index + gridWidth / cellSize + 2].classList.add('grid__cell--gray');
 
-        setTimeout(() => {
+        const t1 = setTimeout(() => {
           if (cells.value[index]) {
             cells.value[index].classList.remove('grid__cell--gray');
           }
         }, 2500);
-        setTimeout(() => {
+        const t2 = setTimeout(() => {
           if (cells.value[index + gridWidth / cellSize + 2]) {
             cells.value[index + gridWidth / cellSize + 2].classList.remove('grid__cell--gray');
           }
         }, 2500);
-        setTimeout(() => {
+        const t3 = setTimeout(() => {
           if (cells.value[index + 1]) {
             cells.value[index + 1].classList.remove('grid__cell--gray');
           }
         }, 2500);
+
+        activeTimeouts.push(t1, t2, t3);
       }
-
-
-
     });
   }
+  window.addEventListener('resize', resizeHandler);
+});
+onUnmounted(() => {
+  window.removeEventListener('resize', resizeHandler);
+  clearAllTimeouts();
 
-  window.addEventListener('resize', () => {
-    if (gridRef.value) {
-      gridElement.innerHTML = '';
-      cells.value = [];
-    }
-    createGrid();
-  });
-
+  if (gridRef.value) {
+    gridRef.value.innerHTML = '';
+    cells.value = [];
+  }
 });
 </script>
 

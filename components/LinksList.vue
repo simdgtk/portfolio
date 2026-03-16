@@ -1,13 +1,18 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const mail = ref(null);
+let copyTimeout = null;
+
 const copyToClipboard = () => {
   navigator.clipboard.writeText(mail.value.innerText)
     .then(() => {
       mail.value.innerText = 'Mail copié !';
-      setTimeout(() => {
-        mail.value.innerText = 'simondaguetkargl@gmail.com';
+      if (copyTimeout) clearTimeout(copyTimeout);
+      copyTimeout = setTimeout(() => {
+        if (mail.value) {
+          mail.value.innerText = 'simondaguetkargl@gmail.com';
+        }
       }, 2000);
     })
     .catch(err => {
@@ -15,7 +20,16 @@ const copyToClipboard = () => {
     });
 };
 onMounted(() => {
-  mail.value.addEventListener('click', copyToClipboard);
+  if (mail.value) {
+    mail.value.addEventListener('click', copyToClipboard);
+  }
+});
+
+onUnmounted(() => {
+  if (mail.value) {
+    mail.value.removeEventListener('click', copyToClipboard);
+  }
+  if (copyTimeout) clearTimeout(copyTimeout);
 });
 </script>
 

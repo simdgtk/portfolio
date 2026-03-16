@@ -1,5 +1,5 @@
 <template>
-  <a :href="link" target="_blank" class="project-card" :id="id">
+  <a :href="link" target="_blank" class="project-card" :id="id" ref="cardRef">
     <div class="project-card__background">
       <NuxtImg class="project-card__background__image" loading="lazy" src="@/assets/images/holographic_texture.webp"
         alt="" />
@@ -23,7 +23,7 @@
   </a>
 </template>
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -40,25 +40,38 @@ const props = defineProps({
   id: String,
   keynumber: Number,
 })
+
+const cardRef = ref(null);
+
+let ctx;
+let mountedTimeout = null;
+
 onMounted(() => {
-  setTimeout(() => {
-    const triggerElement = props.container;
-    if (triggerElement) {
-      gsap.fromTo(`#${props.id}`, {
-        transform: props.keynumber % 2 ? "rotate(20deg)" : "rotate(-13deg)",
-      }, {
-        transform: props.keynumber % 2 ? "rotate(3deg)" : "rotate(-2deg)",
-        scrollTrigger: {
-          trigger: `#${props.id}`,
-          start: "top 100%",
-          end: "center 20%",
-          scrub: true,
-        },
-        ease: "power1.inOut",
-      });
-    }
-  }, 1000)
-})
+  mountedTimeout = setTimeout(() => {
+    ctx = gsap.context(() => {
+      if (cardRef.value) {
+        gsap.fromTo(cardRef.value, {
+          rotate: props.keynumber % 2 ? 20 : -13,
+        }, {
+          rotate: props.keynumber % 2 ? 3 : -2,
+          scrollTrigger: {
+            trigger: cardRef.value,
+            start: "top 100%",
+            end: "center 20%",
+            scrub: true,
+          },
+          ease: "power1.inOut",
+        });
+      }
+    });
+    ScrollTrigger.refresh();
+  }, 1000);
+});
+
+onUnmounted(() => {
+  if (mountedTimeout) clearTimeout(mountedTimeout);
+  ctx?.revert();
+});
 
 </script>
 <style lang="scss" scoped>

@@ -8,77 +8,99 @@ let mouseMoveHandler = null;
 let activeTimeouts = [];
 let cells = [];
 
-onMounted(() => {
-  if ('ontouchstart' in window) {
-    return;
-  } else {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
-    const gridHeight = Math.floor(windowHeight / cellSize) * cellSize;
-    const gridElement = gridRef.value;
-    cells = [];
+const clearAllTimeouts = () => {
+  activeTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
+  activeTimeouts = [];
+};
 
-    const coordo2dTo1d = (x, y, cellSize) => {
-      return y * cellSize + x;
+const createGrid = () => {
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
+  const gridHeight = Math.floor(windowHeight / cellSize) * cellSize;
+  const gridElement = gridRef.value;
+
+  if (!gridElement) return;
+
+  cells = [];
+  gridElement.innerHTML = '';
+
+  const coordo2dTo1d = (x, y, cellSize) => {
+    return y * cellSize + x;
+  }
+
+  for (let j = 0; j < gridHeight / cellSize + 2; j++) {
+    for (let i = 0; i < gridWidth / cellSize + 2; i++) {
+      const cell = document.createElement('div');
+      cell.style.transform = `translate(${i * cellSize - 8}px, ${j * cellSize - 8}px)`;
+
+      cell.className = 'grid__cell';
+      cell.style.position = 'absolute';
+      gridElement.appendChild(cell);
+      cells.push(cell);
     }
+  }
 
-    for (let j = 0; j < gridHeight / cellSize + 2; j++) {
-      for (let i = 0; i < gridWidth / cellSize + 2; i++) {
-        const cell = document.createElement('div');
-        cell.style.transform = `translate(${i * cellSize - 8}px, ${j * cellSize - 8}px)`;
-
-        cell.className = 'grid__cell';
-        cell.style.position = 'absolute';
-        gridElement.appendChild(cell);
-        cells.push(cell);
-      }
-    }
-
+  if (!mouseMoveHandler && !('ontouchstart' in window)) {
     mouseMoveHandler = (event) => {
       const x = Math.floor(event.clientX / cellSize);
       const y = Math.floor(event.clientY / cellSize);
       const index = coordo2dTo1d(x, y, gridWidth / cellSize + 2);
 
-      cells[index].classList.add('grid__cell--gray');
-      cells[index + 1].classList.add('grid__cell--gray');
-      cells[index + gridWidth / cellSize + 2].classList.add('grid__cell--gray');
+      if (cells[index]) {
+        cells[index].classList.add('grid__cell--gray');
 
-      const timeout1 = setTimeout(() => {
-        cells[index].classList.remove('grid__cell--gray');
-      }, 2500);
-      const timeout2 = setTimeout(() => {
-        cells[index + gridWidth / cellSize + 2].classList.remove('grid__cell--gray');
-      }, 2500);
-      const timeout3 = setTimeout(() => {
-        cells[index + 1].classList.remove('grid__cell--gray');
-      }, 2500);
+        const t1 = setTimeout(() => {
+          if (cells[index]) cells[index].classList.remove('grid__cell--gray');
+        }, 2500);
+        activeTimeouts.push(t1);
+      }
 
-      activeTimeouts.push(timeout1, timeout2, timeout3);
+      if (cells[index + 1]) {
+        cells[index + 1].classList.add('grid__cell--gray');
+        const t2 = setTimeout(() => {
+          if (cells[index + 1]) cells[index + 1].classList.remove('grid__cell--gray');
+        }, 2500);
+        activeTimeouts.push(t2);
+      }
+
+      if (cells[index + gridWidth / cellSize + 2]) {
+        cells[index + gridWidth / cellSize + 2].classList.add('grid__cell--gray');
+        const t3 = setTimeout(() => {
+          if (cells[index + gridWidth / cellSize + 2]) {
+            cells[index + gridWidth / cellSize + 2].classList.remove('grid__cell--gray');
+          }
+        }, 2500);
+        activeTimeouts.push(t3);
+      }
     };
-
     gridRef.value.addEventListener('mousemove', mouseMoveHandler);
   }
+};
 
+const handleResize = () => {
+  clearAllTimeouts();
+  createGrid();
+};
+
+onMounted(() => {
+  createGrid();
+  window.addEventListener('resize', handleResize);
 });
 
 onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
   if (gridRef.value && mouseMoveHandler) {
     gridRef.value.removeEventListener('mousemove', mouseMoveHandler);
   }
 
-  activeTimeouts.forEach(timeoutId => {
-    clearTimeout(timeoutId);
-  });
+  clearAllTimeouts();
 
   if (gridRef.value) {
-    while (gridRef.value.firstChild) {
-      gridRef.value.removeChild(gridRef.value.firstChild);
-    }
+    gridRef.value.innerHTML = '';
   }
 
   mouseMoveHandler = null;
-  activeTimeouts = [];
   cells = [];
 });
 </script>

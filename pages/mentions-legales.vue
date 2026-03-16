@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useHead } from '#app';
 
 import HeaderText from '@/components/HeaderText.vue';
@@ -19,82 +19,102 @@ useHead({
   ],
 });
 
-onMounted(() => {
+const cells = ref([]);
+let activeTimeouts = [];
 
+const coordo2dTo1d = (x, y, cellSize) => {
+  return y * cellSize + x;
+}
+
+const clearAllTimeouts = () => {
+  activeTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
+  activeTimeouts = [];
+};
+
+const createGrid = () => {
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
+  const gridHeight = Math.floor(windowHeight / cellSize) * cellSize;
   const gridElement = gridRef.value;
-  const cells = ref([]);
 
-  const coordo2dTo1d = (x, y, cellSize) => {
-    return y * cellSize + x;
-  }
+  if (!gridElement) return;
 
-  const createGrid = () => {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
-    const gridHeight = Math.floor(windowHeight / cellSize) * cellSize;
-    const gridElement = gridRef.value;
+  for (let j = 0; j < gridHeight / cellSize + 2; j++) {
+    for (let i = 0; i < gridWidth / cellSize + 2; i++) {
+      const cell = document.createElement('div');
+      // décalage de 8px pour pas coller au bord
+      cell.style.transform = `translate(${i * cellSize - 8}px, ${j * cellSize - 8}px)`;
 
-    for (let j = 0; j < gridHeight / cellSize + 2; j++) {
-      for (let i = 0; i < gridWidth / cellSize + 2; i++) {
-        const cell = document.createElement('div');
-        // décalage de 8px pour pas coller au bord
-        cell.style.transform = `translate(${i * cellSize - 8}px, ${j * cellSize - 8}px)`;
-
-        cell.className = 'grid__cell';
-        cell.style.position = 'absolute';
-        gridElement.appendChild(cell);
-        cells.value.push(cell);
-      }
+      cell.className = 'grid__cell';
+      cell.style.position = 'absolute';
+      gridElement.appendChild(cell);
+      cells.value.push(cell);
     }
+  }
+}
+
+const handleMouseMove = (event) => {
+  const windowWidth = window.innerWidth;
+  const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
+  const x = Math.floor(event.clientX / cellSize);
+  const y = Math.floor(event.clientY / cellSize);
+  const index = coordo2dTo1d(x, y, gridWidth / cellSize + 2);
+
+  if (cells.value[index]) {
+    cells.value[index].classList.add('grid__cell--gray');
+    cells.value[index + 1].classList.add('grid__cell--gray');
+    cells.value[index + gridWidth / cellSize + 2].classList.add('grid__cell--gray');
+
+    const t1 = setTimeout(() => {
+      if (cells.value[index]) {
+        cells.value[index].classList.remove('grid__cell--gray');
+      }
+    }, 2500);
+    const t2 = setTimeout(() => {
+      if (cells.value[index + gridWidth / cellSize + 2]) {
+        cells.value[index + gridWidth / cellSize + 2].classList.remove('grid__cell--gray');
+      }
+    }, 2500);
+    const t3 = setTimeout(() => {
+      if (cells.value[index + 1]) {
+        cells.value[index + 1].classList.remove('grid__cell--gray');
+      }
+    }, 2500);
+
+    activeTimeouts.push(t1, t2, t3);
+  }
+};
+
+const handleResize = () => {
+  clearAllTimeouts();
+  if (gridRef.value) {
+    gridRef.value.innerHTML = '';
+    cells.value = [];
   }
   createGrid();
+};
 
-  if ('ontouchstart' in window) {
-    return;
-  } else {
-    mainRef.value.addEventListener('mousemove', (event) => {
-      const windowWidth = window.innerWidth;
-      const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
-      const x = Math.floor(event.clientX / cellSize);
-      const y = Math.floor(event.clientY / cellSize);
-      const index = coordo2dTo1d(x, y, gridWidth / cellSize + 2);
+onMounted(() => {
+  createGrid();
 
-      if (cells.value[index]) {
-        cells.value[index].classList.add('grid__cell--gray');
-        cells.value[index + 1].classList.add('grid__cell--gray');
-        cells.value[index + gridWidth / cellSize + 2].classList.add('grid__cell--gray');
-
-        setTimeout(() => {
-          if (cells.value[index]) {
-            cells.value[index].classList.remove('grid__cell--gray');
-          }
-        }, 2500);
-        setTimeout(() => {
-          if (cells.value[index + gridWidth / cellSize + 2]) {
-            cells.value[index + gridWidth / cellSize + 2].classList.remove('grid__cell--gray');
-          }
-        }, 2500);
-        setTimeout(() => {
-          if (cells.value[index + 1]) {
-            cells.value[index + 1].classList.remove('grid__cell--gray');
-          }
-        }, 2500);
-      }
-
-
-
-    });
+  if (!('ontouchstart' in window) && mainRef.value) {
+    mainRef.value.addEventListener('mousemove', handleMouseMove);
   }
 
-  window.addEventListener('resize', () => {
-    if (gridRef.value) {
-      gridElement.innerHTML = '';
-      cells.value = [];
-    }
-    createGrid();
-  });
+  window.addEventListener('resize', handleResize);
+});
 
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+  if (mainRef.value) {
+    mainRef.value.removeEventListener('mousemove', handleMouseMove);
+  }
+  clearAllTimeouts();
+  if (gridRef.value) {
+    gridRef.value.innerHTML = '';
+    cells.value = [];
+  }
 });
 </script>
 

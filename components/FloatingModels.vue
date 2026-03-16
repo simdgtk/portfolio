@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
@@ -71,6 +71,7 @@ onMounted(() => {
   let pcOldX = 0, pcOldY = 0;
 
   //  resize
+
   function handleResize() {
     // update sizes
     sizes.width = window.innerWidth;
@@ -97,13 +98,47 @@ onMounted(() => {
     pcOldX = 0; pcOldY = 0;
   }
 
-  window.addEventListener("resize", handleResize);
-  window.addEventListener("orientationchange", handleResize);
-  document.addEventListener("visibilitychange", () => {
+  const handleVisibilityChange = () => {
     if (!document.hidden) {
       handleResize();
     }
-  });
+  };
+
+  const handleMouseMoveParallaxRose = (event) => {
+    if (!model) return;
+    const x = (event.clientX / sizes.width) * 2 - 1;
+    const y = -(event.clientY / sizes.height) * 2 + 1;
+
+    model.position.y += (x - roseOldX) * 0.05;
+    model.position.x += (y - roseOldY) * 0.05;
+
+    roseOldX = x;
+    roseOldY = y;
+  };
+
+  const handleMouseMoveParallaxPc = (event) => {
+    if (!pc) return;
+    const x = (event.clientX / sizes.width) * 2 - 1;
+    const y = -(event.clientY / sizes.height) * 2 + 1;
+
+    pc.position.y += (x - pcOldX) * -0.05;
+    pc.position.x += (y - pcOldY) * -0.05;
+
+    pcOldX = x;
+    pcOldY = y;
+  };
+
+  const handleMouseMoveShader = (event) => {
+    targetPosition.x = event.clientX / sizes.width;
+    targetPosition.y = 1.0 - (event.clientY / sizes.height);
+  };
+
+  window.addEventListener("resize", handleResize);
+  window.addEventListener("orientationchange", handleResize);
+  document.addEventListener("visibilitychange", handleVisibilityChange);
+  window.addEventListener("mousemove", handleMouseMoveParallaxRose);
+  window.addEventListener("mousemove", handleMouseMoveParallaxPc);
+  window.addEventListener("mousemove", handleMouseMoveShader);
 
   // Model loading
   let model = null;
@@ -117,18 +152,6 @@ onMounted(() => {
     updateModelTransforms();
     model.material = chromeMaterial;
     scene.add(model);
-
-    // parallax effect
-    window.addEventListener("mousemove", (event) => {
-      const x = (event.clientX / sizes.width) * 2 - 1;
-      const y = -(event.clientY / sizes.height) * 2 + 1;
-
-      model.position.y += (x - roseOldX) * 0.05;
-      model.position.x += (y - roseOldY) * 0.05;
-
-      roseOldX = x;
-      roseOldY = y;
-    });
   });
 
   // Model loading
@@ -142,18 +165,6 @@ onMounted(() => {
     updateModelTransforms();
     pc.material = chromeMaterial;
     scene.add(pc);
-
-    // parallax effect
-    window.addEventListener("mousemove", (event) => {
-      const x = (event.clientX / sizes.width) * 2 - 1;
-      const y = -(event.clientY / sizes.height) * 2 + 1;
-
-      pc.position.y += (x - pcOldX) * -0.05;
-      pc.position.x += (y - pcOldY) * -0.05;
-
-      pcOldX = x;
-      pcOldY = y;
-    });
   });
 
   // Camera setup
@@ -335,11 +346,6 @@ onMounted(() => {
   let mousePosition = { x: 0.5, y: 0.5 };
   let targetPosition = { x: 0.5, y: 0.5 };
 
-  window.addEventListener("mousemove", (event) => {
-    targetPosition.x = event.clientX / sizes.width;
-    targetPosition.y = 1.0 - (event.clientY / sizes.height); // Inverser Y pour correspondre aux UV
-  });
-
   // Output pass (final)
   const outputPass = new OutputPass();
   composer.addPass(outputPass);
@@ -370,6 +376,19 @@ onMounted(() => {
   }
 
   renderer.setAnimationLoop(animate);
+
+  onUnmounted(() => {
+    window.removeEventListener("resize", handleResize);
+    window.removeEventListener("orientationchange", handleResize);
+    document.removeEventListener("visibilitychange", handleVisibilityChange);
+    window.removeEventListener("mousemove", handleMouseMoveParallaxRose);
+    window.removeEventListener("mousemove", handleMouseMoveParallaxPc);
+    window.removeEventListener("mousemove", handleMouseMoveShader);
+
+    renderer.setAnimationLoop(null);
+    renderer.dispose();
+    scene.clear();
+  });
 });
 </script>
 
