@@ -59,6 +59,8 @@ onMounted(() => {
             start: "top 100%",
             end: "center 20%",
             scrub: true,
+            fastScrollEnd: true,
+            preventOverlaps: true,
           },
           ease: "power1.inOut",
         });

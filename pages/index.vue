@@ -237,10 +237,12 @@ onUnmounted(() => {
         <div class="grid" ref="gridRef"></div>
       </div>
     </main>
-    <div class="projects">
-      <ProjectCard :container="mainRef" v-for="(project, index) in projects" :key="'project-' + index" v-bind="project"
-        :class="{ 'last-child': index === projects.length - 1 }" :keynumber="index" :id="'project-' + index"
-        class="project" />
+    <div class="projects-container">
+      <div class="projects">
+        <ProjectCard :container="mainRef" v-for="(project, index) in projects" :key="'project-' + index" v-bind="project"
+          :class="{ 'last-child': index === projects.length - 1 }" :keynumber="index" :id="'project-' + index"
+          class="project" />
+      </div>
     </div>
     <ScrollText />
     <AsciiConsole />
@@ -285,15 +287,19 @@ main {
   position: relative;
 }
 
-.projects {
+.projects-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: fit-content;
   max-width: 100vw;
-  transform: translateY(140vh);
   pointer-events: none;
+}
+
+.projects {
+  position: relative;
+  margin-top: 140vh;
   display: flex;
   flex-direction: column;
   opacity: 1;
@@ -313,10 +319,6 @@ main {
 
     &:hover {
       filter: brightness(0.95);
-    }
-
-    &:last-child {
-      margin-bottom: 140vh;
     }
 
     &.last-child {
