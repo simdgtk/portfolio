@@ -10,6 +10,7 @@ watchEffect((onInvalidate) => {
     lenisRef.value?.lenis?.raf(time * 1000)
   }
   gsap.ticker.add(update)
+  gsap.ticker.lagSmoothing(0)
 
   onInvalidate(() => {
     gsap.ticker.remove(update)

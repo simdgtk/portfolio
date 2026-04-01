@@ -59,8 +59,6 @@ onMounted(() => {
             start: "top 100%",
             end: "center 20%",
             scrub: true,
-            fastScrollEnd: true,
-            preventOverlaps: true,
           },
           ease: "power1.inOut",
         });
@@ -98,6 +96,8 @@ onUnmounted(() => {
   overflow: hidden;
   position: relative;
   pointer-events: all;
+  will-change: transform;
+  transform: translateZ(0);
 
   &::after {
     display: none;
@@ -150,9 +150,13 @@ onUnmounted(() => {
 
   &__image-container {
     max-width: toRem(300);
-    width: fit-content;
-    height: fit-content;
+    width: 300px;
     aspect-ratio: 4/3;
+    flex-shrink: 0;
+
+    @media screen and (max-width: 930px) {
+        width: 100vw;
+    }
 
     img {
       width: 100%;
