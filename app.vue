@@ -30,6 +30,5 @@ watchEffect((onInvalidate) => {
 <style lang="scss">
 .main-container {
   height: 100%;
-
 }
 </style>

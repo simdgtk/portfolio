@@ -325,7 +325,6 @@ main {
       margin-bottom: 140vh !important;
     }
   }
-
 }
 
 .container {

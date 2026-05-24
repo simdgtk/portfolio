@@ -1,20 +1,33 @@
 <template>
   <a :href="link" target="_blank" class="project-card" :id="id" ref="cardRef">
     <div class="project-card__background">
-      <NuxtImg class="project-card__background__image" loading="lazy" src="@/assets/images/holographic_texture.webp"
-        alt="" />
+      <div class="project-card__background__image"></div>
     </div>
     <div class="project-card__else">
       <div class="project-card__image-container">
-        <NuxtImg class="project-card__image" :src="image" :alt="imageAlt" :title="imageAlt" loading="lazy" />
+        <NuxtImg
+          class="project-card__image"
+          :src="image"
+          :alt="imageAlt"
+          :title="imageAlt"
+          loading="lazy"
+          sizes="100vw md:300px"
+          quality="80"
+          format="webp"
+        />
       </div>
       <div class="project-card__separator"></div>
       <div class="project-card__text">
         <h2 class="project-card__text__title">{{ title }}</h2>
         <p class="project-card__text__description">
-          {{ description }}</p>
+          {{ description }}
+        </p>
         <div class="project-card__text__tags">
-          <span v-for="(tag, index) in tags" :key="index" class="project-card__text__tags__tag">
+          <span
+            v-for="(tag, index) in tags"
+            :key="index"
+            class="project-card__text__tags__tag"
+          >
             {{ tag }}
           </span>
         </div>
@@ -23,11 +36,11 @@
   </a>
 </template>
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue';
-import { gsap } from 'gsap';
+import { onMounted, onUnmounted, ref } from "vue";
+import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const props = defineProps({
   link: String,
@@ -39,7 +52,7 @@ const props = defineProps({
   container: Object,
   id: String,
   keynumber: Number,
-})
+});
 
 const cardRef = ref(null);
 
@@ -50,18 +63,22 @@ onMounted(() => {
   mountedTimeout = setTimeout(() => {
     ctx = gsap.context(() => {
       if (cardRef.value) {
-        gsap.fromTo(cardRef.value, {
-          rotate: props.keynumber % 2 ? 20 : -13,
-        }, {
-          rotate: props.keynumber % 2 ? 3 : -2,
-          scrollTrigger: {
-            trigger: cardRef.value,
-            start: "top 100%",
-            end: "center 20%",
-            scrub: true,
+        gsap.fromTo(
+          cardRef.value,
+          {
+            rotate: props.keynumber % 2 ? 20 : -13,
           },
-          ease: "power1.inOut",
-        });
+          {
+            rotate: props.keynumber % 2 ? 3 : -2,
+            scrollTrigger: {
+              trigger: cardRef.value,
+              start: "top 100%",
+              end: "center 20%",
+              scrub: true,
+            },
+            ease: "power1.inOut",
+          },
+        );
       }
     });
     ScrollTrigger.refresh();
@@ -72,11 +89,10 @@ onUnmounted(() => {
   if (mountedTimeout) clearTimeout(mountedTimeout);
   ctx?.revert();
 });
-
 </script>
 <style lang="scss" scoped>
-@use '@/assets/styles/_utils' as *;
-@use '@/assets/styles/_variables' as *;
+@use "@/assets/styles/_utils" as *;
+@use "@/assets/styles/_variables" as *;
 
 .container {
   height: 100dvh;
@@ -104,15 +120,15 @@ onUnmounted(() => {
   }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: repeat url('@/assets/images/grain.webp');
+    background: repeat url("/images/grain.webp");
     z-index: 20;
-    opacity: 0.5;
+    opacity: 0.38;
     image-rendering: pixelated;
   }
 
@@ -124,16 +140,22 @@ onUnmounted(() => {
     width: 110%;
     height: 110%;
     z-index: 2;
-    opacity: 0.39;
     overflow: hidden;
   }
 
   &__background__image {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
     user-select: none;
     pointer-events: none;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    background: repeat url("/images/holographic_texture.webp");
+    background-size: cover;
+    opacity: 0.2;
   }
 
   &__else {
@@ -155,10 +177,10 @@ onUnmounted(() => {
     flex-shrink: 0;
 
     @media screen and (max-width: 930px) {
-        width: 100vw;
+      width: 100vw;
     }
 
-    img {
+    .project-card__image {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -208,7 +230,6 @@ onUnmounted(() => {
         filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 1));
       }
     }
-
   }
 
   &__separator {
@@ -217,6 +238,5 @@ onUnmounted(() => {
     margin-left: 12px;
     border-left: 1px dashed $gray-border;
   }
-
 }
 </style>

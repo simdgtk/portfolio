@@ -1,6 +1,5 @@
 <template>
-  <div class="grain">
-  </div>
+  <div class="grain"></div>
 </template>
 <style scoped>
 .grain {
@@ -11,9 +10,9 @@
   left: 0;
   width: 100vw;
   height: 100dvh;
-  background: repeat url('@/assets/images/grain.webp');
+  background: repeat url("/images/grain.webp");
   z-index: 100;
   image-rendering: pixelated;
-
+  opacity: 0.8;
 }
 </style>

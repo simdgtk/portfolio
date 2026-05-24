@@ -1,6 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
+  routeRules: {
+    '/_ipx/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/images/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/projects/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/environment_maps/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/draco/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/models/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+  },
   devtools: { enabled: true },
   modules: ["lenis/nuxt", "@nuxt/image"],
   alias: {
