@@ -67,8 +67,8 @@ onMounted(() => {
   }
 
   // effet parallax
-  let roseOldX = 0, roseOldY = 0;
-  let pcOldX = 0, pcOldY = 0;
+  let parallaxTarget = { x: 0, y: 0 };
+  let parallaxCurrent = { x: 0, y: 0 };
 
   //  resize
 
@@ -94,8 +94,8 @@ onMounted(() => {
 
     updateModelTransforms();
 
-    roseOldX = 0; roseOldY = 0;
-    pcOldX = 0; pcOldY = 0;
+    parallaxTarget.x = 0; parallaxTarget.y = 0;
+    parallaxCurrent.x = 0; parallaxCurrent.y = 0;
   }
 
   const handleVisibilityChange = () => {
@@ -104,28 +104,9 @@ onMounted(() => {
     }
   };
 
-  const handleMouseMoveParallaxRose = (event) => {
-    if (!model) return;
-    const x = (event.clientX / sizes.width) * 2 - 1;
-    const y = -(event.clientY / sizes.height) * 2 + 1;
-
-    model.position.y += (x - roseOldX) * 0.05;
-    model.position.x += (y - roseOldY) * 0.05;
-
-    roseOldX = x;
-    roseOldY = y;
-  };
-
-  const handleMouseMoveParallaxPc = (event) => {
-    if (!pc) return;
-    const x = (event.clientX / sizes.width) * 2 - 1;
-    const y = -(event.clientY / sizes.height) * 2 + 1;
-
-    pc.position.y += (x - pcOldX) * -0.05;
-    pc.position.x += (y - pcOldY) * -0.05;
-
-    pcOldX = x;
-    pcOldY = y;
+  const handleMouseMoveParallax = (event) => {
+    parallaxTarget.x = (event.clientX / sizes.width) * 2 - 1;
+    parallaxTarget.y = -(event.clientY / sizes.height) * 2 + 1;
   };
 
   const handleMouseMoveShader = (event) => {
@@ -136,8 +117,7 @@ onMounted(() => {
   window.addEventListener("resize", handleResize);
   window.addEventListener("orientationchange", handleResize);
   document.addEventListener("visibilitychange", handleVisibilityChange);
-  window.addEventListener("mousemove", handleMouseMoveParallaxRose);
-  window.addEventListener("mousemove", handleMouseMoveParallaxPc);
+  window.addEventListener("mousemove", handleMouseMoveParallax);
   window.addEventListener("mousemove", handleMouseMoveShader);
 
   // Model loading
@@ -361,6 +341,27 @@ onMounted(() => {
     // Mettre à jour l'uniform du shader
     asciiPass.uniforms['uMouse'].value.set(mousePosition.x, mousePosition.y);
 
+    // Lerp pour le parallax des modèles
+    const lerpFactor = 0.05;
+    const oldX = parallaxCurrent.x;
+    const oldY = parallaxCurrent.y;
+    
+    parallaxCurrent.x += (parallaxTarget.x - parallaxCurrent.x) * lerpFactor;
+    parallaxCurrent.y += (parallaxTarget.y - parallaxCurrent.y) * lerpFactor;
+    
+    const deltaX = parallaxCurrent.x - oldX;
+    const deltaY = parallaxCurrent.y - oldY;
+
+    if (model) {
+      model.position.y += deltaX * 0.05;
+      model.position.x += deltaY * 0.05;
+    }
+    
+    if (pc) {
+      pc.position.y += deltaX * -0.05;
+      pc.position.x += deltaY * -0.05;
+    }
+
     if (model && pc) {
       const elapsedTime = Date.now() * 0.001;
       model.rotation.x = (Math.cos((elapsedTime / 4) * speed.value) / 8) * rotationIntensity.value + 1.43;
@@ -381,8 +382,7 @@ onMounted(() => {
     window.removeEventListener("resize", handleResize);
     window.removeEventListener("orientationchange", handleResize);
     document.removeEventListener("visibilitychange", handleVisibilityChange);
-    window.removeEventListener("mousemove", handleMouseMoveParallaxRose);
-    window.removeEventListener("mousemove", handleMouseMoveParallaxPc);
+    window.removeEventListener("mousemove", handleMouseMoveParallax);
     window.removeEventListener("mousemove", handleMouseMoveShader);
 
     renderer.setAnimationLoop(null);
