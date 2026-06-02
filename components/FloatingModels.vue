@@ -1,25 +1,36 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
-import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { ref, onMounted, onUnmounted } from "vue";
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
+import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 
+const emit = defineEmits(["loaded"]);
 
 const canvasRef = ref(null);
+const modelsLoaded = ref(false);
 
 onMounted(() => {
+  let loadedCount = 0;
+  const checkLoaded = () => {
+    loadedCount++;
+    if (loadedCount === 2) {
+      modelsLoaded.value = true;
+      emit("loaded");
+    }
+  };
+
   // Scene setup
   const scene = new THREE.Scene();
 
   // Loaders
   const gltfLoader = new GLTFLoader();
   const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderConfig({ type: 'js' });
-  dracoLoader.setDecoderPath('/draco/');
+  dracoLoader.setDecoderConfig({ type: "js" });
+  dracoLoader.setDecoderPath("/draco/");
   gltfLoader.setDRACOLoader(dracoLoader);
   const cubeTextureLoader = new THREE.CubeTextureLoader();
 
@@ -37,7 +48,7 @@ onMounted(() => {
     iridescenceIOR: 1.4,
     iridescenceThicknessRange: [0, 1000],
     sheen: 2.0,
-    sheenColor: new THREE.Color(0x4232ff)
+    sheenColor: new THREE.Color(0x4232ff),
   });
 
   let sizes = {
@@ -48,20 +59,44 @@ onMounted(() => {
   function updateModelTransforms() {
     // Rose
     if (model) {
-      model.position.set((-sizes.width * 0.9) / 300, (-sizes.height * 0.8) / 300, 1);
+      model.position.set(
+        (-sizes.width * 0.9) / 300,
+        (-sizes.height * 0.8) / 300,
+        1,
+      );
       if (sizes.width > sizes.height) {
-        model.scale.set((sizes.width * 0.6) / 400, (sizes.width * 0.5) / 400, (sizes.width * 0.6) / 400);
+        model.scale.set(
+          (sizes.width * 0.6) / 400,
+          (sizes.width * 0.5) / 400,
+          (sizes.width * 0.6) / 400,
+        );
       } else {
-        model.scale.set((sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300);
+        model.scale.set(
+          (sizes.height * 0.5) / 300,
+          (sizes.height * 0.5) / 300,
+          (sizes.height * 0.5) / 300,
+        );
       }
     }
     // PC
     if (pc) {
-      pc.position.set((sizes.width * 0.9) / 300 - 1, (sizes.height * 0.7) / 300 - 1, 1);
+      pc.position.set(
+        (sizes.width * 0.9) / 300 - 1,
+        (sizes.height * 0.7) / 300 - 1,
+        1,
+      );
       if (sizes.width > sizes.height) {
-        pc.scale.set((sizes.width * 0.57) / 400, (sizes.width * 0.57) / 400, (sizes.width * 0.57) / 400);
+        pc.scale.set(
+          (sizes.width * 0.57) / 400,
+          (sizes.width * 0.57) / 400,
+          (sizes.width * 0.57) / 400,
+        );
       } else {
-        pc.scale.set((sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300, (sizes.height * 0.5) / 300);
+        pc.scale.set(
+          (sizes.height * 0.5) / 300,
+          (sizes.height * 0.5) / 300,
+          (sizes.height * 0.5) / 300,
+        );
       }
     }
   }
@@ -88,14 +123,17 @@ onMounted(() => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     composer.setSize(sizes.width, sizes.height);
+    composer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     // Mettre à jour la résolution du shader ASCII
-    asciiPass.uniforms['uResolution'].value.set(sizes.width, sizes.height);
+    asciiPass.uniforms["uResolution"].value.set(sizes.width, sizes.height);
 
     updateModelTransforms();
 
-    parallaxTarget.x = 0; parallaxTarget.y = 0;
-    parallaxCurrent.x = 0; parallaxCurrent.y = 0;
+    parallaxTarget.x = 0;
+    parallaxTarget.y = 0;
+    parallaxCurrent.x = 0;
+    parallaxCurrent.y = 0;
   }
 
   const handleVisibilityChange = () => {
@@ -111,7 +149,7 @@ onMounted(() => {
 
   const handleMouseMoveShader = (event) => {
     targetPosition.x = event.clientX / sizes.width;
-    targetPosition.y = 1.0 - (event.clientY / sizes.height);
+    targetPosition.y = 1.0 - event.clientY / sizes.height;
   };
 
   window.addEventListener("resize", handleResize);
@@ -132,6 +170,7 @@ onMounted(() => {
     updateModelTransforms();
     model.material = chromeMaterial;
     scene.add(model);
+    checkLoaded();
   });
 
   // Model loading
@@ -140,11 +179,12 @@ onMounted(() => {
     pc = gltf.scene.children[0];
     pc.rotation.x = 0.34;
     pc.rotation.y = 0.61;
-    pc.rotation.z = -0.20;
+    pc.rotation.z = -0.2;
 
     updateModelTransforms();
     pc.material = chromeMaterial;
     scene.add(pc);
+    checkLoaded();
   });
 
   // Camera setup
@@ -154,7 +194,7 @@ onMounted(() => {
     sizes.height / 300,
     -sizes.height / 300,
     0.1,
-    1000
+    1000,
   );
   scene.add(camera);
   camera.position.set(0, 0, 10);
@@ -170,11 +210,21 @@ onMounted(() => {
   scene.environment = environmentMap;
 
   // Renderer setup
-  const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.value, antialias: true, alpha: true });
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvasRef.value,
+    antialias: true,
+    alpha: true,
+  });
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   // Post-processing setup
-  let composer = new EffectComposer(renderer);
+  const renderTarget = new THREE.WebGLRenderTarget(
+    window.innerWidth,
+    window.innerHeight,
+  );
+  let composer = new EffectComposer(renderer, renderTarget);
+  composer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   // Base render pass
   const renderPass = new RenderPass(scene, camera);
@@ -202,7 +252,7 @@ onMounted(() => {
       THREE.RepeatWrapping,
       THREE.RepeatWrapping,
       THREE.NearestFilter,
-      THREE.NearestFilter
+      THREE.NearestFilter,
     );
     const context = canvas.getContext("2d");
 
@@ -225,14 +275,16 @@ onMounted(() => {
 
   const asciiShader = {
     uniforms: {
-      'tDiffuse': { value: null },
-      'uCharacters': { value: createCharactersTexture(characters, font, fontSize) },
-      'uCellSize': { value: cellSize },
-      'uCharactersCount': { value: characters.length },
-      'uColor': { value: new THREE.Color(color) },
-      'uInvert': { value: invert },
-      'uResolution': { value: new THREE.Vector2(sizes.width, sizes.height) },
-      'uMouse': { value: new THREE.Vector2(0.5, 0.5) }
+      tDiffuse: { value: null },
+      uCharacters: {
+        value: createCharactersTexture(characters, font, fontSize),
+      },
+      uCellSize: { value: cellSize },
+      uCharactersCount: { value: characters.length },
+      uColor: { value: new THREE.Color(color) },
+      uInvert: { value: invert },
+      uResolution: { value: new THREE.Vector2(sizes.width, sizes.height) },
+      uMouse: { value: new THREE.Vector2(0.5, 0.5) },
     },
     vertexShader: `
       varying vec2 vUv;
@@ -313,7 +365,7 @@ onMounted(() => {
           asciiCharacter.a = pixelized.a;
           gl_FragColor = mix(normalTexture, asciiCharacter, circle);
       }
-    `
+    `,
   };
 
   const asciiPass = new ShaderPass(asciiShader);
@@ -330,7 +382,6 @@ onMounted(() => {
   const outputPass = new OutputPass();
   composer.addPass(outputPass);
 
-
   // Animation loop
   const speed = ref(1);
   const rotationIntensity = ref(1);
@@ -339,16 +390,16 @@ onMounted(() => {
     mousePosition.y = lerp(mousePosition.y, targetPosition.y, 0.09);
 
     // Mettre à jour l'uniform du shader
-    asciiPass.uniforms['uMouse'].value.set(mousePosition.x, mousePosition.y);
+    asciiPass.uniforms["uMouse"].value.set(mousePosition.x, mousePosition.y);
 
     // Lerp pour le parallax des modèles
     const lerpFactor = 0.05;
     const oldX = parallaxCurrent.x;
     const oldY = parallaxCurrent.y;
-    
+
     parallaxCurrent.x += (parallaxTarget.x - parallaxCurrent.x) * lerpFactor;
     parallaxCurrent.y += (parallaxTarget.y - parallaxCurrent.y) * lerpFactor;
-    
+
     const deltaX = parallaxCurrent.x - oldX;
     const deltaY = parallaxCurrent.y - oldY;
 
@@ -356,7 +407,7 @@ onMounted(() => {
       model.position.y += deltaX * 0.05;
       model.position.x += deltaY * 0.05;
     }
-    
+
     if (pc) {
       pc.position.y += deltaX * -0.05;
       pc.position.x += deltaY * -0.05;
@@ -364,13 +415,31 @@ onMounted(() => {
 
     if (model && pc) {
       const elapsedTime = Date.now() * 0.001;
-      model.rotation.x = (Math.cos((elapsedTime / 4) * speed.value) / 8) * rotationIntensity.value + 1.43;
-      model.rotation.y = (Math.sin((elapsedTime / 4) * speed.value) / 8) * rotationIntensity.value + 1.02;
-      model.rotation.z = (Math.sin((elapsedTime / 4) * speed.value) / 20) * rotationIntensity.value - 0.89;
+      model.rotation.x =
+        (Math.cos((elapsedTime / 4) * speed.value) / 8) *
+          rotationIntensity.value +
+        1.43;
+      model.rotation.y =
+        (Math.sin((elapsedTime / 4) * speed.value) / 8) *
+          rotationIntensity.value +
+        1.02;
+      model.rotation.z =
+        (Math.sin((elapsedTime / 4) * speed.value) / 20) *
+          rotationIntensity.value -
+        0.89;
 
-      pc.rotation.x = (Math.cos((elapsedTime / 4) * speed.value) / 8) * rotationIntensity.value + 0.34;
-      pc.rotation.y = (Math.sin((elapsedTime / 4) * speed.value) / 8) * rotationIntensity.value + 0.61;
-      pc.rotation.z = (Math.sin((elapsedTime / 4) * speed.value) / 20) * rotationIntensity.value - 0.20;
+      pc.rotation.x =
+        (Math.cos((elapsedTime / 4) * speed.value) / 8) *
+          rotationIntensity.value +
+        0.34;
+      pc.rotation.y =
+        (Math.sin((elapsedTime / 4) * speed.value) / 8) *
+          rotationIntensity.value +
+        0.61;
+      pc.rotation.z =
+        (Math.sin((elapsedTime / 4) * speed.value) / 20) *
+          rotationIntensity.value -
+        0.2;
     }
 
     composer.render();
@@ -394,7 +463,7 @@ onMounted(() => {
 
 <template>
   <div class="test">
-    <canvas ref="canvasRef"></canvas>
+    <canvas ref="canvasRef" :class="{ 'is-loaded': modelsLoaded }"></canvas>
   </div>
 </template>
 
@@ -406,5 +475,11 @@ canvas {
   display: block;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s 0.9s ease-out;
+
+  &.is-loaded {
+    opacity: 1;
+  }
 }
 </style>
