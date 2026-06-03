@@ -29,7 +29,7 @@ onMounted(() => {
   // Loaders
   const gltfLoader = new GLTFLoader();
   const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderConfig({ type: "js" });
+  dracoLoader.setDecoderConfig({ type: "wasm" });
   dracoLoader.setDecoderPath("/draco/");
   gltfLoader.setDRACOLoader(dracoLoader);
   const cubeTextureLoader = new THREE.CubeTextureLoader();
@@ -120,10 +120,10 @@ onMounted(() => {
     camera.updateProjectionMatrix();
 
     renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
     composer.setSize(sizes.width, sizes.height);
-    composer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    composer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
     // Mettre à jour la résolution du shader ASCII
     asciiPass.uniforms["uResolution"].value.set(sizes.width, sizes.height);
@@ -212,19 +212,18 @@ onMounted(() => {
   // Renderer setup
   const renderer = new THREE.WebGLRenderer({
     canvas: canvasRef.value,
-    antialias: true,
+    antialias: false,
     alpha: true,
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
-  // Post-processing setup
   const renderTarget = new THREE.WebGLRenderTarget(
     window.innerWidth,
     window.innerHeight,
   );
   let composer = new EffectComposer(renderer, renderTarget);
-  composer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  composer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
   // Base render pass
   const renderPass = new RenderPass(scene, camera);
@@ -294,6 +293,7 @@ onMounted(() => {
       }
     `,
     fragmentShader: `
+      precision mediump float;
       uniform sampler2D tDiffuse;
       uniform sampler2D uCharacters;
       uniform float uCharactersCount;
@@ -476,7 +476,7 @@ canvas {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 0.5s 0.9s ease-out;
+  transition: opacity 0.6s 0.9s ease-out;
 
   &.is-loaded {
     opacity: 1;

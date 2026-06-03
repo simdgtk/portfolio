@@ -17,6 +17,7 @@ const isGridLoaded = ref(false);
 
 const onModelsLoaded = () => {
   isGridLoaded.value = true;
+  document.body.classList.add('models-loaded');
 };
 
 useHead({
