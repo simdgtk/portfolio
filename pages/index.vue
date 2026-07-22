@@ -17,7 +17,7 @@ const isGridLoaded = ref(false);
 
 const onModelsLoaded = () => {
   isGridLoaded.value = true;
-  document.body.classList.add('models-loaded');
+  document.body.classList.add("models-loaded");
 };
 
 useHead({
@@ -25,7 +25,7 @@ useHead({
     {
       name: "description",
       content:
-        "Portfolio de Simon Daguet-Kargl, je suis un développeur front-end et web créatif basé sur Bordeaux et Nantes. Découvrez mon portfolio de développeur frontend.",
+        "Portfolio de Simon Daguet-Kargl, je suis un développeur front-end et web créatif basé sur Paris et Nantes. Découvrez mon portfolio de développeur frontend.",
     },
   ],
   link: [

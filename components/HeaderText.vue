@@ -1,13 +1,29 @@
 <template>
   <div class="header">
-    <span class="header__text">Simon Daguet-Kargl - développement web front-end / web créatif & étudiant en </span><a
-      href="https://www.mmibordeaux.com/" target="_blank" rel="noopener noreferrer"
-      title="nouvelle fenêtre, site de MMI Bordeaux" translate="no">BUT MMI
-      Bordeaux</a>
+    <span class="header__text"
+      >Simon Daguet-Kargl - développement web front-end / web créatif & étudiant
+      à
+      <a
+        href="https://www.gobelins.fr/"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="nouvelle fenêtre, site de Gobelins"
+        translate="no"
+        >Gobelins Paris</a
+      > (dès septembre), ex
+      <a
+        href="https://www.mmibordeaux.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="nouvelle fenêtre, site de MMI Bordeaux"
+        translate="no"
+        >MMI Bordeaux</a
+      >
+    </span>
   </div>
 </template>
 <style lang="scss" scoped>
-@use '@/assets/styles/_utils' as *;
+@use "@/assets/styles/_utils" as *;
 
 .header {
   position: absolute;

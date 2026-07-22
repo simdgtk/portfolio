@@ -2,23 +2,31 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   routeRules: {
-    '/_ipx/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
-    '/images/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
-    '/projects/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
-    '/environment_maps/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
-    '/draco/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
-    '/models/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    "/_ipx/**": {
+      headers: { "cache-control": "public, max-age=31536000, immutable" },
+    },
+    "/images/**": {
+      headers: { "cache-control": "public, max-age=31536000, immutable" },
+    },
+    "/projects/**": {
+      headers: { "cache-control": "public, max-age=31536000, immutable" },
+    },
+    "/environment_maps/**": {
+      headers: { "cache-control": "public, max-age=31536000, immutable" },
+    },
+    "/draco/**": {
+      headers: { "cache-control": "public, max-age=31536000, immutable" },
+    },
+    "/models/**": {
+      headers: { "cache-control": "public, max-age=31536000, immutable" },
+    },
   },
   devtools: { enabled: true },
   modules: ["lenis/nuxt", "@nuxt/image"],
-  alias: {
-    assets: "/<rootDir>/assets",
-  },
   css: ["~/assets/styles/main.scss"],
   app: {
     head: {
-      title:
-        "Simon Daguet-Kargl | Développeur web front-end Bordeaux et Nantes",
+      title: "Simon Daguet-Kargl | Développeur web front-end Paris et Nantes",
       htmlAttrs: {
         lang: "fr",
         prefix: "og: http://ogp.me/ns#",
@@ -36,18 +44,18 @@ export default defineNuxtConfig({
         {
           name: "description",
           content:
-            "Portfolio de Simon Daguet-Kargl, je suis un développeur front-end basé sur Bordeaux et Nantes. Découvrez mon portfolio de développeur frontend.",
+            "Portfolio de Simon Daguet-Kargl, je suis un développeur front-end basé sur Paris et Nantes. Découvrez mon portfolio de développeur frontend. Étudiant à Gobelins Paris.",
         },
         // Open Graph
         {
           property: "og:title",
-          content: "Simon Daguet-Kargl | Développeur front-end Bordeaux",
+          content: "Simon Daguet-Kargl | Développeur front-end Paris",
         },
         { property: "og:type", content: "website" },
         {
           property: "og:description",
           content:
-            "Portfolio de Simon Daguet-Kargl, je suis un développeur front-end basé sur Bordeaux et Nantes. Découvrez mon portfolio de développeur frontend.",
+            "Portfolio de Simon Daguet-Kargl, je suis un développeur front-end basé sur Paris et Nantes. Découvrez mon portfolio de développeur frontend. Étudiant à Gobelins Paris.",
         },
         { property: "og:site_name", content: "Accueil" },
         { property: "og:url", content: "https://simondaguetkargl.fr" },
@@ -58,19 +66,19 @@ export default defineNuxtConfig({
         { property: "twitter:url", content: "https://simondaguetkargl.fr" },
         {
           name: "twitter:title",
-          content: "Simon Daguet-Kargl | Développeur Front-end Bordeaux",
+          content: "Simon Daguet-Kargl | Développeur Front-end Paris",
         },
         {
           name: "twitter:description",
           content:
-            "Portfolio de Simon Daguet-Kargl, je suis un développeur front-end basé sur Bordeaux et Nantes. Découvrez mon portfolio de développeur frontend.",
+            "Portfolio de Simon Daguet-Kargl, je suis un développeur front-end basé sur Paris et Nantes. Découvrez mon portfolio de développeur frontend. Étudiant à Gobelins Paris.",
         },
         { name: "twitter:image", content: "/favicon.jpg" },
         // Mobile Web App
         { name: "mobile-web-app-capable", content: "yes" },
         {
           name: "apple-mobile-web-app-title",
-          content: "Simon Daguet-Kargl | Développeur Front-end Bordeaux",
+          content: "Simon Daguet-Kargl | Développeur Front-end Paris",
         },
         { name: "apple-mobile-web-app-status-bar-style", content: "#000000" },
         { name: "theme-color", content: "#000000" },
