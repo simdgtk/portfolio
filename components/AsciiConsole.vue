@@ -205,12 +205,15 @@ function replaceCharacters(frame) {
 }
 
 const frameIndex = ref(0)
-let intervalId = null
+let animIntervalId = null
+let checkIntervalId = null
 let frameCounter = 0
+const isConsoleOpen = ref(false)
 const MAX_FRAMES_BEFORE_CLEAR = 30
 
-onMounted(() => {
-  intervalId = setInterval(() => {
+function startAnimation() {
+  if (animIntervalId) return
+  animIntervalId = setInterval(() => {
     if (frameCounter >= MAX_FRAMES_BEFORE_CLEAR) {
       console.clear()
       frameCounter = 0
@@ -224,10 +227,43 @@ onMounted(() => {
     frameIndex.value = (frameIndex.value + 1) % frames.length
     frameCounter++
   }, 200)
+}
+
+function stopAnimation() {
+  if (animIntervalId) {
+    clearInterval(animIntervalId)
+    animIntervalId = null
+    console.clear()
+  }
+}
+
+function checkDevTools() {
+  if (typeof window === 'undefined') return
+  const threshold = 160
+  const widthDiff = window.outerWidth - window.innerWidth > threshold
+  const heightDiff = window.outerHeight - window.innerHeight > threshold
+  const isOpen = widthDiff || heightDiff
+
+  if (isOpen !== isConsoleOpen.value) {
+    isConsoleOpen.value = isOpen
+    if (isOpen) {
+      startAnimation()
+    } else {
+      stopAnimation()
+    }
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('resize', checkDevTools)
+  checkIntervalId = setInterval(checkDevTools, 500)
+  checkDevTools()
 })
 
 onBeforeUnmount(() => {
-  if (intervalId) clearInterval(intervalId)
+  stopAnimation()
+  if (checkIntervalId) clearInterval(checkIntervalId)
+  window.removeEventListener('resize', checkDevTools)
 })
 </script>
 
