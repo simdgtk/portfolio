@@ -4,13 +4,13 @@
       >Simon Daguet-Kargl - développement web front-end / web créatif & étudiant
       à
       <a
-        href="https://www.gobelins.fr/"
+        href="https://www.gobelins.fr/design/formations/di51-expert-creation-numerique-interactive"
         target="_blank"
         rel="noopener noreferrer"
         title="nouvelle fenêtre, site de Gobelins"
         translate="no"
         >Gobelins Paris</a
-      > (dès septembre), ex
+      >, ex
       <a
         href="https://www.mmibordeaux.com/"
         target="_blank"
