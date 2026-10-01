@@ -1,5 +1,5 @@
 <template>
-  <div class="grain"></div>
+  <div class="grain"/>
 </template>
 <style scoped>
 .grain {

@@ -1,126 +1,125 @@
-<script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+<script setup lang="ts">
+const props = defineProps<{
+  /** Cellules masquées au départ, puis révélées en vague depuis le centre */
+  animated?: boolean;
+  /** Déclenche la révélation (avec `animated`) */
+  revealed?: boolean;
+}>();
 
-const gridRef = ref(null);
-const cellSize = 50;
+const CELL_SIZE = 50;
+// décalage de 8px pour ne pas coller au bord
+const OFFSET = 8;
+const HIGHLIGHT_DURATION = 2500;
 
-let mouseMoveHandler = null;
-let activeTimeouts = [];
-let cells = [];
+const gridRef = useTemplateRef("grid");
 
-const clearAllTimeouts = () => {
-  activeTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
-  activeTimeouts = [];
+let cells: HTMLDivElement[] = [];
+let cols = 0;
+const timeouts = new Set<ReturnType<typeof setTimeout>>();
+let hasRevealed = false;
+
+const clearTimeouts = () => {
+  timeouts.forEach(clearTimeout);
+  timeouts.clear();
 };
 
 const createGrid = () => {
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight;
-  const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
-  const gridHeight = Math.floor(windowHeight / cellSize) * cellSize;
-  const gridElement = gridRef.value;
+  const grid = gridRef.value;
+  if (!grid) return;
 
-  if (!gridElement) return;
-
+  grid.replaceChildren();
   cells = [];
-  gridElement.innerHTML = '';
+  cols = Math.floor(window.innerWidth / CELL_SIZE) + 2;
+  const rows = Math.floor(window.innerHeight / CELL_SIZE) + 2;
 
-  const coordo2dTo1d = (x, y, cellSize) => {
-    return y * cellSize + x;
-  }
-
-  for (let j = 0; j < gridHeight / cellSize + 2; j++) {
-    for (let i = 0; i < gridWidth / cellSize + 2; i++) {
-      const cell = document.createElement('div');
-      cell.style.transform = `translate(${i * cellSize - 8}px, ${j * cellSize - 8}px)`;
-
-      cell.className = 'grid__cell';
-      cell.style.position = 'absolute';
-      gridElement.appendChild(cell);
+  const fragment = document.createDocumentFragment();
+  for (let j = 0; j < rows; j++) {
+    for (let i = 0; i < cols; i++) {
+      const cell = document.createElement("div");
+      cell.className = "grid__cell";
+      cell.style.transform = `translate(${i * CELL_SIZE - OFFSET}px, ${j * CELL_SIZE - OFFSET}px)`;
+      if (props.animated && !hasRevealed) {
+        const delay = Math.hypot(i - cols / 2, j - rows / 2) * 0.04;
+        cell.style.transitionDelay = `${delay}s, 0s`;
+      }
+      fragment.appendChild(cell);
       cells.push(cell);
     }
   }
-
-  if (!mouseMoveHandler && !('ontouchstart' in window)) {
-    mouseMoveHandler = (event) => {
-      const x = Math.floor(event.clientX / cellSize);
-      const y = Math.floor(event.clientY / cellSize);
-      const index = coordo2dTo1d(x, y, gridWidth / cellSize + 2);
-
-      if (cells[index]) {
-        cells[index].classList.add('grid__cell--gray');
-
-        const t1 = setTimeout(() => {
-          if (cells[index]) cells[index].classList.remove('grid__cell--gray');
-        }, 2500);
-        activeTimeouts.push(t1);
-      }
-
-      if (cells[index + 1]) {
-        cells[index + 1].classList.add('grid__cell--gray');
-        const t2 = setTimeout(() => {
-          if (cells[index + 1]) cells[index + 1].classList.remove('grid__cell--gray');
-        }, 2500);
-        activeTimeouts.push(t2);
-      }
-
-      if (cells[index + gridWidth / cellSize + 2]) {
-        cells[index + gridWidth / cellSize + 2].classList.add('grid__cell--gray');
-        const t3 = setTimeout(() => {
-          if (cells[index + gridWidth / cellSize + 2]) {
-            cells[index + gridWidth / cellSize + 2].classList.remove('grid__cell--gray');
-          }
-        }, 2500);
-        activeTimeouts.push(t3);
-      }
-    };
-    gridRef.value.addEventListener('mousemove', mouseMoveHandler);
-  }
+  grid.appendChild(fragment);
 };
 
-const handleResize = () => {
-  clearAllTimeouts();
+const highlight = (index: number) => {
+  const cell = cells[index];
+  if (!cell) return;
+  cell.classList.add("grid__cell--gray");
+  const timeout = setTimeout(() => {
+    cell.classList.remove("grid__cell--gray");
+    timeouts.delete(timeout);
+  }, HIGHLIGHT_DURATION);
+  timeouts.add(timeout);
+};
+
+const onMouseMove = (event: MouseEvent) => {
+  const index =
+    Math.floor(event.clientY / CELL_SIZE) * cols +
+    Math.floor(event.clientX / CELL_SIZE);
+  highlight(index);
+  highlight(index + 1);
+  highlight(index + cols);
+};
+
+const onResize = () => {
+  clearTimeouts();
   createGrid();
 };
+
+watch(
+  () => props.revealed,
+  (revealed) => {
+    if (!revealed) return;
+    // une fois l'animation d'entrée jouée, les cellules recréées au resize n'ont plus de délai
+    setTimeout(() => (hasRevealed = true), 2000);
+  },
+);
+
+let hoverTarget: HTMLElement | Window | null = null;
 
 onMounted(() => {
   createGrid();
-  window.addEventListener('resize', handleResize);
+  window.addEventListener("resize", onResize);
+
+  if (window.matchMedia("(hover: hover)").matches) {
+    hoverTarget = gridRef.value?.closest("main") ?? window;
+    hoverTarget.addEventListener("mousemove", onMouseMove as EventListener);
+  }
 });
 
-onUnmounted(() => {
-  window.removeEventListener('resize', handleResize);
-  if (gridRef.value && mouseMoveHandler) {
-    gridRef.value.removeEventListener('mousemove', mouseMoveHandler);
-  }
-
-  clearAllTimeouts();
-
-  if (gridRef.value) {
-    gridRef.value.innerHTML = '';
-  }
-
-  mouseMoveHandler = null;
-  cells = [];
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", onResize);
+  hoverTarget?.removeEventListener("mousemove", onMouseMove as EventListener);
+  clearTimeouts();
 });
 </script>
 
 <template>
   <div class="background-grid">
-    <div class="grid" ref="gridRef">
-    </div>
+    <div
+      ref="grid"
+      class="grid"
+      :class="{ 'grid--animated': animated, 'grid--revealed': revealed }"
+    />
   </div>
 </template>
 
 <style lang="scss" scoped>
-@use "@/assets/styles/variables.scss" as *;
+@use "~/assets/styles/variables" as *;
 
 $cell-size: 50px;
 
 .grid {
   pointer-events: all;
   z-index: -10;
-  gap: 0;
   position: absolute;
   top: 0;
   left: 0;
@@ -128,16 +127,28 @@ $cell-size: 50px;
   height: 100dvh;
   overflow: hidden;
 
-  &__cell {
+  :deep(.grid__cell) {
+    position: absolute;
     width: $cell-size;
     height: $cell-size;
     border: 1px solid $gray-border;
     background-color: $background-color;
     transition: background-color 0.2s ease-in-out;
+  }
 
-    &--gray {
-      background-color: $gray;
-    }
+  :deep(.grid__cell--gray) {
+    background-color: $gray;
+  }
+
+  &--animated :deep(.grid__cell) {
+    opacity: 0;
+    transition:
+      opacity 0.9s cubic-bezier(0.85, 0, 0.15, 1),
+      background-color 0.2s ease-in-out;
+  }
+
+  &--revealed :deep(.grid__cell) {
+    opacity: 1;
   }
 }
 </style>

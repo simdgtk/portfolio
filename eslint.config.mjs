@@ -1,19 +1,8 @@
-import js from "@eslint/js";
-import globals from "globals";
-import pluginVue from "eslint-plugin-vue";
-import { defineConfig } from "eslint/config";
+// @ts-check
+import withNuxt from "./.nuxt/eslint.config.mjs";
 
-export default defineConfig([
-  {
-    files: ["**/*.{js,mjs,cjs,vue}"],
-    plugins: { js },
-    extends: ["js/recommended"],
-    languageOptions: { globals: globals.browser },
+export default withNuxt({
+  rules: {
+    "vue/multi-word-component-names": "off",
   },
-  pluginVue.configs["flat/essential"],
-  {
-    rules: {
-      "vue/multi-word-component-names": "off",
-    },
-  },
-]);
+});

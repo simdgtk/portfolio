@@ -23,7 +23,7 @@
   </div>
 </template>
 <style lang="scss" scoped>
-@use "@/assets/styles/_utils" as *;
+@use "~/assets/styles/utils" as *;
 
 .header {
   position: absolute;

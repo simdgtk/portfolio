@@ -9,7 +9,8 @@
         <h3 class="legal__subtitle">Éditeur</h3>
         <p class="legal__text">
           Simon Daguet-Kargl<br>
-          mail : <a href="mailto:simondaguetkargl@gmail.com" class="legal__link"
+          mail : <a
+href="mailto:simondaguetkargl@gmail.com" class="legal__link"
             title="ouverture d'un service de mail">simondaguetkargl@gmail.com</a>
         </p>
       </div>

@@ -1,469 +1,265 @@
-<script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-import * as THREE from "three";
+<script setup lang="ts">
+import {
+  AmbientLight,
+  Color,
+  CubeTextureLoader,
+  HemisphereLight,
+  Mesh,
+  OrthographicCamera,
+  RenderPipeline,
+  Scene,
+  WebGPURenderer,
+} from "three/webgpu";
+import type { Object3D } from "three/webgpu";
+import { pass } from "three/tsl";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
-import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
-import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
-import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 
-const emit = defineEmits(["loaded"]);
+const emit = defineEmits<{ loaded: [] }>();
 
-const canvasRef = ref(null);
-const modelsLoaded = ref(false);
+const canvasRef = useTemplateRef("canvas");
+const isLoaded = ref(false);
 
-onMounted(() => {
-  let loadedCount = 0;
-  const checkLoaded = () => {
-    loadedCount++;
-    if (loadedCount === 2) {
-      modelsLoaded.value = true;
-      emit("loaded");
-    }
-  };
+type Vec3 = [number, number, number];
 
-  // Scene setup
-  const scene = new THREE.Scene();
+interface FloatingModel {
+  url: string;
+  rotation: Vec3;
+  /** Sens du parallax à la souris */
+  parallax: 1 | -1;
+  layout: (width: number, height: number) => { position: Vec3; scale: Vec3 };
+}
 
-  // Loaders
-  const gltfLoader = new GLTFLoader();
-  const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderConfig({ type: "wasm" });
-  dracoLoader.setDecoderPath("/draco/");
-  gltfLoader.setDRACOLoader(dracoLoader);
-  const cubeTextureLoader = new THREE.CubeTextureLoader();
+const MODELS: FloatingModel[] = [
+  {
+    url: "/models/rose.glb",
+    rotation: [1.43, 1.02, -0.89],
+    parallax: 1,
+    layout: (w, h) => ({
+      position: [(-w * 0.9) / 300, (-h * 0.8) / 300, 1],
+      scale:
+        w > h
+          ? [(w * 0.6) / 400, (w * 0.5) / 400, (w * 0.6) / 400]
+          : [(h * 0.5) / 300, (h * 0.5) / 300, (h * 0.5) / 300],
+    }),
+  },
+  {
+    url: "/models/pc.glb",
+    rotation: [0.34, 0.61, -0.2],
+    parallax: -1,
+    layout: (w, h) => ({
+      position: [(w * 0.9) / 300 - 1, (h * 0.7) / 300 - 1, 1],
+      scale:
+        w > h
+          ? [(w * 0.57) / 400, (w * 0.57) / 400, (w * 0.57) / 400]
+          : [(h * 0.5) / 300, (h * 0.5) / 300, (h * 0.5) / 300],
+    }),
+  },
+];
 
-  // Lights
-  const ambientLight = new THREE.AmbientLight(0xffffff);
-  const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x000000, 6);
-  scene.add(ambientLight, hemisphereLight);
+const MAX_PIXEL_RATIO = 1.5;
+/** Unités monde par pixel CSS de la caméra orthographique */
+const PX_PER_UNIT = 300;
 
-  // Material
-  const chromeMaterial = new THREE.MeshPhysicalMaterial({
-    color: 0xa555b9,
-    roughness: 0,
-    metalness: 1,
-    iridescence: 1.0,
-    iridescenceIOR: 1.4,
-    iridescenceThicknessRange: [0, 1000],
-    sheen: 2.0,
-    sheenColor: new THREE.Color(0x4232ff),
-  });
+const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
 
-  let sizes = {
-    height: window.innerHeight,
-    width: window.innerWidth,
-  };
+let cleanup: (() => void) | undefined;
+let unmounted = false;
 
-  function updateModelTransforms() {
-    // Rose
-    if (model) {
-      model.position.set(
-        (-sizes.width * 0.9) / 300,
-        (-sizes.height * 0.8) / 300,
-        1,
-      );
-      if (sizes.width > sizes.height) {
-        model.scale.set(
-          (sizes.width * 0.6) / 400,
-          (sizes.width * 0.5) / 400,
-          (sizes.width * 0.6) / 400,
-        );
-      } else {
-        model.scale.set(
-          (sizes.height * 0.5) / 300,
-          (sizes.height * 0.5) / 300,
-          (sizes.height * 0.5) / 300,
-        );
-      }
-    }
-    // PC
-    if (pc) {
-      pc.position.set(
-        (sizes.width * 0.9) / 300 - 1,
-        (sizes.height * 0.7) / 300 - 1,
-        1,
-      );
-      if (sizes.width > sizes.height) {
-        pc.scale.set(
-          (sizes.width * 0.57) / 400,
-          (sizes.width * 0.57) / 400,
-          (sizes.width * 0.57) / 400,
-        );
-      } else {
-        pc.scale.set(
-          (sizes.height * 0.5) / 300,
-          (sizes.height * 0.5) / 300,
-          (sizes.height * 0.5) / 300,
-        );
-      }
-    }
-  }
+onMounted(async () => {
+  // un composant .client ne rend son template qu'après le montage
+  await nextTick();
+  const canvas = canvasRef.value;
+  if (!canvas || unmounted) return;
+  let width = window.innerWidth;
+  let height = window.innerHeight;
 
-  // effet parallax
-  let parallaxTarget = { x: 0, y: 0 };
-  let parallaxCurrent = { x: 0, y: 0 };
+  // Scène
+  const scene = new Scene();
+  scene.add(new AmbientLight(0xffffff), new HemisphereLight(0xffffff, 0x000000, 6));
 
-  //  resize
+  const environment = new CubeTextureLoader().load(
+    Array(6).fill("/environment_maps/px.png"),
+  );
+  scene.environment = environment;
 
-  function handleResize() {
-    // update sizes
-    sizes.width = window.innerWidth;
-    sizes.height = window.innerHeight;
-    // update camera
-    camera.aspect = sizes.width / sizes.height;
-    camera.left = -sizes.width / 300;
-    camera.right = sizes.width / 300;
-    camera.top = sizes.height / 300;
-    camera.bottom = -sizes.height / 300;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-
-    composer.setSize(sizes.width, sizes.height);
-    composer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-
-    // Mettre à jour la résolution du shader ASCII
-    asciiPass.uniforms["uResolution"].value.set(sizes.width, sizes.height);
-
-    updateModelTransforms();
-
-    parallaxTarget.x = 0;
-    parallaxTarget.y = 0;
-    parallaxCurrent.x = 0;
-    parallaxCurrent.y = 0;
-  }
-
-  const handleVisibilityChange = () => {
-    if (!document.hidden) {
-      handleResize();
-    }
-  };
-
-  const handleMouseMoveParallax = (event) => {
-    parallaxTarget.x = (event.clientX / sizes.width) * 2 - 1;
-    parallaxTarget.y = -(event.clientY / sizes.height) * 2 + 1;
-  };
-
-  const handleMouseMoveShader = (event) => {
-    targetPosition.x = event.clientX / sizes.width;
-    targetPosition.y = 1.0 - event.clientY / sizes.height;
-  };
-
-  window.addEventListener("resize", handleResize);
-  window.addEventListener("orientationchange", handleResize);
-  document.addEventListener("visibilitychange", handleVisibilityChange);
-  window.addEventListener("mousemove", handleMouseMoveParallax);
-  window.addEventListener("mousemove", handleMouseMoveShader);
-
-  // Model loading
-  let model = null;
-  gltfLoader.load("/models/rose.glb", (gltf) => {
-    model = gltf.scene.children[0];
-
-    model.rotation.x = 1.43;
-    model.rotation.y = 1.02;
-    model.rotation.z = -0.89;
-
-    updateModelTransforms();
-    model.material = chromeMaterial;
-    scene.add(model);
-    checkLoaded();
-  });
-
-  // Model loading
-  let pc = null;
-  gltfLoader.load("/models/pc.glb", (gltf) => {
-    pc = gltf.scene.children[0];
-    pc.rotation.x = 0.34;
-    pc.rotation.y = 0.61;
-    pc.rotation.z = -0.2;
-
-    updateModelTransforms();
-    pc.material = chromeMaterial;
-    scene.add(pc);
-    checkLoaded();
-  });
-
-  // Camera setup
-  const camera = new THREE.OrthographicCamera(
-    -sizes.width / 300,
-    sizes.width / 300,
-    sizes.height / 300,
-    -sizes.height / 300,
+  const camera = new OrthographicCamera(
+    -width / PX_PER_UNIT,
+    width / PX_PER_UNIT,
+    height / PX_PER_UNIT,
+    -height / PX_PER_UNIT,
     0.1,
     1000,
   );
-  scene.add(camera);
   camera.position.set(0, 0, 10);
+  scene.add(camera);
 
-  const environmentMap = cubeTextureLoader.load([
-    "/environment_maps/px.png",
-    "/environment_maps/px.png",
-    "/environment_maps/px.png",
-    "/environment_maps/px.png",
-    "/environment_maps/px.png",
-    "/environment_maps/px.png",
-  ]);
-  scene.environment = environmentMap;
-
-  // Renderer setup
-  const renderer = new THREE.WebGLRenderer({
-    canvas: canvasRef.value,
-    antialias: false,
-    alpha: true,
+  // matériau PBR « façon r175 » : voir app/utils/legacyPhysicalMaterial.ts
+  const chromeMaterial = new LegacyMeshPhysicalNodeMaterial({
+    color: 0xa555b9,
+    roughness: 0,
+    metalness: 1,
+    iridescence: 1,
+    iridescenceIOR: 1.4,
+    iridescenceThicknessRange: [0, 1000],
+    sheen: 2,
+    sheenColor: new Color(0x4232ff),
   });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
-  const renderTarget = new THREE.WebGLRenderTarget(
-    window.innerWidth,
-    window.innerHeight,
-  );
-  let composer = new EffectComposer(renderer, renderTarget);
-  composer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  // Renderer WebGPU (repli WebGL2 automatique si WebGPU n'est pas disponible)
+  const renderer = new WebGPURenderer({ canvas, antialias: false, alpha: true });
+  renderer.setClearColor(0x000000, 0);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO));
+  renderer.setSize(width, height);
 
-  // Base render pass
-  const renderPass = new RenderPass(scene, camera);
-  composer.addPass(renderPass);
+  // Post-processing : rendu de la scène -> effet ASCII
+  const ascii = asciiEffect(pass(scene, camera).getTextureNode());
+  const pipeline = new RenderPipeline(renderer, ascii.node);
 
-  // Shader ascii
-  // basé sur le tutoriel d'Alexandre PUJOL : https://medium.com/@alexandre.pujol/ascii-hover-effect-with-shader-and-post-processing-part-1-589064c33385
-  const font = "arial";
-  const characters = ` ░▒Ǿ▄Δab[/><±Σ∑$§▌ABCWXgjkstyz2359¢"',:~\\|*`;
-  const fontSize = 70;
-  const cellSize = 8;
-  const color = "#ffffff";
-  const invert = false;
+  // Chargement des modèles
+  // décodeur Draco (wasm) fourni et versionné avec three
+  const dracoLoader = new DRACOLoader();
+  const gltfLoader = new GLTFLoader().setDRACOLoader(dracoLoader);
 
-  function createCharactersTexture(characters, font, fontSize) {
-    const canvas = document.createElement("canvas");
-    const SIZE = 1024;
-    const MAX_PER_ROW = 16;
-    const CELL = SIZE / MAX_PER_ROW;
+  const objects: (Object3D | undefined)[] = [];
 
-    canvas.width = canvas.height = SIZE;
-    const texture = new THREE.CanvasTexture(
-      canvas,
-      undefined,
-      THREE.RepeatWrapping,
-      THREE.RepeatWrapping,
-      THREE.NearestFilter,
-      THREE.NearestFilter,
-    );
-    const context = canvas.getContext("2d");
+  // Parallax à la souris
+  const parallaxTarget = { x: 0, y: 0 };
+  const parallaxCurrent = { x: 0, y: 0 };
+  const mouseTarget = { x: 0.5, y: 0.5 };
+  const mouseCurrent = { x: 0.5, y: 0.5 };
 
-    context.clearRect(0, 0, SIZE, SIZE);
-    context.font = `${fontSize}px ${font}`;
-    context.textAlign = "center";
-    context.textBaseline = "middle";
-    context.fillStyle = "#fff";
-
-    for (let i = 0; i < characters.length; i++) {
-      const char = characters[i];
-      const x = i % MAX_PER_ROW;
-      const y = Math.floor(i / MAX_PER_ROW);
-      context.fillText(char, x * CELL + CELL / 2, y * CELL + CELL / 2);
-    }
-
-    texture.needsUpdate = true;
-    return texture;
-  }
-
-  const asciiShader = {
-    uniforms: {
-      tDiffuse: { value: null },
-      uCharacters: {
-        value: createCharactersTexture(characters, font, fontSize),
-      },
-      uCellSize: { value: cellSize },
-      uCharactersCount: { value: characters.length },
-      uColor: { value: new THREE.Color(color) },
-      uInvert: { value: invert },
-      uResolution: { value: new THREE.Vector2(sizes.width, sizes.height) },
-      uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-    },
-    vertexShader: `
-      varying vec2 vUv;
-      void main() {
-        vUv = uv;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-      }
-    `,
-    fragmentShader: `
-      precision mediump float;
-      uniform sampler2D tDiffuse;
-      uniform sampler2D uCharacters;
-      uniform float uCharactersCount;
-      uniform float uCellSize;
-      uniform bool uInvert;
-      uniform vec3 uColor;
-      uniform vec2 uResolution;
-      uniform vec2 uMouse;
-      varying vec2 vUv;
-      
-      const vec2 SIZE = vec2(16.);
-      
-      vec3 greyscale(vec3 color, float strength) {
-          float g = dot(color, vec3(0.299, 0.587, 0.114));
-          return mix(color, vec3(g), strength);
-      }
-      
-      vec3 greyscale(vec3 color) {
-          return greyscale(color, 1.0);
-      }
-      
-      void main() {
-          vec2 uv = vUv;
-          vec2 cell = uResolution / uCellSize;
-          vec2 grid = 1.0 / cell;
-          vec2 pixelizedUV = grid * (0.5 + floor(uv / grid));
-          vec4 normalTexture = texture2D(tDiffuse, vUv);
-          vec4 pixelized = texture2D(tDiffuse, pixelizedUV);
-          float greyscaled = greyscale(pixelized.rgb).r;
-      
-          if (uInvert) {
-              greyscaled = 1.0 - greyscaled;
-          }
-      
-          float uRadius = 0.15;
-          float pixelSize = 0.01;
-              
-          // Calculate aspect ratio
-          float aspectRatio = uResolution.x / uResolution.y;
-          vec2 adjustedUV = vec2(vUv.x * aspectRatio, vUv.y);
-          vec2 adjustedMouse = vec2(uMouse.x * aspectRatio, uMouse.y);
-          
-          // Pixelliser les coordonnées
-          adjustedUV = floor(adjustedUV / pixelSize) * pixelSize;
-          adjustedMouse = floor(adjustedMouse / pixelSize) * pixelSize;
-          
-          // Distance de base
-          float dist = distance(adjustedUV, adjustedMouse);
-          
-          // Noises pour la forme organique du circle
-          float noise1 = sin(adjustedUV.x * 50.0) * cos(adjustedUV.y * 30.0) * 0.02;
-          float noise2 = sin(adjustedUV.x * 80.0 + adjustedUV.y * 60.0) * 0.015;
-          float noise3 = cos(adjustedUV.x * 120.0) * sin(adjustedUV.y * 90.0) * 0.01;
-          
-          float organicNoise = noise1 + noise2 + noise3;
-          
-          // Contours irréguliers au circle
-          float organicRadius = uRadius + organicNoise;
-          
-          float circle = step(dist, organicRadius);
-      
-          float characterIndex = floor((uCharactersCount - 1.0) * greyscaled);
-          vec2 characterPosition = vec2(mod(characterIndex, SIZE.x), floor(characterIndex / SIZE.y));
-          vec2 offset = vec2(characterPosition.x, -characterPosition.y) / SIZE;
-          vec2 charUV = mod(uv * (cell / SIZE), 1.0 / SIZE) - vec2(0., 1.0 / SIZE) + offset;
-          vec4 asciiCharacter = texture2D(uCharacters, charUV);
-      
-          asciiCharacter.rgb = uColor * asciiCharacter.r;
-          asciiCharacter.a = pixelized.a;
-          gl_FragColor = mix(normalTexture, asciiCharacter, circle);
-      }
-    `,
+  const layoutModels = () => {
+    MODELS.forEach((config, i) => {
+      const object = objects[i];
+      if (!object) return;
+      const { position, scale } = config.layout(width, height);
+      object.position.set(...position);
+      object.scale.set(...scale);
+    });
   };
 
-  const asciiPass = new ShaderPass(asciiShader);
-  composer.addPass(asciiPass);
+  const onResize = () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
 
-  // Fonction lerp pour l'interpolation linéaire
-  const lerp = (start, end, t) => start + (end - start) * t;
+    camera.left = -width / PX_PER_UNIT;
+    camera.right = width / PX_PER_UNIT;
+    camera.top = height / PX_PER_UNIT;
+    camera.bottom = -height / PX_PER_UNIT;
+    camera.updateProjectionMatrix();
 
-  // Position actuelle et cible de la souris
-  let mousePosition = { x: 0.5, y: 0.5 };
-  let targetPosition = { x: 0.5, y: 0.5 };
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO));
+    renderer.setSize(width, height);
+    ascii.setSize(width, height);
 
-  // Output pass (final)
-  const outputPass = new OutputPass();
-  composer.addPass(outputPass);
+    layoutModels();
+    parallaxTarget.x = parallaxTarget.y = 0;
+    parallaxCurrent.x = parallaxCurrent.y = 0;
+  };
 
-  // Animation loop
-  const speed = ref(1);
-  const rotationIntensity = ref(1);
-  function animate() {
-    mousePosition.x = lerp(mousePosition.x, targetPosition.x, 0.09); // controle du lerp
-    mousePosition.y = lerp(mousePosition.y, targetPosition.y, 0.09);
+  const onVisibilityChange = () => {
+    if (!document.hidden) onResize();
+  };
 
-    // Mettre à jour l'uniform du shader
-    asciiPass.uniforms["uMouse"].value.set(mousePosition.x, mousePosition.y);
+  const onMouseMove = (event: MouseEvent) => {
+    parallaxTarget.x = (event.clientX / width) * 2 - 1;
+    parallaxTarget.y = -(event.clientY / height) * 2 + 1;
+    mouseTarget.x = event.clientX / width;
+    mouseTarget.y = 1 - event.clientY / height;
+  };
 
-    // Lerp pour le parallax des modèles
-    const lerpFactor = 0.05;
+  const animate = (time: number) => {
+    mouseCurrent.x = lerp(mouseCurrent.x, mouseTarget.x, 0.09);
+    mouseCurrent.y = lerp(mouseCurrent.y, mouseTarget.y, 0.09);
+    ascii.setMouse(mouseCurrent.x, mouseCurrent.y);
+
     const oldX = parallaxCurrent.x;
     const oldY = parallaxCurrent.y;
-
-    parallaxCurrent.x += (parallaxTarget.x - parallaxCurrent.x) * lerpFactor;
-    parallaxCurrent.y += (parallaxTarget.y - parallaxCurrent.y) * lerpFactor;
-
+    parallaxCurrent.x = lerp(parallaxCurrent.x, parallaxTarget.x, 0.05);
+    parallaxCurrent.y = lerp(parallaxCurrent.y, parallaxTarget.y, 0.05);
     const deltaX = parallaxCurrent.x - oldX;
     const deltaY = parallaxCurrent.y - oldY;
 
-    if (model) {
-      model.position.y += deltaX * 0.05;
-      model.position.x += deltaY * 0.05;
-    }
+    const t = time * 0.001 * 0.25;
+    MODELS.forEach((config, i) => {
+      const object = objects[i];
+      if (!object) return;
+      object.position.y += deltaX * 0.05 * config.parallax;
+      object.position.x += deltaY * 0.05 * config.parallax;
 
-    if (pc) {
-      pc.position.y += deltaX * -0.05;
-      pc.position.x += deltaY * -0.05;
-    }
+      const [rx, ry, rz] = config.rotation;
+      object.rotation.set(
+        rx + Math.cos(t) / 8,
+        ry + Math.sin(t) / 8,
+        rz + Math.sin(t) / 20,
+      );
+    });
 
-    if (model && pc) {
-      const elapsedTime = Date.now() * 0.001;
-      model.rotation.x =
-        (Math.cos((elapsedTime / 4) * speed.value) / 8) *
-          rotationIntensity.value +
-        1.43;
-      model.rotation.y =
-        (Math.sin((elapsedTime / 4) * speed.value) / 8) *
-          rotationIntensity.value +
-        1.02;
-      model.rotation.z =
-        (Math.sin((elapsedTime / 4) * speed.value) / 20) *
-          rotationIntensity.value -
-        0.89;
+    pipeline.render();
+  };
 
-      pc.rotation.x =
-        (Math.cos((elapsedTime / 4) * speed.value) / 8) *
-          rotationIntensity.value +
-        0.34;
-      pc.rotation.y =
-        (Math.sin((elapsedTime / 4) * speed.value) / 8) *
-          rotationIntensity.value +
-        0.61;
-      pc.rotation.z =
-        (Math.sin((elapsedTime / 4) * speed.value) / 20) *
-          rotationIntensity.value -
-        0.2;
-    }
+  window.addEventListener("resize", onResize);
+  window.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("visibilitychange", onVisibilityChange);
 
-    composer.render();
-  }
-
-  renderer.setAnimationLoop(animate);
-
-  onUnmounted(() => {
-    window.removeEventListener("resize", handleResize);
-    window.removeEventListener("orientationchange", handleResize);
-    document.removeEventListener("visibilitychange", handleVisibilityChange);
-    window.removeEventListener("mousemove", handleMouseMoveParallax);
-    window.removeEventListener("mousemove", handleMouseMoveShader);
+  cleanup = () => {
+    window.removeEventListener("resize", onResize);
+    window.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("visibilitychange", onVisibilityChange);
 
     renderer.setAnimationLoop(null);
+    scene.traverse((object) => {
+      if (object instanceof Mesh) object.geometry.dispose();
+    });
+    chromeMaterial.dispose();
+    environment.dispose();
+    ascii.dispose();
+    pipeline.dispose();
+    dracoLoader.dispose();
     renderer.dispose();
-    scene.clear();
-  });
+  };
+
+  try {
+    const [gltfs] = await Promise.all([
+      Promise.all(MODELS.map((model) => gltfLoader.loadAsync(model.url))),
+      renderer.init(),
+    ]);
+    if (unmounted) return;
+
+    gltfs.forEach((gltf, i) => {
+      const object = gltf.scene.children[0];
+      if (!object) return;
+      if (object instanceof Mesh) object.material = chromeMaterial;
+      objects[i] = object;
+      scene.add(object);
+    });
+    layoutModels();
+
+    // Compile les shaders avant le premier rendu pour éviter un saut à l'apparition
+    await renderer.compileAsync(scene, camera);
+    if (unmounted) return;
+
+    renderer.setAnimationLoop(animate);
+    isLoaded.value = true;
+  } catch (error) {
+    console.error("[FloatingModels]", error);
+  } finally {
+    // La page s'affiche même si la 3D échoue
+    if (!unmounted) emit("loaded");
+  }
+});
+
+onBeforeUnmount(() => {
+  unmounted = true;
+  cleanup?.();
+  cleanup = undefined;
 });
 </script>
 
 <template>
-  <div class="test">
-    <canvas ref="canvasRef" :class="{ 'is-loaded': modelsLoaded }"></canvas>
+  <div class="floating-models">
+    <canvas ref="canvas" :class="{ 'is-loaded': isLoaded }" />
   </div>
 </template>
 

@@ -1,163 +1,73 @@
-<script setup>
-import HeaderText from '@/components/HeaderText.vue';
+<script setup lang="ts">
+import type { NuxtError } from "#app";
 
-import { ref, onMounted, onUnmounted } from 'vue';
-import LinksList from './components/LinksList.vue';
+const props = defineProps<{ error: NuxtError }>();
 
-const gridRef = ref(null);
-const mainRef = ref(null);
-const cellSize = 50;
-const cells = ref([]);
-let activeTimeouts = [];
+const title = computed(() =>
+  props.error.statusCode === 404 ? "Page non trouvée..." : "Une erreur est survenue...",
+);
 
-const coordo2dTo1d = (x, y, cellSize) => {
-  return y * cellSize + x;
-}
-
-const clearAllTimeouts = () => {
-  activeTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
-  activeTimeouts = [];
-};
-
-const createGrid = () => {
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight;
-  const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
-  const gridHeight = Math.floor(windowHeight / cellSize) * cellSize;
-  const gridElement = gridRef.value;
-
-  for (let j = 0; j < gridHeight / cellSize + 2; j++) {
-    for (let i = 0; i < gridWidth / cellSize + 2; i++) {
-      const cell = document.createElement('div');
-      // décalage de 8px pour pas coller au bord
-      cell.style.transform = `translate(${i * cellSize - 8}px, ${j * cellSize - 8}px)`;
-
-      cell.className = 'grid__cell';
-      cell.style.position = 'absolute';
-      gridElement.appendChild(cell);
-      cells.value.push(cell);
-    }
-  }
-}
-
-let resizeHandler = () => {
-  clearAllTimeouts();
-  if (gridRef.value) {
-    gridRef.value.innerHTML = '';
-    cells.value = [];
-  }
-  createGrid();
-}
-
-onMounted(() => {
-  createGrid();
-
-  if ('ontouchstart' in window) {
-    return;
-  } else {
-    mainRef.value.addEventListener('mousemove', (event) => {
-      const windowWidth = window.innerWidth;
-      const gridWidth = Math.floor(windowWidth / cellSize) * cellSize;
-      const x = Math.floor(event.clientX / cellSize);
-      const y = Math.floor(event.clientY / cellSize);
-      const index = coordo2dTo1d(x, y, gridWidth / cellSize + 2);
-
-      if (cells.value[index]) {
-        cells.value[index].classList.add('grid__cell--gray');
-        cells.value[index + 1].classList.add('grid__cell--gray');
-        cells.value[index + gridWidth / cellSize + 2].classList.add('grid__cell--gray');
-
-        const t1 = setTimeout(() => {
-          if (cells.value[index]) {
-            cells.value[index].classList.remove('grid__cell--gray');
-          }
-        }, 2500);
-        const t2 = setTimeout(() => {
-          if (cells.value[index + gridWidth / cellSize + 2]) {
-            cells.value[index + gridWidth / cellSize + 2].classList.remove('grid__cell--gray');
-          }
-        }, 2500);
-        const t3 = setTimeout(() => {
-          if (cells.value[index + 1]) {
-            cells.value[index + 1].classList.remove('grid__cell--gray');
-          }
-        }, 2500);
-
-        activeTimeouts.push(t1, t2, t3);
-      }
-    });
-  }
-  window.addEventListener('resize', resizeHandler);
-});
-onUnmounted(() => {
-  window.removeEventListener('resize', resizeHandler);
-  clearAllTimeouts();
-
-  if (gridRef.value) {
-    gridRef.value.innerHTML = '';
-    cells.value = [];
-  }
+useSeoMeta({
+  title: () => `${title.value} - Simon Daguet-Kargl`,
+  robots: "noindex, nofollow",
 });
 </script>
 
 <template>
-  <main ref="mainRef">
+  <main class="error-page">
     <GrainFixed />
     <HeaderText />
-    <div class="center centered-text__title-container__title centered-text__title-container__title--small">
-      <h1>Page non trouvée...</h1>
-      <NuxtLink to="/" class="button">Retour à l'accueil</NuxtLink>
+    <div class="error-page__content">
+      <h1>{{ title }}</h1>
+      <button type="button" class="error-page__back" @click="clearError({ redirect: '/' })">
+        Retour à l'accueil
+      </button>
     </div>
     <LinksList />
-    <div class="background-grid">
-      <div class="grid" ref="gridRef">
-      </div>
-    </div>
+    <GridBackground />
   </main>
 </template>
-<style lang="scss">
-@use "@/assets/styles/variables.scss" as *;
 
-$cell-size: 50px;
+<style lang="scss" scoped>
+@use "~/assets/styles/utils" as *;
 
-.center {
-  height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-main {
+.error-page {
   width: 100%;
-}
 
-@media screen and (max-width: 930px) {
-  .centered-text__title-container__title h1 {
-    font-size: 8.25vw;
-  }
-}
+  &__content {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
 
-.grid {
-  pointer-events: all;
-  z-index: -10;
-  gap: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100dvh;
+    h1 {
+      position: relative;
+      z-index: 10;
+      margin: 0;
+      font-size: max(2.5rem, 5vw);
+      letter-spacing: -0.2vw;
+      white-space: nowrap;
 
-  &__cell {
-    width: $cell-size;
-    height: $cell-size;
-    border: 1px solid $gray-border;
-    background-color: $background-color;
-    transition: background-color 0.2s ease-in-out;
+      @media screen and (max-width: 930px) {
+        font-size: 8.25vw;
+      }
 
-    &--gray {
-      background-color: $gray;
+      @media screen and (max-width: 360px) {
+        font-size: 13vw;
+      }
     }
   }
 
+  &__back {
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+    font-size: toRem(16);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
 }
 </style>

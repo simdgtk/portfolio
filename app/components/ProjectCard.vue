@@ -1,7 +1,48 @@
+<script setup lang="ts">
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import type { Project } from "~/data/projects";
+
+const props = defineProps<Project & { index: number }>();
+
+const cardRef = useTemplateRef("card");
+
+let ctx: gsap.Context | undefined;
+let mountedTimeout: ReturnType<typeof setTimeout> | undefined;
+
+onMounted(() => {
+  // attend que la mise en page (polices, images) soit stable avant de calculer les triggers
+  mountedTimeout = setTimeout(() => {
+    ctx = gsap.context(() => {
+      gsap.fromTo(
+        cardRef.value,
+        { rotate: props.index % 2 ? 20 : -13 },
+        {
+          rotate: props.index % 2 ? 3 : -2,
+          ease: "power1.inOut",
+          scrollTrigger: {
+            trigger: cardRef.value,
+            start: "top 100%",
+            end: "center 20%",
+            scrub: true,
+          },
+        },
+      );
+    });
+    ScrollTrigger.refresh();
+  }, 1000);
+});
+
+onBeforeUnmount(() => {
+  clearTimeout(mountedTimeout);
+  ctx?.revert();
+});
+</script>
+
 <template>
-  <a :href="link" target="_blank" class="project-card" :id="id" ref="cardRef">
+  <a ref="card" :href="link" target="_blank" rel="noopener" class="project-card">
     <div class="project-card__background">
-      <div class="project-card__background__image"></div>
+      <div class="project-card__background__image"/>
     </div>
     <div class="project-card__else">
       <div class="project-card__image-container">
@@ -16,7 +57,7 @@
           format="webp"
         />
       </div>
-      <div class="project-card__separator"></div>
+      <div class="project-card__separator"/>
       <div class="project-card__text">
         <h2 class="project-card__text__title">{{ title }}</h2>
         <p class="project-card__text__description">
@@ -24,8 +65,8 @@
         </p>
         <div class="project-card__text__tags">
           <span
-            v-for="(tag, index) in tags"
-            :key="index"
+            v-for="tag in tags"
+            :key="tag"
             class="project-card__text__tags__tag"
           >
             {{ tag }}
@@ -35,70 +76,9 @@
     </div>
   </a>
 </template>
-<script setup>
-import { onMounted, onUnmounted, ref } from "vue";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const props = defineProps({
-  link: String,
-  image: String,
-  imageAlt: String,
-  title: String,
-  description: String,
-  tags: Array,
-  container: Object,
-  id: String,
-  keynumber: Number,
-});
-
-const cardRef = ref(null);
-
-let ctx;
-let mountedTimeout = null;
-
-onMounted(() => {
-  mountedTimeout = setTimeout(() => {
-    ctx = gsap.context(() => {
-      if (cardRef.value) {
-        gsap.fromTo(
-          cardRef.value,
-          {
-            rotate: props.keynumber % 2 ? 20 : -13,
-          },
-          {
-            rotate: props.keynumber % 2 ? 3 : -2,
-            scrollTrigger: {
-              trigger: cardRef.value,
-              start: "top 100%",
-              end: "center 20%",
-              scrub: true,
-            },
-            ease: "power1.inOut",
-          },
-        );
-      }
-    });
-    ScrollTrigger.refresh();
-  }, 1000);
-});
-
-onUnmounted(() => {
-  if (mountedTimeout) clearTimeout(mountedTimeout);
-  ctx?.revert();
-});
-</script>
 <style lang="scss" scoped>
-@use "@/assets/styles/_utils" as *;
-@use "@/assets/styles/_variables" as *;
-
-.container {
-  height: 100dvh;
-  display: flex;
-  align-items: center;
-}
+@use "~/assets/styles/utils" as *;
+@use "~/assets/styles/variables" as *;
 
 .project-card {
   text-decoration: none;

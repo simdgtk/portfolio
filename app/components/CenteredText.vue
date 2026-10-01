@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div class="centered-text">
     <div class="centered-text__title-container">
@@ -9,7 +7,7 @@
       </div>
       <span
         class="centered-text__title-container__info centered-text__title-container__info--alternance"
-      ></span>
+      />
       <svg
         width="34"
         height="34"
@@ -31,6 +29,7 @@
         alternant @<a
           href="https://www.wawww.studio/fr"
           target="_blank"
+          rel="noopener"
           title="nouvelle fenêtre, Studio WAWWW"
           translate="no"
           >WAWWW</a
@@ -39,8 +38,8 @@
       <span
         class="centered-text__title-container__info centered-text__title-container__info--stack"
         translate="no"
-        >Blender, <br />
-        Three.js, Sass,<br />
+        >Blender, <br >
+        Three.js, Sass,<br >
         Vue.js, Nuxt, React</span
       >
       <span
@@ -53,8 +52,8 @@
 
 <style lang="scss">
 @use "sass:math";
-@use "@/assets/styles/_utils" as *;
-@use "@/assets/styles/variables.scss" as *;
+@use "~/assets/styles/utils" as *;
+@use "~/assets/styles/variables" as *;
 
 .centered-text {
   z-index: 10;
