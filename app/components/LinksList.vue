@@ -19,7 +19,7 @@ onBeforeUnmount(() => clearTimeout(copyTimeout));
 </script>
 
 <template>
-  <div class="links-list">
+  <nav class="links-list" aria-label="Liens et contact">
     <ul>
       <li>
         <a href="/simon_daguet_kargl_cv.pdf" target="_blank" rel="noopener" title="nouvelle fenêtre, mon CV">CV</a>
@@ -43,15 +43,21 @@ href="https://www.linkedin.com/in/simon-daguet-kargl/" target="_blank" rel="noop
         <NuxtLink to="/mentions-legales">Mentions légales</NuxtLink>
       </li>
       <li>
-        <a href="tel:0768442459" title="ouverture d'un service téléphonique">+(33)7 68 44 24 59</a>
+        <a href="tel:+33768442459" title="ouverture d'un service téléphonique">+(33)7 68 44 24 59</a>
       </li>
       <li>
-        <button type="button" class="links-list__mail" title="copier le mail" @click="copyEmail">
+        <button
+          type="button"
+          class="links-list__mail"
+          title="copier le mail"
+          aria-live="polite"
+          @click="copyEmail"
+        >
           {{ mailLabel }}
         </button>
       </li>
     </ul>
-  </div>
+  </nav>
 </template>
 
 <style lang="scss" scoped>

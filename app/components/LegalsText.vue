@@ -6,7 +6,7 @@
       <NuxtLink to="/" class="legal__link legal__back" title="retour au portfolio">Retour au portfolio</NuxtLink>
 
       <div class="legal__block legal__editor">
-        <h3 class="legal__subtitle">Éditeur</h3>
+        <h2 class="legal__subtitle">Éditeur</h2>
         <p class="legal__text">
           Simon Daguet-Kargl<br>
           mail : <a
@@ -16,7 +16,7 @@ href="mailto:simondaguetkargl@gmail.com" class="legal__link"
       </div>
 
       <div class="legal__block legal__hosting">
-        <h3 class="legal__subtitle">Hébergeur</h3>
+        <h2 class="legal__subtitle">Hébergeur</h2>
         <p class="legal__text">
           Netlify, Inc.<br>
           44 Montgomery Street, Suite 300, San Francisco, CA 94104
@@ -29,7 +29,7 @@ href="mailto:simondaguetkargl@gmail.com" class="legal__link"
         </p>
       </div>
       <div class="legal__block legal__hosting">
-        <h3 class="legal__subtitle">Crédits</h3>
+        <h2 class="legal__subtitle">Crédits</h2>
         <p class="legal__text">
           <a href="https://medium.com/@alexandre.pujol/ascii-hover-effect-with-shader-and-post-processing-part-1-589064c33385" target="_blank" rel="noopener noreferrer">ASCII Hover effect with shader and post-processing - Alexandre PUJOL</a>
         </p>

@@ -2,8 +2,9 @@
   <div class="centered-text">
     <div class="centered-text__title-container">
       <div class="centered-text__title-container__title">
-        <h1 translate="no">Simon</h1>
-        <h1 translate="no">Daguet-Kargl</h1>
+        <h1 translate="no">
+          <span>Simon</span> <span>Daguet-Kargl</span>
+        </h1>
       </div>
       <span
         class="centered-text__title-container__info centered-text__title-container__info--alternance"
@@ -76,6 +77,14 @@
       justify-content: center;
 
       h1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+      }
+
+      h1 > span {
+        display: block;
         letter-spacing: -0.375vw;
         z-index: 10;
         color: white;
@@ -115,7 +124,7 @@
       }
 
       &--small {
-        h1 {
+        h1 > span {
           @media screen and (max-width: 930px) {
             font-size: toRem(52);
           }

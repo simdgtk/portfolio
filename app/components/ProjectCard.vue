@@ -40,9 +40,15 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <a ref="card" :href="link" target="_blank" rel="noopener" class="project-card">
-    <div class="project-card__background">
-      <div class="project-card__background__image"/>
+  <a
+    ref="card"
+    :href="link"
+    target="_blank"
+    rel="noopener"
+    class="project-card"
+  >
+    <div class="project-card__background" aria-hidden="true">
+      <div class="project-card__background__image" />
     </div>
     <div class="project-card__else">
       <div class="project-card__image-container">
@@ -50,16 +56,17 @@ onBeforeUnmount(() => {
           class="project-card__image"
           :src="image"
           :alt="imageAlt"
-          :title="imageAlt"
           loading="lazy"
           sizes="100vw md:300px"
           quality="80"
           format="webp"
         />
       </div>
-      <div class="project-card__separator"/>
+      <div class="project-card__separator" />
       <div class="project-card__text">
-        <h2 class="project-card__text__title">{{ title }}</h2>
+        <h2 class="project-card__text__title">
+          {{ title }}<span class="sr-only"> (nouvelle fenêtre)</span>
+        </h2>
         <p class="project-card__text__description">
           {{ description }}
         </p>

@@ -32,10 +32,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: "fr", prefix: "og: http://ogp.me/ns#" },
-      link: [
-        { rel: "icon", type: "image/jpeg", href: "/favicon.jpg" },
-        { rel: "canonical", href: "https://simondaguetkargl.fr" },
-      ],
+      link: [{ rel: "icon", type: "image/jpeg", href: "/favicon.jpg" }],
     },
   },
 });

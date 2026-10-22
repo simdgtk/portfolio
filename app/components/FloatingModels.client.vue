@@ -58,7 +58,6 @@ const MODELS: FloatingModel[] = [
 ];
 
 const MAX_PIXEL_RATIO = 1.5;
-/** Unités monde par pixel CSS de la caméra orthographique */
 const PX_PER_UNIT = 300;
 
 const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
@@ -67,7 +66,6 @@ let cleanup: (() => void) | undefined;
 let unmounted = false;
 
 onMounted(async () => {
-  // un composant .client ne rend son template qu'après le montage
   await nextTick();
   const canvas = canvasRef.value;
   if (!canvas || unmounted) return;
@@ -94,7 +92,6 @@ onMounted(async () => {
   camera.position.set(0, 0, 10);
   scene.add(camera);
 
-  // matériau PBR « façon r175 » : voir app/utils/legacyPhysicalMaterial.ts
   const chromeMaterial = new LegacyMeshPhysicalNodeMaterial({
     color: 0xa555b9,
     roughness: 0,
@@ -106,18 +103,14 @@ onMounted(async () => {
     sheenColor: new Color(0x4232ff),
   });
 
-  // Renderer WebGPU (repli WebGL2 automatique si WebGPU n'est pas disponible)
   const renderer = new WebGPURenderer({ canvas, antialias: false, alpha: true });
   renderer.setClearColor(0x000000, 0);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO));
   renderer.setSize(width, height);
 
-  // Post-processing : rendu de la scène -> effet ASCII
   const ascii = asciiEffect(pass(scene, camera).getTextureNode());
   const pipeline = new RenderPipeline(renderer, ascii.node);
 
-  // Chargement des modèles
-  // décodeur Draco (wasm) fourni et versionné avec three
   const dracoLoader = new DRACOLoader();
   const gltfLoader = new GLTFLoader().setDRACOLoader(dracoLoader);
 
@@ -236,7 +229,6 @@ onMounted(async () => {
     });
     layoutModels();
 
-    // Compile les shaders avant le premier rendu pour éviter un saut à l'apparition
     await renderer.compileAsync(scene, camera);
     if (unmounted) return;
 
@@ -245,7 +237,6 @@ onMounted(async () => {
   } catch (error) {
     console.error("[FloatingModels]", error);
   } finally {
-    // La page s'affiche même si la 3D échoue
     if (!unmounted) emit("loaded");
   }
 });
@@ -258,7 +249,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="floating-models">
+  <div class="floating-models" aria-hidden="true">
     <canvas ref="canvas" :class="{ 'is-loaded': isLoaded }" />
   </div>
 </template>

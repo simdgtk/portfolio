@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <header class="header">
     <span class="header__text"
       >Simon Daguet-Kargl - développement web front-end / web créatif & étudiant
       à
@@ -20,7 +20,7 @@
         >MMI Bordeaux</a
       >
     </span>
-  </div>
+  </header>
 </template>
 <style lang="scss" scoped>
 @use "~/assets/styles/utils" as *;

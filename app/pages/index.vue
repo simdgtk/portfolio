@@ -6,7 +6,6 @@ useSeoMeta({
     "Portfolio de Simon Daguet-Kargl, je suis un développeur front-end et web créatif basé sur Paris et Nantes. Découvrez mon portfolio de développeur frontend.",
 });
 
-// rejoue l'apparition à chaque visite de la page
 const modelsLoaded = useModelsLoaded();
 modelsLoaded.value = false;
 
@@ -14,17 +13,16 @@ useConsoleArt();
 </script>
 
 <template>
-  <div class="container">
-    <main class="home">
+  <main class="container">
+    <div class="home">
       <GrainFixed />
       <HeaderText />
       <CenteredText />
-      <!-- chargé en différé : three.js reste hors du bundle initial -->
       <LazyFloatingModels @loaded="modelsLoaded = true" />
       <LinksList />
       <GridBackground animated :revealed="modelsLoaded" />
-    </main>
-    <div class="projects-container">
+    </div>
+    <section class="projects-container" aria-label="Projets">
       <div class="projects">
         <ProjectCard
           v-for="(project, index) in projects"
@@ -35,9 +33,9 @@ useConsoleArt();
           class="project"
         />
       </div>
-    </div>
+    </section>
     <ScrollText />
-  </div>
+  </main>
 </template>
 
 <style lang="scss" scoped>
